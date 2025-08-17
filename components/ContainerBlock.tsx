@@ -3,7 +3,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { GoogleAnalytics } from "@next/third-parties/google";
 
 interface MetaProps {
     title?: string;
@@ -117,8 +116,22 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
                         })
                     }}
                 />
+                {gaId && (
+                    <>
+                        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+                        <script
+                            dangerouslySetInnerHTML={{
+                                __html: `
+                                    window.dataLayer = window.dataLayer || [];
+                                    function gtag(){dataLayer.push(arguments);}
+                                    gtag('js', new Date());
+                                    gtag('config', '${gaId}');
+                                `,
+                            }}
+                        />
+                    </>
+                )}
             </Head>
-            {gaId && <GoogleAnalytics gaId={gaId} />}
             <main className="dark:bg-gray-800 w-full">
                 <Navbar />
                 <div>{children}</div>

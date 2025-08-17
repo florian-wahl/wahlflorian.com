@@ -29,7 +29,7 @@ const AboutMe: React.FC = () => {
                                 Contact
                             </h2>
                             <p className="text-lg text-gray-500 mt-4 dark:text-gray-300">
-                                For any enquiry, please contact me {" "}
+                                For any inquiry, please contact me {" "}
                                 <a
                                     href={`mailto:${userData.email}`}
                                     className="text-gray-800 border-b-2 border-gray-800 dark:border-gray-300 font-bold dark:text-gray-300"

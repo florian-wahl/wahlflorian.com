@@ -177,7 +177,7 @@ const userData: UserData = {
             company: "Capgemini",
             year: "August 2017",
             companyLink: "https://capgemini.com",
-            desc: "Various consulting positions in open banking, digital transaformation, fintech, and blockchain.",
+            desc: "Various consulting positions in open banking, digital transformation, fintech, and blockchain.",
         },
     ],
     resumeUrl:

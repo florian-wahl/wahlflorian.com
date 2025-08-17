@@ -8,6 +8,7 @@ interface About {
     title: string;
     description: string[];
     publicSpeaking: [string, string][];
+    certifications: string[];
 }
 
 interface Experience {
@@ -134,6 +135,9 @@ const userData: UserData = {
             [`Taking Faster Payments to the Bank - or CU`, `Glen Sarvady's BIGcast (podcast), May 2023`],
             [`Pay by Bank Powered by Real-Time Payments`, `Nacha's Smarter Faster Payments 2023, April 2023`],
             [`Industry Collaboration on DDA Payment Tokens in Support of a Safer Data Sharing & Payments Ecosystem`, `Financial Data Exchange Global Summit, April 2023`]
+        ],
+        certifications: [
+            "I am a Certified Digital Product Manager, credentialed by the Association of International Product Marketing and Management (AIPMM). This certification, issued in September 2023 (Credential ID: 82693844), validates my expertise in driving product strategy, lifecycle management, and innovation in digital products."
         ]
     },
     experience: [

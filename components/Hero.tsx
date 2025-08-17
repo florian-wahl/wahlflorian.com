@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { RainbowHighlight } from "./RainbowHighlight";
 import OptimizedImage from "./OptimizedImage";
 import userData from "../constants/data";
 
 const Hero: React.FC = () => {
     const colors: string[] = ["#F59E0B", "#84CC16", "#10B981", "#3B82F6"];
-    const [show, setShow] = useState(false);
-
-    useEffect(() => {
-        // Add a slight delay before starting animations
-        const timer = setTimeout(() => {
-            setShow(true);
-        }, 400);
-
-        return () => clearTimeout(timer);
-    }, []);
 
     return (
         <div className="flex flex-col-reverse md:flex-row justify-center items-center overflow-hidden px-4 md:px-0">
             {/* Text container */}
             <div className="w-full md:w-1/2 text-center md:text-left lg:p-10">
-                {show && userData.rainbowContent.map((content, index) => (
+                {userData.rainbowContent.map((content, index) => (
                     <RainbowHighlight
                         color={colors[index]}
                         key={index}

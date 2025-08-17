@@ -2,12 +2,16 @@ import "../styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { preloadCriticalImages, optimizeImageLoading } from '../utils/imageOptimization';
 
 function MyApp({ Component, pageProps }: AppProps) {
+    const router = useRouter();
+
     useEffect(() => {
         // Preload critical images for better performance
-        preloadCriticalImages(optimizeImageLoading.priority);
+        const prioritized = optimizeImageLoading.priority.map(url => `${router.basePath}${url}`);
+        preloadCriticalImages(prioritized);
 
         // Add performance monitoring
         if (typeof window !== 'undefined' && 'performance' in window) {
@@ -28,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
             return () => observer.disconnect();
         }
-    }, []);
+    }, [router.basePath]);
 
     return (
         <ThemeProvider defaultTheme="dark" attribute="class">

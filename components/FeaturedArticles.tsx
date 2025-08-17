@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import OptimizedImage from "./OptimizedImage";
 
 const FeaturedArticles: React.FC = () => {
     return (
@@ -40,12 +41,11 @@ const FeaturedArticles: React.FC = () => {
                         className="w-full block col-span-3 shadow-lg md:shadow-2xl rounded-lg overflow-hidden"
                     >
                         <div className="relative overflow-hidden">
-                            <div className="aspect-w-16 aspect-h-9">
+                            <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
                                 <img
                                     src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ywYLQMzS1NLVWYHB3B7sZA.jpeg"
-                                    alt="A Framework for Product Strategy"
-                                    className="transform hover:scale-125 transition duration-2000 ease-out object-cover w-full h-full"
-                                    loading="lazy"
+                                    alt="A Framework for Product Strategy - Product management framework illustration"
+                                    className="absolute inset-0 w-full h-full transform hover:scale-125 transition duration-2000 ease-out object-cover"
                                 />
                             </div>
                             <h2 className="absolute top-4 md:top-10 left-4 md:left-10 text-gray-50 font-bold text-lg md:text-xl bg-red-500 rounded-md px-2 py-1 shadow-md">
@@ -59,12 +59,11 @@ const FeaturedArticles: React.FC = () => {
                         className="w-full block col-span-3 sm:col-span-2 shadow-lg md:shadow-2xl rounded-lg overflow-hidden"
                     >
                         <div className="relative overflow-hidden">
-                            <div className="aspect-w-16 aspect-h-9">
+                            <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
                                 <img
                                     src="https://akoya.com/hubfs/Blog%20posts%20-%20SVGs/Instant%20ACH%20verification%20and%20meeting%20consumer%20expectations%20-%20Blog%20post.svg"
-                                    alt="Akoya Blog Series"
-                                    className="transform hover:scale-125 transition duration-2000 ease-out object-cover w-full h-full"
-                                    loading="lazy"
+                                    alt="Akoya Blog Series - Financial technology and open banking articles"
+                                    className="absolute inset-0 w-full h-full transform hover:scale-125 transition duration-2000 ease-out object-cover"
                                 />
                             </div>
                             <h2 className="absolute top-4 md:top-10 left-4 md:left-10 text-gray-50 font-bold text-lg md:text-xl bg-red-500 rounded-md px-2 py-1 shadow-md">
@@ -78,12 +77,11 @@ const FeaturedArticles: React.FC = () => {
                         className="w-full block col-span-3 sm:col-span-1 shadow-lg md:shadow-2xl rounded-lg overflow-hidden"
                     >
                         <div className="relative overflow-hidden">
-                            <div className="aspect-w-16 aspect-h-9">
+                            <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
                                 <img
                                     src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*yg7tmTyUqldSMY6ITNfsLQ.png"
-                                    alt="A Process For Product Management"
-                                    className="transform hover:scale-125 transition duration-2000 ease-out object-cover w-full h-full"
-                                    loading="lazy"
+                                    alt="A Process For Product Management - Product management workflow diagram"
+                                    className="absolute inset-0 w-full h-full transform hover:scale-125 transition duration-2000 ease-out object-cover"
                                 />
                             </div>
                             <h2 className="absolute top-4 md:top-10 left-4 md:left-10 text-gray-50 font-bold text-lg md:text-xl bg-red-500 rounded-md px-2 py-1 shadow-md max-w-[calc(100%-2rem)] md:max-w-60">

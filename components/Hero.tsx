@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { RoughNotationGroup } from "react-rough-notation";
 import { RainbowHighlight } from "./RainbowHighlight";
+import OptimizedImage from "./OptimizedImage";
 import userData from "../constants/data";
 
 const Hero: React.FC = () => {
@@ -37,17 +38,21 @@ const Hero: React.FC = () => {
             {/* Image container */}
             <div className="w-2/3 md:w-1/2 mb-8 md:mb-0 md:-mr-40 mt-10 md:mt-20">
                 <div className="relative w-full max-w-md mx-auto">
-                    <img
-                        src={userData.avatarUrl}
-                        alt="avatar"
-                        className="heroimg shadow rounded-2xl w-full h-auto"
-                        loading="eager"
-                        style={{
-                            maxWidth: '100%',
-                            height: 'auto',
-                            objectFit: 'cover',
-                        }}
-                    />
+                    <div className="relative w-full h-auto">
+                        <OptimizedImage
+                            src={userData.avatarUrl}
+                            alt="Florian Wahl - Product Leader and Engineer"
+                            width={500}
+                            height={500}
+                            className="heroimg shadow rounded-2xl w-full h-auto"
+                            priority
+                            style={{
+                                maxWidth: '100%',
+                                height: 'auto',
+                                objectFit: 'cover',
+                            }}
+                        />
+                    </div>
                     <div className="flex flex-row justify-start mt-4">
                         <div className="flex flex-row items-center space-x-2">
                             <svg

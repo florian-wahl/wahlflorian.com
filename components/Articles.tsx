@@ -11,11 +11,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, link, imgUrl }) => {
     return (
         <a href={link} className="w-full block shadow-2xl">
             <div className="relative overflow-hidden">
-                <div className="h-72 object-cover">
+                <div className="h-72 relative">
                     <img
                         src={imgUrl}
-                        alt="portfolio"
-                        className="transform hover:scale-125 transition duration-2000 ease-out object-cover h-full w-full"
+                        alt={`${title} - Article thumbnail`}
+                        className="absolute inset-0 w-full h-full transform hover:scale-125 transition duration-2000 ease-out object-cover"
                     />
                 </div>
                 <h2 className="absolute top-10 left-10 text-gray-50 font-bold text-xl bg-gray-800 rounded-md px-2 max-w-md">

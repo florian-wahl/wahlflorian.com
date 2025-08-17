@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const basePath = process.env.BASE_PATH || '';
+const basePath = '';
 
 const nextConfig = {
     reactStrictMode: true,

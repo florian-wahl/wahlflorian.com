@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { RoughNotationGroup } from "react-rough-notation";
 import { RainbowHighlight } from "./RainbowHighlight";
 import OptimizedImage from "./OptimizedImage";
 import userData from "../constants/data";
@@ -21,19 +20,17 @@ const Hero: React.FC = () => {
         <div className="flex flex-col-reverse md:flex-row justify-center items-center overflow-hidden px-4 md:px-0">
             {/* Text container */}
             <div className="w-full md:w-1/2 text-center md:text-left lg:p-10">
-                <RoughNotationGroup show={show}>
-                    {userData.rainbowContent.map((content, index) => (
-                        <RainbowHighlight
-                            color={colors[index]}
-                            key={index}
-                            order={index + 1}
-                        >
-                            <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-gray-700 dark:text-gray-200 my-2">
-                                {content}
-                            </h2>
-                        </RainbowHighlight>
-                    ))}
-                </RoughNotationGroup>
+                {show && userData.rainbowContent.map((content, index) => (
+                    <RainbowHighlight
+                        color={colors[index]}
+                        key={index}
+                        order={index + 1}
+                    >
+                        <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-gray-700 dark:text-gray-200 my-2">
+                            {content}
+                        </h2>
+                    </RainbowHighlight>
+                ))}
             </div>
             {/* Image container */}
             <div className="w-2/3 md:w-1/2 mb-8 md:mb-0 md:-mr-40 mt-10 md:mt-20">

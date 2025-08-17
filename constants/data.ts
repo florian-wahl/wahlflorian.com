@@ -45,7 +45,7 @@ const userData: UserData = {
     githubUsername: "N/A",
     name: "Florian Wahl",
     designation: "Product Leader",
-    avatarUrl: "/avatar.svg",
+    avatarUrl: "/headshot.jpg",
     email: "florian.wahl.31@gmail.com",
     phone: "+",
     address: "New York, NY",

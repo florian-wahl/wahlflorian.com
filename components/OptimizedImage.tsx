@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import ImageSkeleton from './ImageSkeleton';
 
 interface OptimizedImageProps {
@@ -27,6 +28,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     const [isLoaded, setIsLoaded] = useState(false);
     const [hasError, setHasError] = useState(false);
     const imgRef = useRef<HTMLImageElement>(null);
+    const { basePath } = useRouter();
 
     useEffect(() => {
         // For priority images, start loading immediately
@@ -57,6 +59,13 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         return () => observer.disconnect();
     }, [priority]);
 
+    // Handle images that may already be loaded (e.g., from cache or preload)
+    useEffect(() => {
+        if (imgRef.current?.complete) {
+            setIsLoaded(true);
+        }
+    }, [src]);
+
     const handleLoad = () => {
         setIsLoaded(true);
         setHasError(false);
@@ -73,7 +82,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
             <div className={`relative ${className}`} style={style}>
                 <img
                     ref={imgRef}
-                    src={src}
+                    src={src.startsWith('http') ? src : `${basePath}${src}`}
                     alt={alt}
                     className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'
                         } ${className}`}
@@ -98,7 +107,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         <div className="relative">
             <img
                 ref={imgRef}
-                src={src}
+                src={src.startsWith('http') ? src : `${basePath}${src}`}
                 alt={alt}
                 width={width}
                 height={height}

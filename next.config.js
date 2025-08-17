@@ -4,7 +4,9 @@ const nextConfig = {
     output: 'export',
     images: {
         unoptimized: true
-    }
+    },
+    basePath: '/wahlflorian.com',
+    assetPrefix: '/wahlflorian.com/',
 }
 
 module.exports = nextConfig 

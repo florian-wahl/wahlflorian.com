@@ -59,6 +59,13 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         return () => observer.disconnect();
     }, [priority]);
 
+    // Handle images that may already be loaded (e.g., from cache or preload)
+    useEffect(() => {
+        if (imgRef.current?.complete) {
+            setIsLoaded(true);
+        }
+    }, [src]);
+
     const handleLoad = () => {
         setIsLoaded(true);
         setHasError(false);

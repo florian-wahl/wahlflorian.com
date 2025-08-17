@@ -213,6 +213,7 @@ const Navbar: React.FC = () => {
                         <Link
                             href="https://portfolio.wahlflorian.com/"
                             target="_blank"
+                            rel="noopener noreferrer"
                             className={`text-base ${router.asPath === "/portfolio"
                                 ? "text-gray-800 font-bold dark:text-gray-400"
                                 : "text-gray-600 dark:text-gray-300 font-normal hover:text-gray-800 dark:hover:text-gray-100 transition-colors duration-200"
@@ -361,6 +362,7 @@ const Navbar: React.FC = () => {
                                 <Link
                                     href="https://portfolio.wahlflorian.com/"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                     onClick={() => setIsOpen(false)}
                                     className="transform transition-transform duration-200 ease-in-out hover:translate-x-2 text-base px-4 py-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                                 >

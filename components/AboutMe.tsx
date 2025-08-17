@@ -123,6 +123,17 @@ const AboutMe: React.FC = () => {
                                 ))}
                             </ul>
                         </div>
+
+                        <h2 className="text-xl font-semibold text-gray-700 mt-8 dark:text-gray-200">
+                            Certifications
+                        </h2>
+                        <div className="text-lg text-gray-500 mt-4 dark:text-gray-300" style={{ paddingLeft: "1rem" }}>
+                            {userData.about.certifications?.map((cert, idx) => (
+                                <p key={idx} className="text-xl text-gray-700 mb-4 dark:text-gray-300 ">
+                                    {cert}
+                                </p>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

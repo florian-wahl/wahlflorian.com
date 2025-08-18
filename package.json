@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "tsc utils/imageOptimization.ts utils/imageOptimization.test.ts --module commonjs --target es2019 --outDir build --noEmit false && node --test build/imageOptimization.test.js && rm -rf build"
   },
   "dependencies": {
     "@next/third-parties": "^15.1.5",

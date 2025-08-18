@@ -16,6 +16,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
     useEffect(() => {
+        document.documentElement.lang = "en";
+    }, []);
+
+    useEffect(() => {
         // Preload critical images for better performance
         const prioritized = optimizeImageLoading.priority.map(url => `${router.basePath}${url}`);
         preloadCriticalImages(prioritized);

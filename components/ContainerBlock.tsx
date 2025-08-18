@@ -39,7 +39,6 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
                 <meta name="keywords" content="Florian Wahl, Product Leader, Product Strategy, Fintech, Digital Transformation, Akoya, Open Finance, Payments, API Development" />
                 <meta name="author" content="Florian Wahl" />
                 <meta name="news_keywords" content="Florian Wahl, Fintech, Product Strategy" />
-                <meta name="language" content="English" />
                 <meta name="revisit-after" content="7 days" />
                 <meta name="rating" content="General" />
                 <meta name="copyright" content="Florian Wahl" />

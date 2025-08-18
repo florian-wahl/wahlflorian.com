@@ -4,7 +4,14 @@ import Experience from "../components/Experience";
 
 export default function experience() {
   return (
-    <ContainerBlock title="Experience - Florian Wahl">
+    <ContainerBlock
+      customMeta={{
+        title: "Florian Wahl's Professional Experience",
+        description:
+          "Discover Florian Wahl's career in product management, fintech, and leadership roles.",
+        type: "profile",
+      }}
+    >
       <Experience />
     </ContainerBlock>
   );

@@ -6,9 +6,9 @@ export default function contact() {
   return (
     <ContainerBlock
       customMeta={{
-        title: "Contact Florian Wahl - Get in Touch",
+        title: "Contact Florian Wahl",
         description:
-          "Reach out to Florian Wahl for collaboration, product inquiries, or networking opportunities.",
+          "Reach out to Florian Wahl for collaboration, inquiries, or networking opportunities.",
         type: "profile",
       }}
     >

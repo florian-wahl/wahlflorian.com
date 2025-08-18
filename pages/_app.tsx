@@ -3,6 +3,7 @@ import { ThemeProvider } from "next-themes";
 import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { preloadCriticalImages, optimizeImageLoading } from '../utils/imageOptimization';
 
 declare global {
@@ -56,6 +57,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     return (
         <ThemeProvider defaultTheme="dark" attribute="class">
+            {gaId && <GoogleAnalytics gaId={gaId} />}
             <Component {...pageProps} />
         </ThemeProvider>
     );

@@ -28,6 +28,7 @@ jobs:
         env:
           BASE_PATH: /${{ github.event.repository.name }}
           NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.NEXT_PUBLIC_GA_MEASUREMENT_ID || secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
+      - run: echo $NEXT_PUBLIC_GA_MEASUREMENT_ID
       - run: npm run postbuild
       - uses: actions/upload-pages-artifact@v3
         with:

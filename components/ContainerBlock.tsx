@@ -28,8 +28,6 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
         ...customMeta,
     };
 
-    const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-
     return (
         <div>
             <Head>
@@ -39,7 +37,6 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
                 <meta name="keywords" content="Florian Wahl, Product Leader, Product Strategy, Fintech, Digital Transformation, Akoya, Open Finance, Payments, API Development" />
                 <meta name="author" content="Florian Wahl" />
                 <meta name="news_keywords" content="Florian Wahl, Fintech, Product Strategy" />
-                <meta name="language" content="English" />
                 <meta name="revisit-after" content="7 days" />
                 <meta name="rating" content="General" />
                 <meta name="copyright" content="Florian Wahl" />
@@ -116,21 +113,6 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
                         })
                     }}
                 />
-                {gaId && (
-                    <>
-                        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
-                        <script
-                            dangerouslySetInnerHTML={{
-                                __html: `
-                                    window.dataLayer = window.dataLayer || [];
-                                    function gtag(){dataLayer.push(arguments);}
-                                    gtag('js', new Date());
-                                    gtag('config', '${gaId}');
-                                `,
-                            }}
-                        />
-                    </>
-                )}
             </Head>
             <main className="dark:bg-gray-800 w-full">
                 <Navbar />

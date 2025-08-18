@@ -3,6 +3,7 @@ import { ThemeProvider } from "next-themes";
 import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { preloadCriticalImages, optimizeImageLoading } from '../utils/imageOptimization';
 
 declare global {
@@ -14,6 +15,10 @@ declare global {
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
     const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
+    useEffect(() => {
+        document.documentElement.lang = "en";
+    }, []);
 
     useEffect(() => {
         // Preload critical images for better performance
@@ -56,6 +61,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     return (
         <ThemeProvider defaultTheme="dark" attribute="class">
+            {gaId && <GoogleAnalytics gaId={gaId} />}
             <Component {...pageProps} />
         </ThemeProvider>
     );

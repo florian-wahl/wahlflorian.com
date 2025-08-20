@@ -150,9 +150,9 @@ const Navbar: React.FC = () => {
                     {/* Logo and Name */}
                     <div className="flex flex-col">
                         <Link href="/">
-                            <h1 className="font-semibold text-xl md:text-4xl dark:text-gray-100">
+                            <span className="font-semibold text-xl md:text-4xl dark:text-gray-100">
                                 {userData.name}
-                            </h1>
+                            </span>
                             <p className="text-base font-light text-gray-500 dark:text-gray-300">
                                 {userData.designation}
                             </p>

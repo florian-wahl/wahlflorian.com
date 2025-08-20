@@ -1,5 +1,6 @@
 import React from "react";
 import userData from "../constants/data";
+import { event } from "../utils/analytics";
 
 interface ProjectCardProps {
     title: string;
@@ -9,7 +10,17 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ title, link, imgUrl }) => {
     return (
-        <a href={link} className="w-full block shadow-2xl">
+        <a
+            href={link}
+            className="w-full block shadow-2xl"
+            onClick={() =>
+                event("article_click", {
+                    title,
+                    category: "articles",
+                    label: title,
+                })
+            }
+        >
             <div className="relative overflow-hidden">
                 <div className="h-72 relative">
                     <img

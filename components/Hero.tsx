@@ -22,16 +22,11 @@ const Hero: React.FC = () => {
             {/* Text container */}
             <div className="w-full md:w-1/2 text-center md:text-left lg:p-10">
                 <RoughNotationGroup show={show}>
-                    <RainbowHighlight color={colors[0]} order={1}>
-                        <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-gray-700 dark:text-gray-200 my-2">
-                            {`${userData.name} — ${userData.designation}`}
-                        </h1>
-                    </RainbowHighlight>
                     {userData.rainbowContent.map((content, index) => (
                         <RainbowHighlight
-                            color={colors[(index + 1) % colors.length]}
+                            color={colors[index]}
                             key={index}
-                            order={index + 2}
+                            order={index + 1}
                         >
                             <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-gray-700 dark:text-gray-200 my-2">
                                 {content}

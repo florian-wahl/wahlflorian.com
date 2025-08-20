@@ -1,5 +1,6 @@
 import React from "react";
 import userData from "../constants/data";
+import { event } from "../utils/analytics";
 
 const Contact: React.FC = () => {
     return (
@@ -56,6 +57,13 @@ const Contact: React.FC = () => {
                             <a
                                 href={userData.socialLinks.linkedin}
                                 className="h-10 w-10 rounded-full hover:bg-blue-500 flex items-center justify-center cursor-pointer"
+                                onClick={() =>
+                                    event("social_click", {
+                                        platform: "LinkedIn",
+                                        category: "social",
+                                        label: "LinkedIn",
+                                    })
+                                }
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -71,6 +79,13 @@ const Contact: React.FC = () => {
                             <a
                                 href={userData.socialLinks.twitter}
                                 className="h-10 w-10 rounded-full hover:bg-blue-500 flex items-center justify-center cursor-pointer"
+                                onClick={() =>
+                                    event("social_click", {
+                                        platform: "Twitter",
+                                        category: "social",
+                                        label: "Twitter",
+                                    })
+                                }
                             >
                                 <svg
                                     width="24"
@@ -91,6 +106,13 @@ const Contact: React.FC = () => {
                             <a
                                 href={userData.socialLinks.instagram}
                                 className="h-10 w-10 rounded-full hover:bg-blue-500 flex items-center justify-center cursor-pointer"
+                                onClick={() =>
+                                    event("social_click", {
+                                        platform: "Instagram",
+                                        category: "social",
+                                        label: "Instagram",
+                                    })
+                                }
                             >
                                 <svg
                                     width="24"

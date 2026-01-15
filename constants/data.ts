@@ -142,7 +142,7 @@ const userData: UserData = {
     },
     experience: [
         {
-            title: "Product Strategy Lead",
+            title: "Head of Product Strategy",
             company: "Akoya",
             year: "Current",
             companyLink: "https://akoya.com",

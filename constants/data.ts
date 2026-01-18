@@ -194,7 +194,7 @@ const userData: UserData = {
     rainbowContent: [
         "Product Manager.",
         "Photographer.",
-        "Engineer.",
+        "Engineer by Trade.",
         "Strategist."
     ]
 };

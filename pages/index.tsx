@@ -1,20 +1,20 @@
 import ContainerBlock from "../components/ContainerBlock";
-import FeaturedArticles from "../components/FeaturedArticles";
 import Hero from "../components/Hero";
-import AboutMe from "../components/AboutMe";
+import ThoughtLeadership from "../components/ThoughtLeadership";
+import Experience from "../components/Experience";
 import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
     return (
         <ContainerBlock
             customMeta={{
-                title: "Florian Wahl",
-                description: "This is my portfolio website."
+                title: "Florian Wahl - Product Leader & Fintech Expert",
+                description: "Product leader, engineer, and fintech expert. Explore my work experience, thought leadership, and capabilities."
             }}
         >
             <Hero />
-            <AboutMe />
-            <FeaturedArticles />
+            <ThoughtLeadership />
+            <Experience />
         </ContainerBlock>
     );
 };

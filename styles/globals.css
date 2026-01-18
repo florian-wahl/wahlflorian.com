@@ -10,6 +10,8 @@ body {
   margin: 0;
   font-family: 'Inter var', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #0a0a0a;
+  color: #ffffff;
 }
 
 a {
@@ -24,4 +26,113 @@ a {
 .heroimg {
   width: 100%;
   max-width: 500px;
+}
+
+/* Pixel/Retro Gaming Aesthetic */
+.pixel-text {
+  font-family: 'Inter var', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 
+    4px 4px 0px #000000,
+    8px 8px 0px rgba(0, 0, 0, 0.3);
+}
+
+.pixel-border {
+  border: 4px solid #ffffff;
+  box-shadow: 
+    4px 4px 0px #000000,
+    inset 2px 2px 0px rgba(255, 255, 255, 0.3);
+}
+
+.pixel-card {
+  position: relative;
+  background: #1a1a1a;
+  border: 4px solid #ffffff;
+  box-shadow: 
+    8px 8px 0px #000000,
+    inset 2px 2px 0px rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.pixel-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 
+    10px 10px 0px #000000,
+    inset 2px 2px 0px rgba(255, 255, 255, 0.1);
+}
+
+.pixel-button {
+  position: relative;
+  border: 4px solid #000000;
+  box-shadow: 
+    4px 4px 0px #000000,
+    inset -2px -2px 0px rgba(0, 0, 0, 0.2);
+  transition: all 0.1s ease;
+}
+
+.pixel-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 
+    6px 6px 0px #000000,
+    inset -2px -2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.pixel-button:active {
+  transform: translate(0px, 0px);
+  box-shadow: 
+    2px 2px 0px #000000,
+    inset -2px -2px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Pixelated effect for images */
+.pixel-image {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Retro scanline effect */
+.scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glitch effect for hover states */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch:hover {
+  animation: glitch 0.3s infinite;
 }

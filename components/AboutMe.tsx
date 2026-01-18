@@ -3,137 +3,96 @@ import userData from "../constants/data";
 
 const AboutMe: React.FC = () => {
     return (
-        <section className="bg-white dark:bg-gray-800">
-            <div className="max-w-6xl mx-auto h-48 bg-white dark:bg-gray-800">
-                <h1 className=" text-5xl md:text-9xl font-bold py-20 text-center md:text-left">
-                    About Me
-                </h1>
-            </div>
-            <div className="bg-[#F1F1F1] -mt-10 dark:bg-gray-900">
-                <div className="text-container max-w-6xl mx-auto pt-20">
-                    <p
-                        className="leading-loose text-2xl md:text-4xl font-semibold  mx-4"
-                        style={{ lineHeight: "3rem" }}
-                    >
-                        {userData.about.title}.
+        <section className="bg-[#0a0a0a] dark:bg-gray-900 py-20">
+            <div className="max-w-6xl mx-auto px-4">
+                <div className="mb-16">
+                    <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white dark:text-gray-100 mb-4 pixel-text">
+                        ABOUT ME
+                    </h1>
+                </div>
+                
+                <div className="mb-12">
+                    <p className="text-2xl md:text-3xl font-bold text-white font-mono leading-relaxed">
+                        {userData.about.title}
                     </p>
                 </div>
-            </div>
 
-            <div className="bg-[#F1F1F1] dark:bg-gray-900 px-4">
-                <div className="pt-20 grid grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto gap-y-20 gap-x-20">
-                    {/* Social Buttons */}
-                    <div className="inline-flex flex-col">
-                        <div>
-                            <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200">
-                                Contact
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    {/* Contact & Links */}
+                    <div className="space-y-8">
+                        <div className="pixel-card bg-gray-900 p-6">
+                            <h2 className="text-xl font-bold text-white font-mono mb-4">
+                                CONTACT
                             </h2>
-                            <p className="text-lg text-gray-500 mt-4 dark:text-gray-300">
-                                For any inquiry, please contact me {" "}
-                                <a
-                                    href={`mailto:${userData.email}`}
-                                    className="text-gray-800 border-b-2 border-gray-800 dark:border-gray-300 font-bold dark:text-gray-300"
-                                >
-                                    via e-mail
-                                </a>{" "}
-                                and I'll get back to you.
+                            <p className="text-gray-300 font-mono text-sm mb-4">
+                                For any inquiry, please contact me
                             </p>
+                            <a
+                                href={`mailto:${userData.email}`}
+                                className="inline-block px-4 py-2 bg-yellow-400 text-black font-bold font-mono text-sm pixel-button hover:bg-yellow-300 transition-colors"
+                            >
+                                SEND EMAIL →
+                            </a>
                         </div>
-                        <div className="mt-8">
-                            <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200">
-                                Curriculum Vitae
+                        
+                        <div className="pixel-card bg-gray-900 p-6">
+                            <h2 className="text-xl font-bold text-white font-mono mb-4">
+                                RESUME
                             </h2>
-                            <p className="text-lg text-gray-500 mt-4 dark:text-gray-300">
-                                You can find my latest CV{" "}
-                                <a
-                                    href={userData.resumeUrl}
-                                    target="__blank"
-                                    className="text-gray-800 border-b-2 border-gray-800 dark:border-gray-300 font-bold dark:text-gray-300"
-                                >
-                                    here
-                                </a>.
-                            </p>
-                        </div>
-                        {/* Social Links */}
-                        <h2 className="text-xl font-semibold text-gray-700 mt-8 dark:text-gray-200">
-                            Social Links
-                        </h2>
-                        <div className="mt-4 ml-4">
-                            <div className="flex flex-row justify-start items-center">
-                                <a
-                                    href={userData.socialLinks.linkedin}
-                                    className="flex flex-row items-center space-x-4 group"
-                                >
-                                    <div className="my-4">&rarr;</div>
-                                    <div className="text-lg text-gray-500 font-mono relative overflow-hidden dark:text-gray-300">
-                                        <div className="absolute h-0.5 w-full bg-gray-400 bottom-0 transform -translate-x-24 group-hover:translate-x-0 transition duration-300"></div>
-                                        LinkedIn
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="flex flex-row justify-start items-center">
-                                <a
-                                    href={userData.socialLinks.instagram}
-                                    className="flex flex-row items-center space-x-4 group"
-                                >
-                                    <div className="my-4">&rarr;</div>
-                                    <div className="text-lg text-gray-500 font-mono relative overflow-hidden dark:text-gray-300">
-                                        <div className="absolute h-0.5 w-full bg-gray-400 bottom-0 transform -translate-x-28 group-hover:translate-x-0 transition duration-300"></div>
-                                        Instagram
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="flex flex-row justify-start items-center">
-                                <a
-                                    href={userData.socialLinks.twitter}
-                                    className="flex flex-row items-center space-x-4 group"
-                                >
-                                    <div className="my-4">&rarr;</div>
-                                    <div className="text-lg text-gray-500 font-mono relative overflow-hidden dark:text-gray-300">
-                                        <div className="absolute h-0.5 w-full bg-gray-400 bottom-0 transform -translate-x-24 group-hover:translate-x-0 transition duration-300"></div>
-                                        Twitter
-                                    </div>
-                                </a>
-                            </div>
+                            <a
+                                href={userData.resumeUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-block px-4 py-2 bg-white text-black font-bold font-mono text-sm pixel-button hover:bg-gray-200 transition-colors"
+                            >
+                                VIEW CV →
+                            </a>
                         </div>
                     </div>
-                    {/* Text area */}
-                    <div className="col-span-1 md:col-span-2">
+                    
+                    {/* Description */}
+                    <div className="col-span-1 md:col-span-2 space-y-8">
                         {userData.about.description?.map((desc, idx) => (
                             <p
                                 key={idx}
-                                className="text-xl text-gray-700 mb-4 dark:text-gray-300 "
+                                className="text-lg text-gray-300 font-mono leading-relaxed"
                             >
                                 {desc}
                             </p>
                         ))}
+                    </div>
+                </div>
 
-                        <h2 className="text-xl font-semibold text-gray-700 mt-8 dark:text-gray-200">
-                            Public Speaking
-                        </h2>
-                        <div className="text-lg text-gray-500 mt-4 dark:text-gray-300" style={{ paddingLeft: "1rem" }}>
-                            <ul style={{ listStyle: "square" }}>
-                                {userData.about.publicSpeaking?.map((desc, idx) => (
-                                    <li
-                                        key={idx}
-                                        className="text-xl text-gray-700 mb-4 dark:text-gray-300 "
-                                    >
-                                        <i>{desc[0]}</i>, {desc[1]}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <h2 className="text-xl font-semibold text-gray-700 mt-8 dark:text-gray-200">
-                            Certifications
-                        </h2>
-                        <div className="text-lg text-gray-500 mt-4 dark:text-gray-300" style={{ paddingLeft: "1rem" }}>
-                            {userData.about.certifications?.map((cert, idx) => (
-                                <p key={idx} className="text-xl text-gray-700 mb-4 dark:text-gray-300 ">
-                                    {cert}
+                {/* Public Speaking */}
+                <div className="mb-12">
+                    <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 font-mono pixel-text">
+                        PUBLIC SPEAKING
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {userData.about.publicSpeaking?.map((desc, idx) => (
+                            <div key={idx} className="pixel-card bg-gray-900 p-6">
+                                <p className="text-white font-mono text-sm mb-2">
+                                    <span className="text-yellow-400">🎤</span> {desc[0]}
                                 </p>
-                            ))}
-                        </div>
+                                <p className="text-gray-400 font-mono text-xs">
+                                    {desc[1]}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Certifications */}
+                <div>
+                    <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 font-mono pixel-text">
+                        CERTIFICATIONS
+                    </h2>
+                    <div className="pixel-card bg-gray-900 p-6">
+                        {userData.about.certifications?.map((cert, idx) => (
+                            <p key={idx} className="text-gray-300 font-mono text-base leading-relaxed">
+                                {cert}
+                            </p>
+                        ))}
                     </div>
                 </div>
             </div>

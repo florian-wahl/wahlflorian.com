@@ -114,7 +114,7 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
                     }}
                 />
             </Head>
-            <main className="dark:bg-gray-800 w-full">
+            <main className="bg-[#0a0a0a] w-full min-h-screen">
                 <Navbar />
                 <div>{children}</div>
                 <Footer />

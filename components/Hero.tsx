@@ -1,78 +1,110 @@
 import React, { useState, useEffect } from "react";
-import { RoughNotationGroup } from "react-rough-notation";
-import { RainbowHighlight } from "./RainbowHighlight";
 import OptimizedImage from "./OptimizedImage";
 import userData from "../constants/data";
+import Link from "next/link";
 
 const Hero: React.FC = () => {
-    const colors: string[] = ["#F59E0B", "#84CC16", "#10B981", "#3B82F6"];
     const [show, setShow] = useState(false);
 
     useEffect(() => {
-        // Add a slight delay before starting animations
         const timer = setTimeout(() => {
             setShow(true);
-        }, 400);
-
+        }, 200);
         return () => clearTimeout(timer);
     }, []);
 
     return (
-        <div className="flex flex-col-reverse md:flex-row justify-center items-center overflow-hidden px-4 md:px-0">
-            {/* Text container */}
-            <div className="w-full md:w-1/2 text-center md:text-left lg:p-10">
-                <RoughNotationGroup show={show}>
-                    {userData.rainbowContent.map((content, index) => (
-                        <RainbowHighlight
-                            color={colors[index]}
-                            key={index}
-                            order={index + 1}
-                        >
-                            <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-gray-700 dark:text-gray-200 my-2">
-                                {content}
-                            </h2>
-                        </RainbowHighlight>
-                    ))}
-                </RoughNotationGroup>
-            </div>
-            {/* Image container */}
-            <div className="w-2/3 md:w-1/2 mb-8 md:mb-0 md:-mr-40 mt-10 md:mt-20">
-                <div className="relative w-full max-w-md mx-auto">
-                    <div className="relative w-full h-auto">
-                        <OptimizedImage
-                            src={userData.avatarUrl}
-                            alt="Florian Wahl - Product Leader and Engineer"
-                            width={500}
-                            height={500}
-                            className="heroimg shadow rounded-2xl w-full h-auto"
-                            priority
-                            style={{
-                                maxWidth: '100%',
-                                height: 'auto',
-                                objectFit: 'cover',
-                            }}
-                        />
-                    </div>
-                    <div className="flex flex-row justify-start mt-4">
-                        <div className="flex flex-row items-center space-x-2">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                fill="currentColor"
-                                className="bi bi-arrow-90deg-up"
-                                viewBox="0 0 16 16"
+        <div className="bg-[#0a0a0a] min-h-screen flex flex-col justify-center items-center px-4 py-20 relative overflow-hidden">
+            {/* Pixel background pattern */}
+            <div className="absolute inset-0 opacity-10" style={{
+                backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)',
+            }}></div>
+            
+            <div className="max-w-6xl mx-auto w-full relative z-10">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-12">
+                    {/* Text container */}
+                    <div className="w-full md:w-1/2 text-center md:text-left">
+                        <div className="mb-6">
+                            <span className="inline-block px-4 py-2 bg-yellow-400 text-black font-bold font-mono text-sm pixel-border">
+                                LEVEL 1
+                            </span>
+                        </div>
+                        <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-white mb-6 pixel-text">
+                            {userData.name.toUpperCase()}
+                        </h1>
+                        <p className="text-2xl md:text-3xl text-yellow-400 font-mono mb-8">
+                            {userData.designation.toUpperCase()}
+                        </p>
+                        <div className="space-y-3 mb-8">
+                            {userData.rainbowContent.map((content, index) => (
+                                <div
+                                    key={index}
+                                    className="inline-block mr-4 mb-2"
+                                    style={{
+                                        animation: show ? `fadeInUp 0.5s ease ${index * 0.1}s both` : 'none'
+                                    }}
+                                >
+                                    <span className="px-4 py-2 bg-gray-900 border-2 border-white text-white font-mono text-lg pixel-border">
+                                        {content.toUpperCase()}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                            <Link
+                                href="/experience"
+                                className="px-6 py-3 bg-yellow-400 text-black font-bold font-mono hover:bg-yellow-300 transition-colors pixel-button"
                             >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z"
+                                VIEW EXPERIENCE →
+                            </Link>
+                            <Link
+                                href="/contact"
+                                className="px-6 py-3 bg-white text-black font-bold font-mono hover:bg-gray-200 transition-colors pixel-button"
+                            >
+                                CONTACT ME →
+                            </Link>
+                        </div>
+                    </div>
+                    
+                    {/* Image container */}
+                    <div className="w-full md:w-1/2 flex justify-center">
+                        <div className="relative">
+                            <div className="pixel-border bg-gray-900 p-4">
+                                <OptimizedImage
+                                    src={userData.avatarUrl}
+                                    alt="Florian Wahl - Product Leader and Engineer"
+                                    width={400}
+                                    height={400}
+                                    className="w-full h-auto pixel-image"
+                                    priority
+                                    style={{
+                                        maxWidth: '100%',
+                                        height: 'auto',
+                                        objectFit: 'cover',
+                                    }}
                                 />
-                            </svg>
-                            <p className="font-mono text-sm md:text-base">That's me</p>
+                            </div>
+                            <div className="mt-4 flex items-center justify-center gap-2">
+                                <span className="text-yellow-400 font-mono text-sm">▶</span>
+                                <p className="font-mono text-sm text-white">PLAYER 1</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <style jsx>{`
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `}</style>
         </div>
     );
 };

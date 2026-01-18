@@ -13,7 +13,7 @@ const Home: NextPage = () => {
             }}
         >
             <Hero />
-            <ThoughtLeadership limit={10} />
+            <ThoughtLeadership limit={9} />
             <Experience />
         </ContainerBlock>
     );

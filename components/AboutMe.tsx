@@ -69,13 +69,13 @@ const AboutMe: React.FC = () => {
                         PUBLIC SPEAKING
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {userData.about.publicSpeaking?.map((desc, idx) => (
+                        {userData.conferenceTalks.map((talk, idx) => (
                             <div key={idx} className="pixel-card bg-gray-900 p-6">
                                 <p className="text-white font-mono text-sm mb-2">
-                                    <span className="text-yellow-400">🎤</span> {desc[0]}
+                                    <span className="text-yellow-400">🎤</span> {talk.title}
                                 </p>
                                 <p className="text-gray-400 font-mono text-xs">
-                                    {desc[1]}
+                                    {talk.venue}
                                 </p>
                             </div>
                         ))}

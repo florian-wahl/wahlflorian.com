@@ -5,7 +5,7 @@ import Link from "next/link";
 
 interface ThoughtLeadershipItem {
     title: string;
-    type: "article" | "paper" | "talk" | "podcast";
+    type: "article" | "blog" | "paper" | "talk" | "podcast";
     link?: string;
     venue?: string;
     date: string; // ISO date string for sorting (YYYY-MM-DD or YYYY-MM)
@@ -16,31 +16,6 @@ interface ThoughtLeadershipItem {
 interface ThoughtLeadershipProps {
     limit?: number; // Limit number of items to show (for homepage)
 }
-
-// Parse date from venue string (e.g., "OpenFinity EXPO, November 2024" -> "2024-11")
-const parseDateFromVenue = (venue: string): string => {
-    const monthNames: { [key: string]: string } = {
-        "january": "01", "february": "02", "march": "03", "april": "04",
-        "may": "05", "june": "06", "july": "07", "august": "08",
-        "september": "09", "october": "10", "november": "11", "december": "12"
-    };
-    
-    // Try to extract month and year from venue string
-    const parts = venue.split(",");
-    if (parts.length > 1) {
-        const datePart = parts[parts.length - 1].trim();
-        const dateMatch = datePart.match(/(\w+)\s+(\d{4})/i);
-        if (dateMatch) {
-            const month = monthNames[dateMatch[1].toLowerCase()];
-            const year = dateMatch[2];
-            if (month) {
-                return `${year}-${month}`;
-            }
-        }
-    }
-    // Fallback: return a date far in the past if we can't parse
-    return "2000-01";
-};
 
 // Format date for display (e.g., "2024-11" -> "Nov 2024")
 const formatDisplayDate = (dateStr: string): string => {
@@ -60,18 +35,15 @@ const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
     // Combine all thought leadership content with dates
     const thoughtLeadership: ThoughtLeadershipItem[] = useMemo(() => {
         const items: ThoughtLeadershipItem[] = [
-            // Conference Talks - extract date from venue
-            ...userData.about.publicSpeaking.map(([title, venue]) => {
-                const date = parseDateFromVenue(venue);
-                return {
-                    title,
-                    type: "talk" as const,
-                    venue,
-                    date,
-                    displayDate: formatDisplayDate(date),
-                };
-            }),
-            // Work Articles
+            // Conference Talks
+            ...userData.conferenceTalks.map((talk) => ({
+                title: talk.title,
+                type: "talk" as const,
+                venue: talk.venue,
+                date: talk.date,
+                displayDate: formatDisplayDate(talk.date),
+            })),
+            // Work Articles - labeled as "Articles"
             ...userData.workArticles.map((article) => ({
                 title: article.title,
                 type: "article" as const,
@@ -79,10 +51,10 @@ const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
                 date: article.date || "2000-01",
                 displayDate: article.date ? formatDisplayDate(article.date) : undefined,
             })),
-            // Personal Articles
+            // Personal Articles - labeled as "Blog Posts"
             ...userData.personalArticles.map((article) => ({
                 title: article.title,
-                type: "article" as const,
+                type: "blog" as const,
                 link: article.link,
                 date: article.date || "2000-01",
                 displayDate: article.date ? formatDisplayDate(article.date) : undefined,
@@ -117,6 +89,8 @@ const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
                 return "Conference Talk";
             case "article":
                 return "Article";
+            case "blog":
+                return "Blog Post";
             case "paper":
                 return "Paper";
             case "podcast":

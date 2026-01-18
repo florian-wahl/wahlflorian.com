@@ -5,10 +5,15 @@ interface Article {
     date?: string; // Format: "YYYY-MM-DD" or "YYYY-MM" for sorting
 }
 
+interface ConferenceTalk {
+    title: string;
+    venue: string;
+    date: string; // Format: "YYYY-MM-DD" or "YYYY-MM" for sorting
+}
+
 interface About {
     title: string;
     description: string[];
-    publicSpeaking: [string, string][];
     certifications: string[];
 }
 
@@ -36,6 +41,7 @@ interface UserData {
     address: string;
     workArticles: Article[];
     personalArticles: Article[];
+    conferenceTalks: ConferenceTalk[];
     about: About;
     experience: Experience[];
     resumeUrl: string;
@@ -133,6 +139,43 @@ const userData: UserData = {
             date: "2022-07-31",
         }
     ],
+    conferenceTalks: [
+        {
+            title: "Open Banking in the US: Navigating Compliance Under the CFPB's 1033 Rule",
+            venue: "OpenFinity EXPO",
+            date: "2024-11",
+        },
+        {
+            title: "Industry Collaboration on DDA Payment Tokens",
+            venue: "Nacha's Smarter Faster Payments 2024",
+            date: "2024-05",
+        },
+        {
+            title: "Driving Adoption of Open Finance in the Commercial Banking sector",
+            venue: "FDX Global Summit",
+            date: "2024-03",
+        },
+        {
+            title: "Revolutionizing Payments: Improving Consumer Adoption of A2A",
+            venue: "Link Money's Payments Innovation Summit",
+            date: "2023-09",
+        },
+        {
+            title: "Taking Faster Payments to the Bank - or CU",
+            venue: "Glen Sarvady's BIGcast (Podcast)",
+            date: "2023-05",
+        },
+        {
+            title: "Pay by Bank Powered by Real-Time Payments",
+            venue: "Nacha's Smarter Faster Payments 2023",
+            date: "2023-04",
+        },
+        {
+            title: "Industry Collaboration on DDA Payment Tokens in Support of a Safer Data Sharing & Payments Ecosystem",
+            venue: "Financial Data Exchange Global Summit",
+            date: "2023-04",
+        },
+    ],
     about: {
         title:
             "Engineer by trade and fintech geek by passion, Florian Wahl currently leads the Product Strategy team at Akoya",
@@ -140,15 +183,6 @@ const userData: UserData = {
             `At Akoya, I investigate the opportunities that open finance can bring to a wide array of use cases with particular attention to the payments space.`,
             `I am a certified digital product manager and strategist with 7+ years of experience. I am an active voice in the industry, talking and writing about fintech, data sharing, payments, and tokenization.`,
             `Before joining Akoya in 2021, I held various roles as a consultant in financial services, focusing on digital transformation and open finance.`,
-        ],
-        publicSpeaking: [
-            [`Open Banking in the US: Navigating Compliance Under the CFPB's 1033 Rule`, `OpenFinity EXPO, November 2024`],
-            [`Industry Collaboration on DDA Payment Tokens`, `Nacha's Smarter Faster Payments 2024, May 2024`],
-            [`Driving Adoption of Open Finance in the Commercial Banking sector`, `FDX Global Summit, March 2024`],
-            [`Revolutionizing Payments: Improving Consumer Adoption of A2A`, `Link Money's Payments Innovation Summit, September 2023`],
-            [`Taking Faster Payments to the Bank - or CU`, `Glen Sarvady's BIGcast (podcast), May 2023`],
-            [`Pay by Bank Powered by Real-Time Payments`, `Nacha's Smarter Faster Payments 2023, April 2023`],
-            [`Industry Collaboration on DDA Payment Tokens in Support of a Safer Data Sharing & Payments Ecosystem`, `Financial Data Exchange Global Summit, April 2023`]
         ],
         certifications: [
             "I am a Certified Digital Product Manager, credentialed by the Association of International Product Marketing and Management (AIPMM). This certification, issued in September 2023 (Credential ID: 82693844), validates my expertise in driving product strategy, lifecycle management, and innovation in digital products."

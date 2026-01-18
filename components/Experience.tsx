@@ -144,9 +144,6 @@ const Experience: React.FC = () => {
                                         key={roleIdx}
                                         className={`relative mb-6 md:mb-8 ${roleIdx % 2 === 0 ? 'md:pr-1/2 md:pr-8' : 'md:pl-1/2 md:pl-8 md:text-right'}`}
                                     >
-                                        {/* Timeline dot */}
-                                        <div className="absolute left-8 md:left-1/2 w-3 h-3 bg-white border-2 border-black transform md:-translate-x-1/2 -translate-y-1/2 top-1/2 z-20"></div>
-                                        
                                         <ExperienceCard
                                             title={exp.title}
                                             desc={exp.desc}

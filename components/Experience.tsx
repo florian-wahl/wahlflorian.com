@@ -4,43 +4,49 @@ import userData from "../constants/data";
 interface ExperienceCardProps {
     title: string;
     desc: string;
-    year: string;
+    startDate: string;
+    endDate?: string | null;
     company: string;
     companyLink: string;
-    nextYear?: string;
     isFirstInGroup?: boolean;
     isLastInGroup?: boolean;
 }
 
+// Format date for display (e.g., "2021-10" -> "Oct 2021")
+const formatDisplayDate = (dateStr: string): string => {
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const parts = dateStr.split("-");
+    if (parts.length >= 2) {
+        const year = parts[0];
+        const month = parseInt(parts[1], 10) - 1;
+        if (month >= 0 && month < 12) {
+            return `${monthNames[month]} ${year}`;
+        }
+    }
+    return dateStr;
+};
+
 const ExperienceCard: React.FC<ExperienceCardProps> = ({ 
     title, 
     desc, 
-    year, 
+    startDate,
+    endDate,
     company, 
     companyLink, 
-    nextYear,
     isFirstInGroup,
     isLastInGroup 
 }) => {
-    // Format date range: nextYear is when this role ended (start date of previous role)
+    // Format date range
     const formatDateRange = () => {
-        if (year === "Current") {
+        const startDisplay = formatDisplayDate(startDate);
+        
+        if (!endDate) {
+            // Current role
             return "Current";
         }
         
-        // Extract month abbreviation and year from start date
-        const startMonth = year.split(" ")[0].substring(0, 3);
-        const startYear = year.split(" ")[1];
-        
-        if (nextYear && nextYear !== "Current") {
-            // Show date range: "Oct 2021 - Feb 2022"
-            const endMonth = nextYear.split(" ")[0].substring(0, 3);
-            const endYear = nextYear.split(" ")[1];
-            return `${startMonth} ${startYear} - ${endMonth} ${endYear}`;
-        }
-        
-        // If no end date (oldest role), just show start date
-        return `${startMonth} ${startYear}`;
+        const endDisplay = formatDisplayDate(endDate);
+        return `${startDisplay} - ${endDisplay}`;
     };
 
     return (
@@ -132,13 +138,6 @@ const Experience: React.FC = () => {
                             
                             {/* Roles at this company */}
                             {group.experiences.map((exp, roleIdx) => {
-                                // Find the previous role in the entire experience list to get end date
-                                const currentIndex = userData.experience.findIndex(e => 
-                                    e.title === exp.title && e.company === exp.company && e.year === exp.year
-                                );
-                                const previousExp = currentIndex > 0 ? userData.experience[currentIndex - 1] : null;
-                                const endDate = previousExp ? previousExp.year : null;
-                                
                                 return (
                                     <div 
                                         key={roleIdx}
@@ -147,10 +146,10 @@ const Experience: React.FC = () => {
                                         <ExperienceCard
                                             title={exp.title}
                                             desc={exp.desc}
-                                            year={exp.year}
+                                            startDate={exp.startDate}
+                                            endDate={exp.endDate}
                                             company={exp.company}
                                             companyLink={exp.companyLink}
-                                            nextYear={endDate || undefined}
                                             isFirstInGroup={roleIdx === 0}
                                             isLastInGroup={roleIdx === group.experiences.length - 1}
                                         />

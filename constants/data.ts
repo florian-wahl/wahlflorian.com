@@ -20,7 +20,8 @@ interface About {
 interface Experience {
     title: string;
     company: string;
-    year: string;
+    startDate: string; // Format: "YYYY-MM" or "YYYY-MM-DD"
+    endDate?: string | null; // Format: "YYYY-MM" or "YYYY-MM-DD", null for current role
     companyLink: string;
     desc: string;
 }
@@ -192,42 +193,48 @@ const userData: UserData = {
         {
             title: "Head of Product Strategy",
             company: "Akoya",
-            year: "Current",
+            startDate: "2022-11",
+            endDate: null, // Current role
             companyLink: "https://akoya.com",
             desc: "Leading the Product Strategy team in charge of our multi-year strategy, roadmap, product ops, competitive intelligence, and product management excellence processes.",
         },
         {
             title: "Product Manager",
             company: "Akoya",
-            year: "February 2022",
+            startDate: "2022-02",
+            endDate: "2022-11",
             companyLink: "https://akoya.com",
             desc: "Managed Akoya's core APIs, Payments & Customers products. SME for various use cases: payments enablement, money movement, account number tokenization, and account ownership validation.",
         },
         {
             title: "Business Strategy & Execution Manager",
             company: "Akoya",
-            year: "October 2021",
+            startDate: "2021-10",
+            endDate: "2022-02",
             companyLink: "https://akoya.com",
             desc: "Conducted market research, competitive analysis, and client interviews. Standardized pricing models. Gathered functional and technical requirements for the development of Akoya's core data access products.",
         },
         {
             title: "Global AWS Alliance Lead, Financial Services",
             company: "Capgemini",
-            year: "June 2020",
+            startDate: "2020-06",
+            endDate: "2021-10",
             companyLink: "https://capgemini.com",
             desc: "Managed global partnership between AWS and Capgemini Financial Services across 80+ accounts through all geographies.",
         },
         {
             title: "Manager",
             company: "Capgemini",
-            year: "March 2020",
+            startDate: "2020-03",
+            endDate: "2020-06",
             companyLink: "https://capgemini.com",
             desc: "Program managed the delivery of a 6-week technology and operations readiness assessment for a transaction bank.",
         },
         {
             title: "Senior Consultant (and Previous Roles)",
             company: "Capgemini",
-            year: "August 2017",
+            startDate: "2017-08",
+            endDate: "2020-03",
             companyLink: "https://capgemini.com",
             desc: "Various consulting positions in open banking, digital transformation, fintech, and blockchain.",
         },

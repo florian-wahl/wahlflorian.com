@@ -2,6 +2,7 @@ interface Article {
     title: string;
     link: string;
     imgUrl: string;
+    date?: string; // Format: "YYYY-MM-DD" or "YYYY-MM" for sorting
 }
 
 interface About {
@@ -55,26 +56,37 @@ const userData: UserData = {
             title: "The Expansion of Account Ownership Validation Methods",
             link: "https://akoya.com/blog/account-ownership-validation-methods",
             imgUrl: "https://akoya.com/hubfs/Blog%20posts%20-%20SVGs/The%20expansion%20of%20account%20ownership%20validation%20methods%20-%20Blog%20post.svg",
+            date: "2023-09-19",
         },
         {
             title: "Reduce fraud risk with tokenized account numbers",
             link: "https://akoya.com/blog/reduce-fraud-risk-with-tokenized-account-numbers",
             imgUrl: "https://akoya.com/hubfs/MicrosoftTeams-image%20%2831%29.png",
+            date: "2022-05-02",
         },
         {
             title: "The future of payments is instant",
             link: "https://akoya.com/blog/futureofpaymentswhitepaper",
             imgUrl: "https://akoya.com/hubfs/Blog%20Library-May-05-2023-06-48-40-2286-PM.png",
+            date: "2023-05-01",
         },
         {
             title: "A consumer-first approach to account linking",
             link: "https://akoya.com/blog/account-linking",
             imgUrl: "https://akoya.com/hubfs/Blog%20posts%20-%20SVGs/Blog_A%20consumer-first%20approach%20to%20account%20linking.svg",
+            date: "2023-03-01",
         },
         {
             title: "Instant account verification with Akoya",
             link: "https://akoya.com/blog/account-verification",
             imgUrl: "https://akoya.com/hubfs/Blog%20posts%20-%20SVGs/Blog_Instant%20account%20verification%20with%20Akoya.svg",
+            date: "2023-08-09",
+        },
+        {
+            title: "Reduce Fraud Risk With Tokenized Account Numbers",
+            link: "https://akoya.com/news/reduce-fraud-risk-with-tokenized-account-numbers",
+            imgUrl: "https://akoya.com/hubfs/MicrosoftTeams-image%20%2831%29.png",
+            date: "2022-05-02",
         },
     ],
     personalArticles: [
@@ -82,41 +94,43 @@ const userData: UserData = {
             title: "A Framework For Product Strategy",
             link: "https://medium.com/@flwahl/a-framework-for-product-strategy-68ddabe8cb6",
             imgUrl: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ywYLQMzS1NLVWYHB3B7sZA.jpeg",
+            date: "2022-10-30",
         },
         {
             title: "A Process For Product Management",
             link: "https://medium.com/design-bootcamp/a-process-for-product-management-9e12af274fa",
             imgUrl: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*yg7tmTyUqldSMY6ITNfsLQ.png",
+            date: "2022-11-19",
         },
         {
             title: "Porter's Five Forces to Product Strategy",
-            link: "https://productcoalition.com/applying-porters-five-forces-to-product-strategy-free-template-4412429b7338",
+            link: "https://medium.com/managing-digital-products/applying-porters-five-forces-to-product-strategy-free-template-4412429b7338",
             imgUrl: "https://miro.medium.com/v2/resize:fit:1400/format:webp/0*ZROay747swCHKK3M",
+            date: "2023-01-14",
         },
         {
             title: "Four Methodologies That Can Help Your Product Team's Prioritization Efforts",
-            link: "https://productcoalition.com/4-helpful-prioritization-methodologies-f3ee0017e6d1",
+            link: "https://medium.com/managing-digital-products/4-helpful-prioritization-methodologies-f3ee0017e6d1",
             imgUrl: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*v2zCAUyCDFj8ATBesBHW6g.png",
-        },
-        {
-            title: "Reduce Fraud Risk With Tokenized Account Numbers",
-            link: "https://akoya.com/news/reduce-fraud-risk-with-tokenized-account-numbers",
-            imgUrl: "https://akoya.com/hubfs/MicrosoftTeams-image%20%2831%29.png",
+            date: "2022-12-05",
         },
         {
             title: "4 Collaboration Models between Fintechs & Incumbent Financial Institutions",
             link: "https://medium.com/fintech-product-thoughts/4-collaboration-models-between-fintechs-incumbent-financial-institutions-178cc386db97",
             imgUrl: "https://miro.medium.com/v2/resize:fit:1400/format:webp/0*37aDlWhUyABDaZjE",
+            date: "2022-12-26",
         },
         {
             title: "Digital Product Levels and Layers: Two Component Frameworks Product Managers Need To Know",
-            link: "https://productcoalition.com/breaking-down-the-digital-product-layers-70d7590a6dcb",
+            link: "https://medium.productcoalition.com/breaking-down-the-digital-product-layers-70d7590a6dcb",
             imgUrl: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*iO0ixU8AcImt58QbPe9fNQ.png",
+            date: "2022-11-08",
         },
         {
             title: "How To Estimate The Cost Of Processing An API Call?",
             link: "https://medium.com/@flwahl/how-to-estimate-the-cost-of-processing-an-api-call-75b90197f2ad",
             imgUrl: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*fgx9pN1KV6jzRtwUaD29OQ.jpeg",
+            date: "2022-07-31",
         }
     ],
     about: {

@@ -35,16 +35,16 @@ const Hero: React.FC = () => {
                         <p className="text-2xl md:text-3xl text-yellow-400 font-mono mb-8">
                             {userData.designation.toUpperCase()}
                         </p>
-                        <div className="flex flex-wrap gap-2 mb-8">
+                        <div className="flex flex-wrap gap-2 mb-8 justify-center md:justify-start">
                             {userData.rainbowContent.map((content, index) => (
                                 <div
                                     key={index}
-                                    className="inline-block"
+                                    className="flex-shrink-0"
                                     style={{
                                         animation: show ? `fadeInUp 0.5s ease ${index * 0.1}s both` : 'none'
                                     }}
                                 >
-                                    <span className="px-3 py-2 sm:px-4 bg-gray-900 border-2 border-white text-white font-mono text-sm sm:text-lg pixel-border">
+                                    <span className="inline-block px-3 py-2 sm:px-4 bg-gray-900 border-2 border-white text-white font-mono text-xs sm:text-sm md:text-lg pixel-border whitespace-nowrap">
                                         {content.toUpperCase()}
                                     </span>
                                 </div>

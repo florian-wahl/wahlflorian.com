@@ -54,10 +54,10 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
             <div className="pixel-card bg-gray-900 p-6 mx-4">
                 <div className="flex flex-col mb-4">
                     <div className="flex items-start justify-between gap-4 mb-2">
-                        <h2 className="text-xl md:text-2xl font-bold text-white font-mono flex-1">
+                        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white font-mono flex-1">
                             {title.toUpperCase()}
                         </h2>
-                        <span className="text-gray-400 font-mono text-xs whitespace-nowrap">
+                        <span className="text-gray-400 font-mono text-xs sm:text-sm whitespace-nowrap">
                             {formatDateRange()}
                         </span>
                     </div>
@@ -70,7 +70,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                         {company.toUpperCase()} →
                     </a>
                 </div>
-                <p className="text-gray-300 font-mono text-sm leading-relaxed">{desc}</p>
+                <p className="text-gray-300 font-mono text-sm sm:text-base leading-relaxed">{desc}</p>
             </div>
         </div>
     );
@@ -122,7 +122,7 @@ const Experience: React.FC = () => {
                             {/* Company Header */}
                             <div className="relative mb-6">
                                 <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-yellow-400 border-4 border-black transform md:-translate-x-1/2 -translate-y-1/2 top-1/2 z-20"></div>
-                                <div className="ml-12 md:ml-0 md:pl-1/2 md:pr-1/2">
+                                <div className="ml-10 sm:ml-12 md:ml-0 md:pl-1/2 md:pr-1/2">
                                     <a
                                         href={group.companyLink}
                                         target="_blank"

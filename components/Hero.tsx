@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
             <div className="absolute inset-0 opacity-10" style={{
                 backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)',
             }}></div>
-            
+
             <div className="max-w-6xl mx-auto w-full relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-12">
                     {/* Text container */}
@@ -35,16 +35,16 @@ const Hero: React.FC = () => {
                         <p className="text-2xl md:text-3xl text-yellow-400 font-mono mb-8">
                             {userData.designation.toUpperCase()}
                         </p>
-                        <div className="space-y-3 mb-8">
+                        <div className="flex flex-wrap gap-2 mb-8">
                             {userData.rainbowContent.map((content, index) => (
                                 <div
                                     key={index}
-                                    className="inline-block mr-4 mb-2"
+                                    className="inline-block"
                                     style={{
                                         animation: show ? `fadeInUp 0.5s ease ${index * 0.1}s both` : 'none'
                                     }}
                                 >
-                                    <span className="px-4 py-2 bg-gray-900 border-2 border-white text-white font-mono text-lg pixel-border">
+                                    <span className="px-3 py-2 sm:px-4 bg-gray-900 border-2 border-white text-white font-mono text-sm sm:text-lg pixel-border">
                                         {content.toUpperCase()}
                                     </span>
                                 </div>
@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
                             </Link>
                         </div>
                     </div>
-                    
+
                     {/* Image container */}
                     <div className="w-full md:w-1/2 flex justify-center">
                         <div className="relative">

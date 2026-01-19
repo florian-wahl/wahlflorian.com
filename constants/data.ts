@@ -30,6 +30,7 @@ interface SocialLinks {
     instagram: string;
     twitter: string;
     linkedin: string;
+    mastodon: string;
 }
 
 interface UserData {
@@ -245,6 +246,7 @@ const userData: UserData = {
         instagram: "https://www.instagram.com/florian.wahl",
         twitter: "https://twitter.com/flwahl",
         linkedin: "https://www.linkedin.com/in/wahlflorian/",
+        mastodon: "https://theforkiverse.com/@florian31",
     },
     rainbowContent: [
         "Product Manager.",

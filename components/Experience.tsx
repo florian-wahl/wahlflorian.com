@@ -51,13 +51,13 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 
     return (
         <div className="relative z-10">
-            <div className="pixel-card bg-gray-900 p-6 mx-4">
+            <div className="pixel-card bg-gray-50 dark:bg-gray-900 p-6 mx-4">
                 <div className="flex flex-col mb-4">
                     <div className="flex items-start justify-between gap-4 mb-2">
-                        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white font-mono flex-1">
+                        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-black dark:text-white font-mono flex-1">
                             {title.toUpperCase()}
                         </h2>
-                        <span className="text-gray-400 font-mono text-xs sm:text-sm whitespace-nowrap">
+                        <span className="text-gray-600 dark:text-gray-400 font-mono text-xs sm:text-sm whitespace-nowrap">
                             {formatDateRange()}
                         </span>
                     </div>
@@ -65,12 +65,12 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                         href={companyLink} 
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-yellow-400 font-mono text-sm hover:text-yellow-300 transition-colors"
+                        className="text-yellow-600 dark:text-yellow-400 font-mono text-sm hover:text-yellow-500 dark:hover:text-yellow-300 transition-colors"
                     >
                         {company.toUpperCase()} →
                     </a>
                 </div>
-                <p className="text-gray-300 font-mono text-sm sm:text-base leading-relaxed">{desc}</p>
+                <p className="text-gray-700 dark:text-gray-300 font-mono text-sm sm:text-base leading-relaxed">{desc}</p>
             </div>
         </div>
     );
@@ -101,35 +101,35 @@ const Experience: React.FC = () => {
     }, []);
 
     return (
-        <section className="bg-[#0a0a0a] dark:bg-gray-900 py-20">
+        <section className="bg-white dark:bg-[#0a0a0a] py-20 transition-colors duration-300">
             <div className="max-w-6xl mx-auto px-4">
                 <div className="mb-16">
-                    <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white dark:text-gray-100 mb-4 pixel-text">
+                    <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-black dark:text-white mb-4 pixel-text">
                         EXPERIENCE
                     </h1>
-                    <p className="text-xl text-gray-300 dark:text-gray-400 font-mono">
+                    <p className="text-xl text-gray-700 dark:text-gray-300 font-mono">
                         Career Timeline
                     </p>
                 </div>
                 
                 <div className="grid grid-cols-1 max-w-4xl mx-auto pt-10 relative">
                     {/* Timeline line - only show on desktop */}
-                    <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-white transform md:-translate-x-1/2 hidden md:block"></div>
+                    <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-black dark:bg-white transform md:-translate-x-1/2 hidden md:block"></div>
                     
                     {/* Grouped Experience cards */}
                     {groupedExperiences.map((group, groupIdx) => (
                         <React.Fragment key={groupIdx}>
                             {/* Company Header */}
                             <div className="relative mb-6">
-                                <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-yellow-400 border-4 border-black transform md:-translate-x-1/2 -translate-y-1/2 top-1/2 z-20"></div>
+                                <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-yellow-500 dark:bg-yellow-400 border-4 border-black transform md:-translate-x-1/2 -translate-y-1/2 top-1/2 z-20"></div>
                                 <div className="ml-10 sm:ml-12 md:ml-0 md:pl-1/2 md:pr-1/2">
                                     <a
                                         href={group.companyLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-block pixel-card bg-gray-800 border-yellow-400 p-4 hover:border-yellow-300 transition-colors"
+                                        className="inline-block pixel-card bg-gray-200 dark:bg-gray-800 border-yellow-500 dark:border-yellow-400 p-4 hover:border-yellow-400 dark:hover:border-yellow-300 transition-colors"
                                     >
-                                        <h3 className="text-xl md:text-2xl font-bold text-yellow-400 font-mono">
+                                        <h3 className="text-xl md:text-2xl font-bold text-yellow-600 dark:text-yellow-400 font-mono">
                                             {group.company.toUpperCase()}
                                         </h3>
                                     </a>

@@ -76,7 +76,7 @@ const ThemeButton: React.FC = () => {
 
     return (
         <button
-            aria-label="Toggle Dark Mode"
+            aria-label={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
             type="button"
             className="w-10 h-10 p-3 rounded focus:outline-none"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -147,16 +147,16 @@ const Navbar: React.FC = () => {
     });
 
     return (
-        <div className="relative bg-[#0a0a0a] border-b-4 border-white" ref={menuRef}>
+        <div className="relative bg-white dark:bg-[#0a0a0a] border-b-4 border-black dark:border-white transition-colors duration-300" ref={menuRef}>
             <div className="max-w-6xl mx-auto px-4 py-6 md:py-8">
                 <div className="flex md:flex-row justify-between items-center">
                     {/* Logo and Name */}
                     <div className="flex flex-col">
                         <Link href="/">
-                            <h1 className="font-bold text-xl md:text-3xl text-white font-mono pixel-text">
+                            <h1 className="font-bold text-xl md:text-3xl text-black dark:text-white font-mono pixel-text">
                                 {userData.name.toUpperCase()}
                             </h1>
-                            <p className="text-sm font-mono text-yellow-400">
+                            <p className="text-sm font-mono text-yellow-600 dark:text-yellow-400">
                                 {userData.designation.toUpperCase()}
                             </p>
                         </Link>
@@ -169,8 +169,8 @@ const Navbar: React.FC = () => {
                             onClick={() => sendGAEvent({ event: 'navClicked', value: 'articles' })}
                             className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 ${
                                 router.asPath === "/articles"
-                                    ? "bg-yellow-400 text-black pixel-border"
-                                    : "text-white hover:bg-gray-800 pixel-border border-white"
+                                    ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
+                                    : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
                             }`}
                         >
                             ARTICLES
@@ -179,8 +179,8 @@ const Navbar: React.FC = () => {
                             href="/experience"
                             className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 ${
                                 router.asPath === "/experience"
-                                    ? "bg-yellow-400 text-black pixel-border"
-                                    : "text-white hover:bg-gray-800 pixel-border border-white"
+                                    ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
+                                    : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
                             }`}
                         >
                             EXPERIENCE
@@ -189,7 +189,7 @@ const Navbar: React.FC = () => {
                             href="https://portfolio.wahlflorian.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-4 py-2 font-mono text-sm font-bold text-white hover:bg-gray-800 pixel-border border-white transition-colors duration-200"
+                            className="px-4 py-2 font-mono text-sm font-bold text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white transition-colors duration-200"
                         >
                             PORTFOLIO →
                         </Link>
@@ -197,8 +197,8 @@ const Navbar: React.FC = () => {
                             href="/contact"
                             className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 ${
                                 router.asPath === "/contact"
-                                    ? "bg-yellow-400 text-black pixel-border"
-                                    : "text-white hover:bg-gray-800 pixel-border border-white"
+                                    ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
+                                    : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
                             }`}
                         >
                             CONTACT
@@ -238,15 +238,15 @@ const Navbar: React.FC = () => {
                     onClick={() => setIsOpen(false)}
                 >
                     <div
-                        className="fixed top-0 right-0 h-full w-72 bg-gray-900 border-l-4 border-white shadow-lg transform transition-transform duration-300 ease-in-out"
+                        className="fixed top-0 right-0 h-full w-72 bg-white dark:bg-gray-900 border-l-4 border-black dark:border-white shadow-lg transform transition-transform duration-300 ease-in-out"
                         style={{
                             transform: isOpen ? 'translateX(0)' : 'translateX(100%)'
                         }}
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Mobile Menu Header */}
-                        <div className="flex justify-between items-center p-4 border-b-4 border-white">
-                            <h2 className="text-lg font-bold font-mono text-white">MENU</h2>
+                        <div className="flex justify-between items-center p-4 border-b-4 border-black dark:border-white">
+                            <h2 className="text-lg font-bold font-mono text-black dark:text-white">MENU</h2>
                             <button
                                 onClick={() => setIsOpen(false)}
                                 className="pixel-button bg-white text-black p-2 hover:bg-gray-200 transition-colors"
@@ -279,8 +279,8 @@ const Navbar: React.FC = () => {
                                     }}
                                     className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
                                         router.asPath === "/"
-                                            ? "bg-yellow-400 text-black pixel-border"
-                                            : "text-white hover:bg-gray-800 pixel-border border-white"
+                                            ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
+                                            : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
                                     }`}
                                 >
                                     HOME
@@ -293,8 +293,8 @@ const Navbar: React.FC = () => {
                                     }}
                                     className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
                                         router.asPath === "/articles"
-                                            ? "bg-yellow-400 text-black pixel-border"
-                                            : "text-white hover:bg-gray-800 pixel-border border-white"
+                                            ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
+                                            : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
                                     }`}
                                 >
                                     ARTICLES
@@ -304,8 +304,8 @@ const Navbar: React.FC = () => {
                                     onClick={() => setIsOpen(false)}
                                     className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
                                         router.asPath === "/experience"
-                                            ? "bg-yellow-400 text-black pixel-border"
-                                            : "text-white hover:bg-gray-800 pixel-border border-white"
+                                            ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
+                                            : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
                                     }`}
                                 >
                                     EXPERIENCE
@@ -315,7 +315,7 @@ const Navbar: React.FC = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={() => setIsOpen(false)}
-                                    className="px-4 py-3 font-mono text-sm font-bold text-white hover:bg-gray-800 pixel-border border-white transition-colors"
+                                    className="px-4 py-3 font-mono text-sm font-bold text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white transition-colors"
                                 >
                                     PORTFOLIO →
                                 </Link>
@@ -324,8 +324,8 @@ const Navbar: React.FC = () => {
                                     onClick={() => setIsOpen(false)}
                                     className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
                                         router.asPath === "/contact"
-                                            ? "bg-yellow-400 text-black pixel-border"
-                                            : "text-white hover:bg-gray-800 pixel-border border-white"
+                                            ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
+                                            : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
                                     }`}
                                 >
                                     CONTACT
@@ -333,18 +333,18 @@ const Navbar: React.FC = () => {
                             </nav>
 
                             {/* Divider */}
-                            <div className="my-6 border-t-4 border-white" />
+                            <div className="my-6 border-t-4 border-black dark:border-white" />
 
                             {/* Theme Toggle and Social Links */}
                             <div className="space-y-6">
                                 <div className="flex items-center justify-between px-4">
-                                    <span className="text-sm font-bold font-mono text-white">
+                                    <span className="text-sm font-bold font-mono text-black dark:text-white">
                                         THEME
                                     </span>
                                     <ThemeButton />
                                 </div>
                                 <div className="px-4">
-                                    <h3 className="text-sm font-bold font-mono text-white mb-3">
+                                    <h3 className="text-sm font-bold font-mono text-black dark:text-white mb-3">
                                         CONNECT
                                     </h3>
                                     <SocialLinks className="justify-start" />

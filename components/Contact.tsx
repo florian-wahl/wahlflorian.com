@@ -4,25 +4,25 @@ import { event } from "../utils/analytics";
 
 const Contact: React.FC = () => {
     return (
-        <section className="bg-[#0a0a0a] dark:bg-gray-900 py-20">
+        <section className="bg-white dark:bg-[#0a0a0a] py-20 transition-colors duration-300">
             <div className="max-w-6xl mx-auto px-4">
                 <div className="mb-16">
-                    <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white dark:text-gray-100 mb-4 pixel-text">
+                    <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-black dark:text-white mb-4 pixel-text">
                         CONTACT
                     </h1>
-                    <p className="text-xl text-gray-300 dark:text-gray-400 font-mono">
+                    <p className="text-xl text-gray-700 dark:text-gray-300 font-mono">
                         Let's Connect
                     </p>
                 </div>
                 
-                <div className="pixel-card bg-gray-900 p-8 md:p-12 lg:p-20">
+                <div className="pixel-card bg-gray-50 dark:bg-gray-900 p-8 md:p-12 lg:p-20">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                         <div>
                             <header className="mb-12">
-                                <h2 className="text-white font-bold text-3xl font-mono mb-4">
+                                <h2 className="text-black dark:text-white font-bold text-3xl font-mono mb-4">
                                     GET IN TOUCH
                                 </h2>
-                                <p className="text-gray-300 font-mono text-base">
+                                <p className="text-gray-700 dark:text-gray-300 font-mono text-base">
                                     Ready to collaborate? Send me a message and I'll get back to you.
                                 </p>
                             </header>
@@ -30,22 +30,22 @@ const Contact: React.FC = () => {
                             <div className="space-y-6 mb-12">
                                 <a
                                     href={`mailto:${userData.email}`}
-                                    className="flex flex-row items-center space-x-4 pixel-card bg-gray-800 p-4 hover:border-yellow-400 transition-colors group"
+                                    className="flex flex-row items-center space-x-4 pixel-card bg-gray-100 dark:bg-gray-800 p-4 hover:border-yellow-500 dark:hover:border-yellow-400 transition-colors group"
                                 >
                                     <div className="text-2xl">📧</div>
                                     <div>
-                                        <p className="text-yellow-400 font-mono text-xs uppercase mb-1">Email</p>
-                                        <p className="text-white font-mono text-sm group-hover:text-yellow-400 transition-colors">
+                                        <p className="text-yellow-600 dark:text-yellow-400 font-mono text-xs uppercase mb-1">Email</p>
+                                        <p className="text-black dark:text-white font-mono text-sm group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors">
                                             {userData.email}
                                         </p>
                                     </div>
                                 </a>
                                 
-                                <div className="flex flex-row items-center space-x-4 pixel-card bg-gray-800 p-4">
+                                <div className="flex flex-row items-center space-x-4 pixel-card bg-gray-100 dark:bg-gray-800 p-4">
                                     <div className="text-2xl">📍</div>
                                     <div>
-                                        <p className="text-yellow-400 font-mono text-xs uppercase mb-1">Location</p>
-                                        <p className="text-white font-mono text-sm">
+                                        <p className="text-yellow-600 dark:text-yellow-400 font-mono text-xs uppercase mb-1">Location</p>
+                                        <p className="text-black dark:text-white font-mono text-sm">
                                             {userData.address}
                                         </p>
                                     </div>
@@ -53,7 +53,7 @@ const Contact: React.FC = () => {
                             </div>
                             
                             <div>
-                                <p className="text-yellow-400 font-mono text-xs uppercase mb-4">Connect</p>
+                                <p className="text-yellow-600 dark:text-yellow-400 font-mono text-xs uppercase mb-4">Connect</p>
                                 <div className="flex flex-row space-x-4">
                                     <a
                                         href={userData.socialLinks.linkedin}
@@ -145,8 +145,8 @@ const Contact: React.FC = () => {
                         </div>
                         
                         <div className="flex flex-col justify-center">
-                            <div className="pixel-card bg-gray-800 p-8">
-                                <h3 className="text-white font-bold text-2xl font-mono mb-6">
+                            <div className="pixel-card bg-gray-100 dark:bg-gray-800 p-8">
+                                <h3 className="text-black dark:text-white font-bold text-2xl font-mono mb-6">
                                     QUICK LINKS
                                 </h3>
                                 <div className="space-y-4">

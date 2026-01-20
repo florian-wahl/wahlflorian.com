@@ -101,13 +101,13 @@ const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
     };
 
     return (
-        <section className="bg-[#0a0a0a] dark:bg-gray-900 py-20">
+        <section className="bg-white dark:bg-[#0a0a0a] py-20 transition-colors duration-300">
             <div className="max-w-6xl mx-auto px-4">
                 <div className="mb-16">
-                    <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white dark:text-gray-100 mb-4 pixel-text">
+                    <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold text-black dark:text-white mb-4 pixel-text">
                         THOUGHT LEADERSHIP
                     </h2>
-                    <p className="text-xl text-gray-300 dark:text-gray-400 font-mono">
+                    <p className="text-xl text-gray-700 dark:text-gray-300 font-mono">
                         Articles, Papers & Conference Talks
                     </p>
                 </div>
@@ -118,16 +118,16 @@ const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
                     {displayedItems.map((item, idx) => (
                         <div
                             key={idx}
-                            className="bg-gray-900 border-4 border-white p-6 hover:border-yellow-400 transition-all duration-200 pixel-card"
+                            className="pixel-card p-6 hover:border-yellow-500 dark:hover:border-yellow-400 transition-all duration-200"
                         >
                             <div className="flex items-start justify-between mb-4">
                                 <span className="text-3xl">{getTypeIcon(item.type)}</span>
                                 <div className="flex flex-col items-end gap-1">
-                                    <span className="text-xs font-mono text-gray-400 uppercase">
+                                    <span className="text-xs font-mono text-gray-600 dark:text-gray-400 uppercase">
                                         {getTypeLabel(item.type)}
                                     </span>
                                     {item.displayDate && (
-                                        <span className="text-xs font-mono text-yellow-400">
+                                        <span className="text-xs font-mono text-yellow-600 dark:text-yellow-400">
                                             {item.displayDate}
                                         </span>
                                     )}
@@ -146,25 +146,25 @@ const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
                                         })
                                     }
                                 >
-                                    <h3 className="text-white font-bold text-lg mb-2 group-hover:text-yellow-400 transition-colors font-mono">
+                                    <h3 className="text-black dark:text-white font-bold text-lg mb-2 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors font-mono">
                                         {item.title}
                                     </h3>
                                     {item.venue && (
-                                        <p className="text-gray-400 text-sm font-mono">
+                                        <p className="text-gray-600 dark:text-gray-400 text-sm font-mono">
                                             {item.venue}
                                         </p>
                                     )}
-                                    <div className="mt-4 flex items-center text-yellow-400 text-sm font-mono">
+                                    <div className="mt-4 flex items-center text-yellow-600 dark:text-yellow-400 text-sm font-mono">
                                         READ MORE →
                                     </div>
                                 </a>
                             ) : (
                                 <div>
-                                    <h3 className="text-white font-bold text-lg mb-2 font-mono">
+                                    <h3 className="text-black dark:text-white font-bold text-lg mb-2 font-mono">
                                         {item.title}
                                     </h3>
                                     {item.venue && (
-                                        <p className="text-gray-400 text-sm font-mono">
+                                        <p className="text-gray-600 dark:text-gray-400 text-sm font-mono">
                                             {item.venue}
                                         </p>
                                     )}

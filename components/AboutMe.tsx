@@ -3,16 +3,16 @@ import userData from "../constants/data";
 
 const AboutMe: React.FC = () => {
     return (
-        <section className="bg-[#0a0a0a] dark:bg-gray-900 py-20">
+        <section className="bg-white dark:bg-[#0a0a0a] py-20 transition-colors duration-300">
             <div className="max-w-6xl mx-auto px-4">
                 <div className="mb-16">
-                    <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white dark:text-gray-100 mb-4 pixel-text">
+                    <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-black dark:text-white mb-4 pixel-text">
                         ABOUT ME
                     </h1>
                 </div>
                 
                 <div className="mb-12">
-                    <p className="text-2xl md:text-3xl font-bold text-white font-mono leading-relaxed">
+                    <p className="text-2xl md:text-3xl font-bold text-black dark:text-white font-mono leading-relaxed">
                         {userData.about.title}
                     </p>
                 </div>
@@ -20,30 +20,30 @@ const AboutMe: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                     {/* Contact & Links */}
                     <div className="space-y-8">
-                        <div className="pixel-card bg-gray-900 p-6">
-                            <h2 className="text-xl font-bold text-white font-mono mb-4">
+                        <div className="pixel-card bg-gray-50 dark:bg-gray-900 p-6">
+                            <h2 className="text-xl font-bold text-black dark:text-white font-mono mb-4">
                                 CONTACT
                             </h2>
-                            <p className="text-gray-300 font-mono text-sm mb-4">
+                            <p className="text-gray-700 dark:text-gray-300 font-mono text-sm mb-4">
                                 For any inquiry, please contact me
                             </p>
                             <a
                                 href={`mailto:${userData.email}`}
-                                className="inline-block px-4 py-2 bg-yellow-400 text-black font-bold font-mono text-sm pixel-button hover:bg-yellow-300 transition-colors"
+                                className="inline-block px-4 py-2 bg-yellow-500 dark:bg-yellow-400 text-black font-bold font-mono text-sm pixel-button hover:bg-yellow-400 dark:hover:bg-yellow-300 transition-colors"
                             >
                                 SEND EMAIL →
                             </a>
                         </div>
                         
-                        <div className="pixel-card bg-gray-900 p-6">
-                            <h2 className="text-xl font-bold text-white font-mono mb-4">
+                        <div className="pixel-card bg-gray-50 dark:bg-gray-900 p-6">
+                            <h2 className="text-xl font-bold text-black dark:text-white font-mono mb-4">
                                 RESUME
                             </h2>
                             <a
                                 href={userData.resumeUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-block px-4 py-2 bg-white text-black font-bold font-mono text-sm pixel-button hover:bg-gray-200 transition-colors"
+                                className="inline-block px-4 py-2 bg-white dark:bg-white text-black font-bold font-mono text-sm pixel-button hover:bg-gray-100 dark:hover:bg-gray-200 transition-colors"
                             >
                                 VIEW CV →
                             </a>
@@ -55,7 +55,7 @@ const AboutMe: React.FC = () => {
                         {userData.about.description?.map((desc, idx) => (
                             <p
                                 key={idx}
-                                className="text-lg text-gray-300 font-mono leading-relaxed"
+                                className="text-lg text-gray-700 dark:text-gray-300 font-mono leading-relaxed"
                             >
                                 {desc}
                             </p>
@@ -65,16 +65,16 @@ const AboutMe: React.FC = () => {
 
                 {/* Public Speaking */}
                 <div className="mb-12">
-                    <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 font-mono pixel-text">
+                    <h2 className="text-2xl md:text-4xl font-bold text-black dark:text-white mb-6 font-mono pixel-text">
                         PUBLIC SPEAKING
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {userData.conferenceTalks.map((talk, idx) => (
-                            <div key={idx} className="pixel-card bg-gray-900 p-6">
-                                <p className="text-white font-mono text-sm mb-2">
-                                    <span className="text-yellow-400">🎤</span> {talk.title}
+                            <div key={idx} className="pixel-card bg-gray-50 dark:bg-gray-900 p-6">
+                                <p className="text-black dark:text-white font-mono text-sm mb-2">
+                                    <span className="text-yellow-600 dark:text-yellow-400">🎤</span> {talk.title}
                                 </p>
-                                <p className="text-gray-400 font-mono text-xs">
+                                <p className="text-gray-600 dark:text-gray-400 font-mono text-xs">
                                     {talk.venue}
                                 </p>
                             </div>
@@ -84,12 +84,12 @@ const AboutMe: React.FC = () => {
 
                 {/* Certifications */}
                 <div>
-                    <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 font-mono pixel-text">
+                    <h2 className="text-2xl md:text-4xl font-bold text-black dark:text-white mb-6 font-mono pixel-text">
                         CERTIFICATIONS
                     </h2>
-                    <div className="pixel-card bg-gray-900 p-6">
+                    <div className="pixel-card bg-gray-50 dark:bg-gray-900 p-6">
                         {userData.about.certifications?.map((cert, idx) => (
-                            <p key={idx} className="text-gray-300 font-mono text-base leading-relaxed">
+                            <p key={idx} className="text-gray-700 dark:text-gray-300 font-mono text-base leading-relaxed">
                                 {cert}
                             </p>
                         ))}

@@ -32,6 +32,8 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
         <div>
             <Head>
                 <title>{meta.title}</title>
+                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" type="image/x-icon" href="/favicon.ico" />
                 <meta name="robots" content="follow, index" />
                 <meta content={meta.description} name="description" />
                 <meta name="keywords" content="Florian Wahl, Product Leader, Product Strategy, Fintech, Digital Transformation, Akoya, Open Finance, Payments, API Development" />
@@ -114,7 +116,7 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
                     }}
                 />
             </Head>
-            <main className="bg-[#0a0a0a] w-full min-h-screen">
+            <main className="bg-white dark:bg-[#0a0a0a] w-full min-h-screen transition-colors duration-300">
                 <Navbar />
                 <div>{children}</div>
                 <Footer />

@@ -60,7 +60,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     }, [router.events, gaId]);
 
     return (
-        <ThemeProvider defaultTheme="dark" attribute="class">
+        <ThemeProvider defaultTheme="system" attribute="class" enableSystem>
             {gaId && <GoogleAnalytics gaId={gaId} />}
             <Component {...pageProps} />
         </ThemeProvider>

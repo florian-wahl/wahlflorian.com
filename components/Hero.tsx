@@ -14,9 +14,12 @@ const Hero: React.FC = () => {
     }, []);
 
     return (
-        <div className="bg-[#0a0a0a] min-h-screen flex flex-col justify-center items-center px-4 py-20 relative overflow-hidden">
+        <div className="bg-white dark:bg-[#0a0a0a] min-h-screen flex flex-col justify-center items-center px-4 py-20 relative overflow-hidden transition-colors duration-300">
             {/* Pixel background pattern */}
-            <div className="absolute inset-0 opacity-10" style={{
+            <div className="absolute inset-0 opacity-10 dark:opacity-10" style={{
+                backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px)',
+            }}></div>
+            <div className="absolute inset-0 opacity-10 hidden dark:block" style={{
                 backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)',
             }}></div>
 
@@ -29,10 +32,10 @@ const Hero: React.FC = () => {
                                 EXPERT MODE
                             </span>
                         </div>
-                        <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-white mb-6 pixel-text">
+                        <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-black dark:text-white mb-6 pixel-text">
                             {userData.name.toUpperCase()}
                         </h1>
-                        <p className="text-2xl md:text-3xl text-yellow-400 font-mono mb-8">
+                        <p className="text-2xl md:text-3xl text-yellow-500 dark:text-yellow-400 font-mono mb-8">
                             {userData.designation.toUpperCase()}
                         </p>
                         <div className="flex flex-wrap gap-2 mb-8 justify-center md:justify-start">
@@ -44,7 +47,7 @@ const Hero: React.FC = () => {
                                         animation: show ? `fadeInUp 0.5s ease ${index * 0.1}s both` : 'none'
                                     }}
                                 >
-                                    <span className="inline-block px-3 py-2 sm:px-4 bg-gray-900 border-2 border-white text-white font-mono text-xs sm:text-sm md:text-lg pixel-border whitespace-nowrap">
+                                    <span className="inline-block px-3 py-2 sm:px-4 bg-gray-100 dark:bg-gray-900 border-2 border-black dark:border-white text-black dark:text-white font-mono text-xs sm:text-sm md:text-lg pixel-border whitespace-nowrap">
                                         {content.toUpperCase()}
                                     </span>
                                 </div>
@@ -69,7 +72,7 @@ const Hero: React.FC = () => {
                     {/* Image container */}
                     <div className="w-full md:w-1/2 flex justify-center">
                         <div className="relative">
-                            <div className="pixel-border bg-gray-900 p-4">
+                            <div className="pixel-border bg-gray-100 dark:bg-gray-900 p-4">
                                 <OptimizedImage
                                     src={userData.avatarUrl}
                                     alt="Florian Wahl - Product Leader and Engineer"
@@ -85,8 +88,8 @@ const Hero: React.FC = () => {
                                 />
                             </div>
                             <div className="mt-4 flex items-center justify-center gap-2">
-                                <span className="text-yellow-400 font-mono text-sm">▶</span>
-                                <p className="font-mono text-sm text-white">PLAYER 1</p>
+                                <span className="text-yellow-500 dark:text-yellow-400 font-mono text-sm">▶</span>
+                                <p className="font-mono text-sm text-black dark:text-white">PLAYER 1</p>
                             </div>
                         </div>
                     </div>

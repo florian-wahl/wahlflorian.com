@@ -241,7 +241,7 @@ const userData: UserData = {
         },
     ],
     resumeUrl:
-        "https://docs.google.com/document/d/1q8A1WskIRjXZHOqxrV36INzCy4Ys7TqiocZG6DjimN0/edit?usp=sharing",
+        "https://docs.google.com/document/d/1vzJ5S7rM71Baq3uHHT6jgi3MhZf83h_gKi5vUh76aKY/edit?usp=sharing",
     socialLinks: {
         instagram: "https://www.instagram.com/florian.wahl",
         twitter: "https://twitter.com/flwahl",

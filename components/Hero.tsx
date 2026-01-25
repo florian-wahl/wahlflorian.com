@@ -5,6 +5,10 @@ import Link from "next/link";
 
 const Hero: React.FC = () => {
     const [show, setShow] = useState(false);
+    const [displayedName, setDisplayedName] = useState("");
+    const [showDesignation, setShowDesignation] = useState(false);
+    const [showTaglines, setShowTaglines] = useState(false);
+    const fullName = userData.name.toUpperCase();
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -12,6 +16,31 @@ const Hero: React.FC = () => {
         }, 200);
         return () => clearTimeout(timer);
     }, []);
+
+    // Typing effect for name
+    useEffect(() => {
+        if (!show) return;
+        
+        let currentIndex = 0;
+        const typingInterval = setInterval(() => {
+            if (currentIndex < fullName.length) {
+                setDisplayedName(fullName.slice(0, currentIndex + 1));
+                currentIndex++;
+            } else {
+                clearInterval(typingInterval);
+                // Show designation first, then taglines
+                setTimeout(() => {
+                    setShowDesignation(true);
+                    // Show taglines after designation appears
+                    setTimeout(() => {
+                        setShowTaglines(true);
+                    }, 400);
+                }, 300);
+            }
+        }, 80); // Typing speed
+
+        return () => clearInterval(typingInterval);
+    }, [show, fullName]);
 
     return (
         <div className="bg-white dark:bg-[#0a0a0a] min-h-screen flex flex-col justify-center items-center px-4 py-20 relative overflow-hidden transition-colors duration-300">
@@ -33,21 +62,31 @@ const Hero: React.FC = () => {
                             </span>
                         </div>
                         <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-black dark:text-white mb-6 pixel-text">
-                            {userData.name.toUpperCase()}
+                            {displayedName}
+                            {displayedName.length < fullName.length && (
+                                <span className="animate-pulse">|</span>
+                            )}
                         </h1>
-                        <p className="text-2xl md:text-3xl text-yellow-500 dark:text-yellow-400 font-mono mb-8">
+                        <p 
+                            className="text-2xl md:text-3xl text-yellow-500 dark:text-yellow-400 font-mono mb-8"
+                            style={{
+                                animation: showDesignation ? `fadeInUp 0.5s ease both` : 'none',
+                                opacity: showDesignation ? 1 : 0
+                            }}
+                        >
                             {userData.designation.toUpperCase()}
                         </p>
                         <div className="flex flex-wrap gap-2 mb-8 justify-center md:justify-start">
                             {userData.rainbowContent.map((content, index) => (
                                 <div
                                     key={index}
-                                    className="flex-shrink-0"
+                                    className="flex-shrink-0 tagline-badge"
                                     style={{
-                                        animation: show ? `fadeInUp 0.5s ease ${index * 0.1}s both` : 'none'
+                                        animation: showTaglines ? `fadeInUp 0.5s ease ${index * 0.15}s both, pulse 2s ease-in-out ${1 + index * 0.3}s infinite` : 'none',
+                                        opacity: showTaglines ? 1 : 0
                                     }}
                                 >
-                                    <span className="inline-block px-3 py-2 sm:px-4 bg-gray-100 dark:bg-gray-900 border-2 border-black dark:border-white text-black dark:text-white font-mono text-xs sm:text-sm md:text-lg pixel-border whitespace-nowrap">
+                                    <span className="inline-block px-3 py-2 sm:px-4 bg-gray-100 dark:bg-gray-900 border-2 border-black dark:border-white text-black dark:text-white font-mono text-xs sm:text-sm md:text-lg pixel-border whitespace-nowrap hover:scale-105 transition-transform duration-200">
                                         {content.toUpperCase()}
                                     </span>
                                 </div>
@@ -106,6 +145,19 @@ const Hero: React.FC = () => {
                         opacity: 1;
                         transform: translateY(0);
                     }
+                }
+                
+                @keyframes pulse {
+                    0%, 100% {
+                        transform: scale(1);
+                    }
+                    50% {
+                        transform: scale(1.02);
+                    }
+                }
+                
+                .tagline-badge:hover {
+                    animation: fadeInUp 0.5s ease both, pulse 1s ease-in-out infinite !important;
                 }
             `}</style>
         </div>

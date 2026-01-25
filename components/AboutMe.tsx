@@ -1,5 +1,6 @@
 import React from "react";
 import userData from "../constants/data";
+import { PodcastIcon } from "./PixelIcons";
 
 const AboutMe: React.FC = () => {
     return (
@@ -71,8 +72,8 @@ const AboutMe: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {userData.conferenceTalks.map((talk, idx) => (
                             <div key={idx} className="pixel-card bg-gray-50 dark:bg-gray-900 p-6">
-                                <p className="text-black dark:text-white font-mono text-sm mb-2">
-                                    <span className="text-yellow-600 dark:text-yellow-400">🎤</span> {talk.title}
+                                <p className="text-black dark:text-white font-mono text-sm mb-2 flex items-center gap-2">
+                                    <PodcastIcon className="text-yellow-600 dark:text-yellow-400" size={20} /> {talk.title}
                                 </p>
                                 <p className="text-gray-600 dark:text-gray-400 font-mono text-xs">
                                     {talk.venue}

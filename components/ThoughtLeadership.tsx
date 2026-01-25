@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import userData from "../constants/data";
 import { event } from "../utils/analytics";
 import Link from "next/link";
+import { PodcastIcon, WritingIcon } from "./PixelIcons";
 
 interface ThoughtLeadershipItem {
     title: string;
@@ -71,13 +72,15 @@ const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
     const getTypeIcon = (type: string) => {
         switch (type) {
             case "talk":
-                return "🎤";
+                return <PodcastIcon className="w-8 h-8" size={32} />;
             case "article":
-                return "📝";
+                return <WritingIcon className="w-8 h-8" size={32} />;
+            case "blog":
+                return <WritingIcon className="w-8 h-8" size={32} />;
             case "paper":
-                return "📄";
+                return <WritingIcon className="w-8 h-8" size={32} />;
             case "podcast":
-                return "🎙️";
+                return <PodcastIcon className="w-8 h-8" size={32} />;
             default:
                 return "💡";
         }
@@ -121,7 +124,7 @@ const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
                             className="pixel-card p-6 hover:border-yellow-500 dark:hover:border-yellow-400 transition-all duration-200"
                         >
                             <div className="flex items-start justify-between mb-4">
-                                <span className="text-3xl">{getTypeIcon(item.type)}</span>
+                                <div className="text-yellow-600 dark:text-yellow-400">{getTypeIcon(item.type)}</div>
                                 <div className="flex flex-col items-end gap-1">
                                     <span className="text-xs font-mono text-gray-600 dark:text-gray-400 uppercase">
                                         {getTypeLabel(item.type)}

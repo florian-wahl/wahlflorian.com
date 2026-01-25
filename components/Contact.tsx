@@ -1,6 +1,7 @@
 import React from "react";
 import userData from "../constants/data";
 import { event } from "../utils/analytics";
+import { MailIcon, LocationIcon } from "./PixelIcons";
 
 const Contact: React.FC = () => {
     return (
@@ -32,7 +33,7 @@ const Contact: React.FC = () => {
                                     href={`mailto:${userData.email}`}
                                     className="flex flex-row items-center space-x-4 pixel-card bg-gray-100 dark:bg-gray-800 p-4 hover:border-yellow-500 dark:hover:border-yellow-400 transition-colors group"
                                 >
-                                    <div className="text-2xl">📧</div>
+                                    <MailIcon className="text-yellow-600 dark:text-yellow-400" size={24} />
                                     <div>
                                         <p className="text-yellow-600 dark:text-yellow-400 font-mono text-xs uppercase mb-1">Email</p>
                                         <p className="text-black dark:text-white font-mono text-sm group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors">
@@ -42,7 +43,7 @@ const Contact: React.FC = () => {
                                 </a>
                                 
                                 <div className="flex flex-row items-center space-x-4 pixel-card bg-gray-100 dark:bg-gray-800 p-4">
-                                    <div className="text-2xl">📍</div>
+                                    <LocationIcon className="text-yellow-600 dark:text-yellow-400" size={24} />
                                     <div>
                                         <p className="text-yellow-600 dark:text-yellow-400 font-mono text-xs uppercase mb-1">Location</p>
                                         <p className="text-black dark:text-white font-mono text-sm">

@@ -1,42 +1,124 @@
 # wahlflorian.com
 
-This repository contains the source code for [wahlflorian.com](https://wahlflorian.com), the personal website of product leader Florian Wahl.
+Personal website of Florian Wahl — Product Leader, Engineer, and Fintech Expert. A pixel-art inspired portfolio showcasing work experience, thought leadership, and professional capabilities.
 
-Built with [Next.js](https://nextjs.org/) and TypeScript, styled with [Tailwind CSS](https://tailwindcss.com/), it showcases Florian's experience, writing, and contact information.
+🌐 **Live Site:** [wahlflorian.com](https://wahlflorian.com)
+
+## About
+
+This website serves as a digital portfolio and professional presence, featuring a pixel-art aesthetic inspired by retro culture. The design emphasizes clarity, readability, and a unique visual identity that stands out from traditional portfolio sites.
 
 ## Features
 
-- Portfolio pages for About, Experience, Articles, and Contact
-- Custom image optimization with lazy loading and skeleton placeholders
-- SEO-friendly metadata and schema markup
-- Responsive design with dark mode support
-- Google Analytics integration
+### Core Sections
+
+- **Hero Section** — Animated typing effect with professional taglines and "Expert Mode" badge
+- **Experience Timeline** — Chronological work history grouped by company, with clear start/end dates
+- **Thought Leadership** — Curated articles, blog posts, and conference talks with chronological organization
+- **About Me** — Personal background, capabilities, and public speaking engagements
+- **Contact** — Contact information and social media links
+
+### Design & UX
+
+- **Pixel Art Aesthetic** — Custom pixel-style design with 8-bit inspired elements
+- **Dark Mode** — Optimized dark theme with pixel-perfect styling
+- **Responsive Design** — Fully mobile-friendly with touch gestures and optimized layouts
+- **Smooth Animations** — Subtle typing effects, fade-ins, and interactive hover states
+- **Icon Library** — [HackerNoon Pixel Icon Library](https://github.com/hackernoon/pixel-icon-library) for consistent pixel-style icons
+
+### Technical Features
+
+- **SEO Optimized** — Comprehensive metadata, schema markup, and sitemap generation
+- **Image Optimization** — Custom lazy loading with skeleton placeholders
+- **Analytics Integration** — Google Analytics event tracking
+- **Performance** — Optimized builds with Next.js static generation
+
+## Tech Stack
+
+- **[Next.js 15](https://nextjs.org/)** — React framework with App Router
+- **[TypeScript](https://www.typescriptlang.org/)** — Type-safe development
+- **[Tailwind CSS](https://tailwindcss.com/)** — Utility-first styling
+- **[next-themes](https://github.com/pacocoursey/next-themes)** — Theme management
+- **[HackerNoon Pixel Icon Library](https://github.com/hackernoon/pixel-icon-library)** — Pixel art icons
 
 ## Development
 
-Install dependencies and start a local development server:
+### Prerequisites
 
-```bash
-npm install
-npm run dev
-```
+- Node.js 18+ and npm
 
-Open `http://localhost:3000` in your browser to view the site.
+### Getting Started
 
-## Production build
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-Create an optimized production build and start the server:
+2. **Start development server:**
+   ```bash
+   npm run dev
+   ```
+
+3. **Open your browser:**
+   Navigate to `http://localhost:3000`
+
+### Production Build
+
+Create an optimized production build:
 
 ```bash
 npm run build
 npm start
 ```
 
-## Environment variables
+The build process automatically generates a sitemap via the `postbuild` script.
 
-Set the following variable to enable analytics:
+## Configuration
 
-```
+### Environment Variables
+
+Set the following environment variable to enable Google Analytics:
+
+```env
 NEXT_PUBLIC_GA_MEASUREMENT_ID=<your-google-analytics-id>
 ```
 
+### Data Management
+
+All personal data (experience, articles, talks, social links) is centralized in `constants/data.ts` for easy maintenance and updates.
+
+## Project Structure
+
+```
+wahlflorian-v3/
+├── components/          # React components
+│   ├── Hero.tsx        # Hero section with typing animation
+│   ├── Experience.tsx  # Work experience timeline
+│   ├── ThoughtLeadership.tsx  # Articles and talks
+│   ├── SocialLinks.tsx # Reusable social media links
+│   ├── PixelIcons.tsx  # Custom pixel art icons
+│   └── ...
+├── constants/
+│   └── data.ts         # Centralized data store
+├── pages/              # Next.js pages
+├── styles/             # Global CSS and fonts
+├── utils/              # Utilities (analytics, image optimization)
+└── public/             # Static assets
+```
+
+## Design Philosophy
+
+The website embraces a pixel-art aesthetic that pays homage to retro computing while maintaining modern web standards. Key design principles:
+
+- **Clarity over complexity** — Information is presented clearly and accessibly
+- **Consistent pixel styling** — All UI elements follow the pixel-art theme
+- **Performance first** — Fast loading times and smooth interactions
+- **Mobile-first** — Responsive design that works beautifully on all devices
+
+## License
+
+This project is private and proprietary.
+
+---
+
+Built with ❤️ and pixels by Florian Wahl

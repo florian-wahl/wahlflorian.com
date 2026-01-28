@@ -34,6 +34,15 @@ interface SocialLinks {
     github: string;
 }
 
+interface UpcomingEngagement {
+    title: string;
+    description?: string;
+    date: string; // ISO date for sorting/display (e.g. "YYYY-MM-DD" or "YYYY-MM")
+    conference: string;
+    location?: string;
+    link?: string;
+}
+
 interface UserData {
     githubUsername: string;
     name: string;
@@ -50,6 +59,7 @@ interface UserData {
     resumeUrl: string;
     socialLinks: SocialLinks;
     rainbowContent: string[];
+    upcomingEngagements: UpcomingEngagement[];
 }
 
 const userData: UserData = {
@@ -177,6 +187,32 @@ const userData: UserData = {
             title: "Industry Collaboration on DDA Payment Tokens in Support of a Safer Data Sharing & Payments Ecosystem",
             venue: "Financial Data Exchange Global Summit",
             date: "2023-04",
+        },
+    ],
+    upcomingEngagements: [
+        {
+            title: "Session Title One",
+            description: "Short tagline or description for the session.",
+            date: "2025-06-15",
+            conference: "Conference Name",
+            location: "City, Country",
+            link: "https://example.com/session-one",
+        },
+        {
+            title: "Session Title Two",
+            description: "Another short description.",
+            date: "2025-08-20",
+            conference: "Another Conference",
+            location: "Other City",
+            link: "https://example.com/session-two",
+        },
+        {
+            title: "Session Title Three",
+            description: "Third upcoming talk or panel.",
+            date: "2025-09-10",
+            conference: "Third Conference",
+            location: "City",
+            link: "https://example.com/session-three",
         },
     ],
     about: {

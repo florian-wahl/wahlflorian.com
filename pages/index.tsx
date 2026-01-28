@@ -1,5 +1,6 @@
 import ContainerBlock from "../components/ContainerBlock";
 import Hero from "../components/Hero";
+import UpcomingEngagements from "../components/UpcomingEngagements";
 import ThoughtLeadership from "../components/ThoughtLeadership";
 import Experience from "../components/Experience";
 import type { NextPage } from 'next';
@@ -13,6 +14,7 @@ const Home: NextPage = () => {
             }}
         >
             <Hero />
+            <UpcomingEngagements />
             <ThoughtLeadership limit={9} />
             <Experience />
         </ContainerBlock>

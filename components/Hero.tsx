@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import OptimizedImage from "./OptimizedImage";
 import userData from "../constants/data";
 import Link from "next/link";
@@ -9,6 +9,8 @@ const Hero: React.FC = () => {
     const [showDesignation, setShowDesignation] = useState(false);
     const [showTaglines, setShowTaglines] = useState(false);
     const fullName = userData.name.toUpperCase();
+    const designationTimeoutRef = useRef<number | null>(null);
+    const taglinesTimeoutRef = useRef<number | null>(null);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -29,17 +31,27 @@ const Hero: React.FC = () => {
             } else {
                 clearInterval(typingInterval);
                 // Show designation first, then taglines
-                setTimeout(() => {
+                designationTimeoutRef.current = window.setTimeout(() => {
                     setShowDesignation(true);
                     // Show taglines after designation appears
-                    setTimeout(() => {
+                    taglinesTimeoutRef.current = window.setTimeout(() => {
                         setShowTaglines(true);
                     }, 400);
                 }, 300);
             }
         }, 80); // Typing speed
 
-        return () => clearInterval(typingInterval);
+        return () => {
+            clearInterval(typingInterval);
+            if (designationTimeoutRef.current !== null) {
+                clearTimeout(designationTimeoutRef.current);
+                designationTimeoutRef.current = null;
+            }
+            if (taglinesTimeoutRef.current !== null) {
+                clearTimeout(taglinesTimeoutRef.current);
+                taglinesTimeoutRef.current = null;
+            }
+        };
     }, [show, fullName]);
 
     return (

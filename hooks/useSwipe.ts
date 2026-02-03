@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface SwipeInput {
     onSwipeLeft?: () => void;
@@ -13,9 +13,9 @@ export const useSwipe = ({
     minSwipeDistance = 50,
     element
 }: SwipeInput) => {
-    const [touchStart, setTouchStart] = useState<number | null>(null);
-    const [touchEnd, setTouchEnd] = useState<number | null>(null);
-    const [startX, setStartX] = useState<number | null>(null);
+    const touchStartRef = useRef<number | null>(null);
+    const touchEndRef = useRef<number | null>(null);
+    const startXRef = useRef<number | null>(null);
 
     useEffect(() => {
         const target = element || document;
@@ -23,26 +23,26 @@ export const useSwipe = ({
         const onTouchStart = (e: Event) => {
             const touchEvent = e as TouchEvent;
             const x = touchEvent.targetTouches[0].clientX;
-            setTouchEnd(null);
-            setTouchStart(x);
-            setStartX(x);
+            touchEndRef.current = null;
+            touchStartRef.current = x;
+            startXRef.current = x;
         };
 
         const onTouchMove = (e: Event) => {
             const touchEvent = e as TouchEvent;
-            setTouchEnd(touchEvent.targetTouches[0].clientX);
+            touchEndRef.current = touchEvent.targetTouches[0].clientX;
         };
 
         const onTouchEnd = () => {
-            if (!touchStart || !touchEnd) return;
+            if (touchStartRef.current === null || touchEndRef.current === null) return;
 
-            const distance = touchStart - touchEnd;
+            const distance = touchStartRef.current - touchEndRef.current;
             const isLeftSwipe = distance > minSwipeDistance;
             const isRightSwipe = distance < -minSwipeDistance;
             const windowWidth = window.innerWidth;
 
             // For left swipes (opening menu), only trigger if starting from the right edge
-            if (isLeftSwipe && onSwipeLeft && (!element && startX && startX > windowWidth * 0.9)) {
+            if (isLeftSwipe && onSwipeLeft && (!element && startXRef.current !== null && startXRef.current > windowWidth * 0.9)) {
                 onSwipeLeft();
             }
 
@@ -61,7 +61,7 @@ export const useSwipe = ({
             target.removeEventListener('touchmove', onTouchMove);
             target.removeEventListener('touchend', onTouchEnd);
         };
-    }, [onSwipeLeft, onSwipeRight, touchStart, touchEnd, startX, minSwipeDistance, element]);
+    }, [onSwipeLeft, onSwipeRight, minSwipeDistance, element]);
 
     return {};
 }; 

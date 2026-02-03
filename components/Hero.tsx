@@ -5,10 +5,10 @@ import Link from "next/link";
 
 const Hero: React.FC = () => {
     const [show, setShow] = useState(false);
-    const [displayedName, setDisplayedName] = useState("");
+    const fullName = userData.name.toUpperCase();
+    const [displayedName, setDisplayedName] = useState(fullName);
     const [showDesignation, setShowDesignation] = useState(false);
     const [showTaglines, setShowTaglines] = useState(false);
-    const fullName = userData.name.toUpperCase();
     const designationTimeoutRef = useRef<number | null>(null);
     const taglinesTimeoutRef = useRef<number | null>(null);
 
@@ -22,7 +22,9 @@ const Hero: React.FC = () => {
     // Typing effect for name
     useEffect(() => {
         if (!show) return;
-        
+
+        setDisplayedName("");
+
         let currentIndex = 0;
         const typingInterval = setInterval(() => {
             if (currentIndex < fullName.length) {

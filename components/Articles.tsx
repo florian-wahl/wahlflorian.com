@@ -28,6 +28,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, link, imgUrl }) => {
                     <img
                         src={imgUrl}
                         alt={`${title} - Article thumbnail`}
+                        loading="lazy"
+                        decoding="async"
                         className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                     />
                 </div>

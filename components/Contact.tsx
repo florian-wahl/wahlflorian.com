@@ -2,6 +2,7 @@ import React from "react";
 import userData from "../constants/data";
 import { MailIcon, LocationIcon } from "./PixelIcons";
 import SocialLinks from "./SocialLinks";
+import { event } from "../utils/analytics";
 
 const Contact: React.FC = () => {
     return (
@@ -32,6 +33,7 @@ const Contact: React.FC = () => {
                                 <a
                                     href={`mailto:${userData.email}`}
                                     className="flex flex-row items-center space-x-4 pixel-card bg-gray-100 dark:bg-gray-800 p-4 hover:border-yellow-500 dark:hover:border-yellow-400 transition-colors group"
+                                    onClick={() => event("contact_click", { method: "email" })}
                                 >
                                     <MailIcon className="text-yellow-600 dark:text-yellow-400" size={24} />
                                     <div>
@@ -70,6 +72,7 @@ const Contact: React.FC = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="block pixel-button bg-yellow-400 text-black p-4 text-center font-bold font-mono hover:bg-yellow-300 transition-colors"
+                                        onClick={() => event("resume_click", {})}
                                     >
                                         VIEW RESUME →
                                     </a>
@@ -78,6 +81,7 @@ const Contact: React.FC = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="block pixel-button bg-white text-black p-4 text-center font-bold font-mono hover:bg-gray-200 transition-colors"
+                                        onClick={() => event("portfolio_click", {})}
                                     >
                                         PHOTOGRAPHY PORTFOLIO →
                                     </a>

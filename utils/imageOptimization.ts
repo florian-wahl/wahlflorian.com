@@ -12,12 +12,6 @@ export const preloadCriticalImages = (imageUrls: string[]) => {
     });
 };
 
-export const generateResponsiveImageUrl = (baseUrl: string, width: number): string => {
-    // For external images, we can't resize them, but we can optimize loading
-    // This function can be extended to work with image CDNs in the future
-    return baseUrl;
-};
-
 export const getImageDimensions = (aspectRatio: number, containerWidth: number) => {
     const height = containerWidth / aspectRatio;
     return { width: containerWidth, height };
@@ -30,11 +24,4 @@ export const createImagePlaceholder = (width: number, height: number, color: str
 export const optimizeImageLoading = {
     // Priority images that should be loaded immediately
     priority: ['/headshot.jpg'],
-
-    // Images that can be lazy loaded
-    lazy: [
-        'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ywYLQMzS1NLVWYHB3B7sZA.jpeg',
-        'https://akoya.com/hubfs/Blog%20posts%20-%20SVGs/Instant%20ACH%20verification%20and%20meeting%20consumer%20expectations%20-%20Blog%20post.svg',
-        'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*yg7tmTyUqldSMY6ITNfsLQ.png'
-    ]
 };

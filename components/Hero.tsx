@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import OptimizedImage from "./OptimizedImage";
 import userData from "../constants/data";
 import Link from "next/link";
+import { event } from "../utils/analytics";
 
 const Hero: React.FC = () => {
     const [show, setShow] = useState(false);
@@ -110,12 +111,14 @@ const Hero: React.FC = () => {
                             <Link
                                 href="/experience"
                                 className="px-6 py-3 bg-yellow-400 text-black font-bold font-mono hover:bg-yellow-300 transition-colors pixel-button"
+                                onClick={() => event("cta_click", { label: "view_experience" })}
                             >
                                 VIEW EXPERIENCE →
                             </Link>
                             <Link
                                 href="/contact"
                                 className="px-6 py-3 bg-white text-black font-bold font-mono hover:bg-gray-200 transition-colors pixel-button"
+                                onClick={() => event("cta_click", { label: "contact_me" })}
                             >
                                 CONTACT ME →
                             </Link>

@@ -182,6 +182,7 @@ const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
                     <Link
                         href="/articles"
                         className="inline-block px-8 py-4 bg-yellow-400 text-black font-bold font-mono hover:bg-yellow-300 transition-colors pixel-border pixel-button"
+                        onClick={() => event("cta_click", { label: "view_all_articles" })}
                     >
                         VIEW ALL ARTICLES →
                     </Link>

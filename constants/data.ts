@@ -231,7 +231,7 @@ const userData: UserData = {
             startDate: "2022-11",
             endDate: null, // Current role
             companyLink: "https://akoya.com",
-            desc: "Leading the Product Strategy team in charge of our multi-year strategy, roadmap, product ops, competitive intelligence, and product management excellence processes.",
+            desc: "Leading the Product Strategy team in charge of our multi-year strategy, roadmap, product ops, pricing, commercialization, competitive intelligence, and product management excellence processes.",
         },
         {
             title: "Product Manager",
@@ -239,7 +239,7 @@ const userData: UserData = {
             startDate: "2022-02",
             endDate: "2022-11",
             companyLink: "https://akoya.com",
-            desc: "Managed Akoya's core APIs, Payments & Customers products. SME for various use cases: payments enablement, money movement, account number tokenization, and account ownership validation.",
+            desc: "Managed Akoya's core API products. SME for various use cases: payments enablement, money movement, account number tokenization, and account ownership validation.",
         },
         {
             title: "Business Strategy & Execution Manager",
@@ -263,7 +263,7 @@ const userData: UserData = {
             startDate: "2020-03",
             endDate: "2020-06",
             companyLink: "https://capgemini.com",
-            desc: "Program managed the delivery of a 6-week technology and operations readiness assessment for a transaction bank.",
+            desc: "Program managed the delivery of a 6-week technology and operations readiness assessment for a leading transaction bank.",
         },
         {
             title: "Senior Consultant (and Previous Roles)",

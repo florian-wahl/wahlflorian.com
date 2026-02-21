@@ -15,7 +15,6 @@ This website serves as a digital portfolio and professional presence, featuring 
 - **Hero Section** — Animated typing effect with professional taglines and "Expert Mode" badge
 - **Experience Timeline** — Chronological work history grouped by company, with clear start/end dates
 - **Thought Leadership** — Curated articles, blog posts, and conference talks with chronological organization
-- **About Me** — Personal background, capabilities, and public speaking engagements
 - **Contact** — Contact information and social media links
 
 ### Design & UX

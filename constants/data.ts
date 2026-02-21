@@ -11,12 +11,6 @@ interface ConferenceTalk {
     date: string; // Format: "YYYY-MM-DD" or "YYYY-MM" for sorting
 }
 
-interface About {
-    title: string;
-    description: string[];
-    certifications: string[];
-}
-
 interface Experience {
     title: string;
     company: string;
@@ -53,7 +47,6 @@ interface UserData {
     address: string;
     articles: Article[];
     conferenceTalks: ConferenceTalk[];
-    about: About;
     experience: Experience[];
     resumeUrl: string;
     socialLinks: SocialLinks;
@@ -161,18 +154,6 @@ const userData: UserData = {
             link: "https://payments.nacha.org/session/how-dda-tokenization-protects-fis-and-empowers-consumers-era-open-banking",
         },
     ],
-    about: {
-        title:
-            "Engineer by trade and fintech geek by passion, Florian Wahl currently leads the Product Strategy team at Akoya",
-        description: [
-            `At Akoya, I investigate the opportunities that open finance can bring to a wide array of use cases with particular attention to the payments space.`,
-            `I am a certified digital product manager and strategist with 7+ years of experience. I am an active voice in the industry, talking and writing about fintech, data sharing, payments, and tokenization.`,
-            `Before joining Akoya in 2021, I held various roles as a consultant in financial services, focusing on digital transformation and open finance.`,
-        ],
-        certifications: [
-            "I am a Certified Digital Product Manager, credentialed by the Association of International Product Marketing and Management (AIPMM). This certification, issued in September 2023 (Credential ID: 82693844), validates my expertise in driving product strategy, lifecycle management, and innovation in digital products."
-        ]
-    },
     experience: [
         {
             title: "Head of Product Strategy",

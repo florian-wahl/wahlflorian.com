@@ -25,9 +25,9 @@ const ArticleCard: React.FC<{ item: FeedItem }> = ({ item }) => {
     const href = isHosted ? `/articles/${item.slug}` : item.link!;
 
     const inner = (
-        <div className="w-full pixel-card bg-gray-900 overflow-hidden group">
+        <div className="w-full h-full pixel-card bg-gray-900 overflow-hidden group flex flex-col">
             {item.imgUrl && (
-                <div className="h-52 relative overflow-hidden">
+                <div className="h-52 relative overflow-hidden flex-shrink-0">
                     <img
                         src={item.imgUrl}
                         alt={`${item.title} thumbnail`}
@@ -37,7 +37,7 @@ const ArticleCard: React.FC<{ item: FeedItem }> = ({ item }) => {
                     />
                 </div>
             )}
-            <div className={`p-6 ${!item.imgUrl ? "pt-6" : ""}`}>
+            <div className="p-6 flex flex-col flex-1">
                 {item.date && (
                     <p className="text-xs text-gray-500 dark:text-gray-400 font-mono mb-2">
                         {new Date(item.date).toLocaleDateString("en-US", {
@@ -56,7 +56,7 @@ const ArticleCard: React.FC<{ item: FeedItem }> = ({ item }) => {
                         {item.description}
                     </p>
                 )}
-                <div className="mt-4 flex items-center text-yellow-600 dark:text-yellow-400 text-sm font-mono">
+                <div className="mt-auto pt-4 flex items-center text-yellow-600 dark:text-yellow-400 text-sm font-mono">
                     READ {isHosted ? "POST" : "ARTICLE"} →
                 </div>
             </div>

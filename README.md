@@ -12,9 +12,10 @@ This website serves as a digital portfolio and professional presence, featuring 
 
 ### Core Sections
 
-- **Hero Section** — Animated typing effect with professional taglines and "Expert Mode" badge
+- **Hero Section** — Animated typing effect, professional taglines, "Expert Mode" badge, and short bio
+- **Upcoming Engagements** — Conference talks, panels, and speaking engagements
+- **Thought Leadership** — Curated articles, hosted blog posts, and conference talks with chronological organization
 - **Experience Timeline** — Chronological work history grouped by company, with clear start/end dates
-- **Thought Leadership** — Curated articles, blog posts, and conference talks with chronological organization
 - **Contact** — Contact information and social media links
 
 ### Design & UX
@@ -34,7 +35,7 @@ This website serves as a digital portfolio and professional presence, featuring 
 
 ## Tech Stack
 
-- **[Next.js 15](https://nextjs.org/)** — React framework with App Router
+- **[Next.js 15](https://nextjs.org/)** — React framework with Pages Router (static export)
 - **[TypeScript](https://www.typescriptlang.org/)** — Type-safe development
 - **[Tailwind CSS](https://tailwindcss.com/)** — Utility-first styling
 - **[next-themes](https://github.com/pacocoursey/next-themes)** — Theme management
@@ -85,6 +86,10 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=<your-google-analytics-id>
 ### Data Management
 
 All personal data (experience, articles, talks, social links) is centralized in `constants/data.ts` for easy maintenance and updates.
+
+### Blogging
+
+Hosted blog posts are written as markdown files in `posts/` and served at `/articles/[slug]`. Add a new `.md` file with `title`, `date`, `description`, and `coverImage` frontmatter — it's automatically included in the feed and sitemap on the next build.
 
 ## Project Structure
 

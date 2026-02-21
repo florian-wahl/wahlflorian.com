@@ -17,6 +17,7 @@ This website serves as a digital portfolio and professional presence, featuring 
 - **Thought Leadership** — Curated articles, hosted blog posts, and conference talks with chronological organization
 - **Experience Timeline** — Chronological work history grouped by company, with clear start/end dates
 - **Contact** — Contact information and social media links
+- **404 Page** — Custom "Game Over" error page matching the retro gaming aesthetic
 
 ### Design & UX
 

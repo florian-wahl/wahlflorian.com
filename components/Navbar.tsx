@@ -113,7 +113,7 @@ const Navbar: React.FC = () => {
                             href="/articles"
                             onClick={() => sendGAEvent({ event: 'navClicked', value: 'articles' })}
                             className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 ${
-                                router.asPath === "/articles"
+                                router.asPath.startsWith("/articles")
                                     ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
                                     : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
                             }`}
@@ -237,7 +237,7 @@ const Navbar: React.FC = () => {
                                         sendGAEvent({ event: 'navClicked', value: 'articles' });
                                     }}
                                     className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
-                                        router.asPath === "/articles"
+                                        router.asPath.startsWith("/articles")
                                             ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
                                             : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
                                     }`}

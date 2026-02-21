@@ -44,18 +44,10 @@ const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
                 date: talk.date,
                 displayDate: formatDisplayDate(talk.date),
             })),
-            // Work Articles - labeled as "Articles"
-            ...userData.workArticles.map((article) => ({
+            // Articles
+            ...userData.articles.map((article) => ({
                 title: article.title,
                 type: "article" as const,
-                link: article.link,
-                date: article.date || "2000-01",
-                displayDate: article.date ? formatDisplayDate(article.date) : undefined,
-            })),
-            // Personal Articles - labeled as "Blog Posts"
-            ...userData.personalArticles.map((article) => ({
-                title: article.title,
-                type: "blog" as const,
                 link: article.link,
                 date: article.date || "2000-01",
                 displayDate: article.date ? formatDisplayDate(article.date) : undefined,

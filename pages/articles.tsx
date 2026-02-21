@@ -95,7 +95,7 @@ const ArticlesPage: NextPage<ArticlesPageProps> = ({ feedItems }) => {
     return (
         <ContainerBlock
             customMeta={{
-                title: "Articles by Florian Wahl - Insights on Product Strategy & Fintech",
+                title: "Florian Wahl - Articles on Product & Fintech",
                 description:
                     "Read Florian Wahl's articles and blog posts on product strategy, fintech innovation, digital transformation, and open finance.",
                 type: "blog",

@@ -11,6 +11,7 @@ interface FeedItem {
     date: string;
     description: string;
     imgUrl: string;
+    readingTime?: number;
     // external articles have a link; hosted posts have a slug
     link?: string;
     slug?: string;
@@ -38,14 +39,16 @@ const ArticleCard: React.FC<{ item: FeedItem }> = ({ item }) => {
                 </div>
             )}
             <div className="p-6 flex flex-col flex-1">
-                {item.date && (
-                    <p className="text-xs text-gray-500 dark:text-gray-400 font-mono mb-2">
-                        {new Date(item.date).toLocaleDateString("en-US", {
+                {(item.date || item.readingTime) && (
+                    <p className="text-xs text-gray-500 dark:text-gray-400 font-mono mb-2 flex items-center gap-2">
+                        {item.date && new Date(item.date).toLocaleDateString("en-US", {
                             year: "numeric",
                             month: "long",
                             day: "numeric",
                             timeZone: "UTC",
                         })}
+                        {item.date && item.readingTime && <span>·</span>}
+                        {item.readingTime && <span>{item.readingTime} MIN READ</span>}
                     </p>
                 )}
                 <h2 className="text-black dark:text-white font-bold text-lg font-mono group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors">
@@ -128,6 +131,7 @@ export const getStaticProps: GetStaticProps<ArticlesPageProps> = async () => {
         date: p.date,
         description: p.description,
         imgUrl: p.coverImage,
+        readingTime: p.readingTime,
         slug: p.slug,
     }));
 

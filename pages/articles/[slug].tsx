@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import ContainerBlock from "../../components/ContainerBlock";
 import { getAllPostSlugs, getPostBySlug, Post } from "../../lib/posts";
@@ -9,6 +9,8 @@ interface BlogPostPageProps {
 }
 
 const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
+    const [imageError, setImageError] = useState(false);
+
     const formattedDate = post.date
         ? new Date(post.date).toLocaleDateString("en-US", {
               year: "numeric",
@@ -38,9 +40,11 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
 
                     {/* Header */}
                     <header className="mb-12">
-                        {formattedDate && (
-                            <p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-4">
+                        {(formattedDate || post.readingTime) && (
+                            <p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-4 flex items-center gap-2">
                                 {formattedDate}
+                                {formattedDate && post.readingTime && <span>·</span>}
+                                {post.readingTime && <span>{post.readingTime} MIN READ</span>}
                             </p>
                         )}
                         <h1 className="text-3xl md:text-5xl font-bold text-black dark:text-white font-mono pixel-text mb-6 leading-tight">
@@ -54,12 +58,13 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
                     </header>
 
                     {/* Cover image */}
-                    {post.coverImage && (
+                    {post.coverImage && !imageError && (
                         <div className="mb-12 pixel-card overflow-hidden">
                             <img
                                 src={post.coverImage}
                                 alt={post.title}
                                 className="w-full object-cover"
+                                onError={() => setImageError(true)}
                             />
                         </div>
                     )}

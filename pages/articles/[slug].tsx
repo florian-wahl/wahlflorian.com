@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import ContainerBlock from "../../components/ContainerBlock";
 import { getAllPostSlugs, getPostBySlug, Post } from "../../lib/posts";
+import { event } from "../../utils/analytics";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 interface BlogPostPageProps {
@@ -10,6 +11,10 @@ interface BlogPostPageProps {
 
 const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
     const [imageError, setImageError] = useState(false);
+
+    useEffect(() => {
+        event("article_view", { title: post.title, slug: post.slug });
+    }, [post.slug, post.title]);
 
     const formattedDate = post.date
         ? new Date(post.date).toLocaleDateString("en-US", {

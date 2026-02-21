@@ -222,6 +222,14 @@ const userData: UserData = {
             companyLink: "https://capgemini.com",
             desc: "Various consulting positions in open banking, digital transformation, fintech, and blockchain.",
         },
+        {
+            title: "Co-Founder",
+            company: "HubRoad",
+            startDate: "2016-09",
+            endDate: "2017-12",
+            companyLink: "https://www.linkedin.com/company/17894778/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BW11mJDKSQ7aX0v%2Fu3u16pg%3D%3D",
+            desc: "Defined business plan, business model, and marketing strategy for the product introduction and the startup.",
+        },
     ],
     resumeUrl:
         "https://docs.google.com/document/d/1vzJ5S7rM71Baq3uHHT6jgi3MhZf83h_gKi5vUh76aKY/edit?usp=sharing",

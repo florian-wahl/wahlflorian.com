@@ -124,7 +124,7 @@ const Hero: React.FC = () => {
                             </Link>
                         </div>
                         <p className="mt-8 text-base md:text-lg font-mono text-gray-600 dark:text-gray-400 max-w-2xl">
-                            Engineer by trade, fintech strategist by passion. I lead Product Strategy at Akoya, where I focus on open finance and innovation. With almost a decade in financial services — spanning consulting, digital transformation, and product — I&apos;m an active voice in the industry through conference talks, panels, and writing.
+                            {userData.bio}
                         </p>
                     </div>
 

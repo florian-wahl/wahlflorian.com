@@ -41,6 +41,7 @@ interface UserData {
     githubUsername: string;
     name: string;
     designation: string;
+    bio: string;
     avatarUrl: string;
     email: string;
     phone: string;
@@ -58,6 +59,7 @@ const userData: UserData = {
     githubUsername: "N/A",
     name: "Florian Wahl",
     designation: "Product Leader",
+    bio: "Engineer by trade, fintech strategist by passion. I lead Product Strategy at Akoya, where I focus on open finance and innovation. With almost a decade in financial services — spanning consulting, digital transformation, and product — I'm an active voice in the industry through conference talks, panels, and writing.",
     avatarUrl: "/headshot.jpg",
     email: "florian.wahl.31@gmail.com",
     phone: "+",

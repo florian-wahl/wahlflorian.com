@@ -199,8 +199,7 @@ html.dark .post-body h4 {
 }
 
 .post-body h1 { font-size: 2rem; }
-.post-body h2 { font-size: 1.5rem; border-bottom: 4px solid #000000; padding-bottom: 0.5rem; }
-html.dark .post-body h2 { border-color: #ffffff; }
+.post-body h2 { font-size: 1.5rem; }
 .post-body h3 { font-size: 1.2rem; }
 .post-body h4 { font-size: 1rem; }
 

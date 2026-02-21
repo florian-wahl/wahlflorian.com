@@ -166,3 +166,145 @@ html.dark .pixel-card:hover {
 .glitch:hover {
   animation: glitch 0.3s infinite;
 }
+
+/* Blog post body typography */
+.post-body {
+  font-family: 'Inter var', monospace;
+  color: #000000;
+  line-height: 1.8;
+}
+
+html.dark .post-body {
+  color: #e5e5e5;
+}
+
+.post-body h1,
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+  font-weight: 700;
+  font-family: 'Inter var', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: #000000;
+}
+
+html.dark .post-body h1,
+html.dark .post-body h2,
+html.dark .post-body h3,
+html.dark .post-body h4 {
+  color: #ffffff;
+}
+
+.post-body h1 { font-size: 2rem; }
+.post-body h2 { font-size: 1.5rem; border-bottom: 4px solid #000000; padding-bottom: 0.5rem; }
+html.dark .post-body h2 { border-color: #ffffff; }
+.post-body h3 { font-size: 1.2rem; }
+.post-body h4 { font-size: 1rem; }
+
+.post-body p {
+  margin-bottom: 1.5rem;
+}
+
+.post-body a {
+  color: #ca8a04;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+html.dark .post-body a {
+  color: #facc15;
+}
+
+.post-body a:hover {
+  color: #92400e;
+}
+
+html.dark .post-body a:hover {
+  color: #fde68a;
+}
+
+.post-body ul,
+.post-body ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.post-body ul { list-style-type: disc; }
+.post-body ol { list-style-type: decimal; }
+
+.post-body li {
+  margin-bottom: 0.5rem;
+}
+
+.post-body blockquote {
+  border-left: 4px solid #ca8a04;
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-bottom: 1.5rem;
+  color: #4b5563;
+  font-style: italic;
+}
+
+html.dark .post-body blockquote {
+  border-color: #facc15;
+  color: #9ca3af;
+}
+
+.post-body code {
+  font-family: monospace;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  padding: 0.15rem 0.4rem;
+  border: 2px solid #000000;
+  font-size: 0.875rem;
+}
+
+html.dark .post-body code {
+  background-color: #1f2937;
+  color: #e5e7eb;
+  border-color: #ffffff;
+}
+
+.post-body pre {
+  background-color: #f3f4f6;
+  border: 4px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+html.dark .post-body pre {
+  background-color: #111827;
+  border-color: #ffffff;
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.post-body pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+.post-body hr {
+  border: none;
+  border-top: 4px solid #000000;
+  margin: 2rem 0;
+}
+
+html.dark .post-body hr {
+  border-color: #ffffff;
+}
+
+.post-body strong {
+  font-weight: 700;
+  color: #000000;
+}
+
+html.dark .post-body strong {
+  color: #ffffff;
+}

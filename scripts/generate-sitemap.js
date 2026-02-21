@@ -3,6 +3,7 @@ const path = require('path');
 
 const baseUrl = 'https://wahlflorian.com';
 const pagesDir = path.join(process.cwd(), 'pages');
+const postsDir = path.join(process.cwd(), 'posts');
 const publicDir = path.join(process.cwd(), 'public');
 const outDir = path.join(process.cwd(), 'out');
 
@@ -22,6 +23,8 @@ function getRoutes(dir) {
       let route = '/' + relative.replace(ext, '');
       route = route.replace(/index$/, '');
       route = route.replace(/\\/g, '/');
+      // Skip dynamic route placeholders — their real URLs come from posts
+      if (route.includes('[') || route.includes(']')) continue;
       routes.push(route);
     }
   }
@@ -29,8 +32,21 @@ function getRoutes(dir) {
   return routes;
 }
 
-const routes = Array.from(new Set(getRoutes(pagesDir))).sort();
-const urls = routes
+// Static page routes
+const staticRoutes = Array.from(new Set(getRoutes(pagesDir))).sort();
+
+// Dynamic blog post routes from /posts/*.md
+const postRoutes = [];
+if (fs.existsSync(postsDir)) {
+  const postFiles = fs.readdirSync(postsDir).filter((f) => f.endsWith('.md'));
+  for (const file of postFiles) {
+    const slug = file.replace(/\.md$/, '');
+    postRoutes.push(`/articles/${slug}`);
+  }
+}
+
+const allRoutes = [...staticRoutes, ...postRoutes];
+const urls = allRoutes
   .map((route) => `  <url>\n    <loc>${baseUrl}${route}</loc>\n  </url>`)
   .join('\n');
 

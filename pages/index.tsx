@@ -3,9 +3,14 @@ import Hero from "../components/Hero";
 import UpcomingEngagements from "../components/UpcomingEngagements";
 import ThoughtLeadership from "../components/ThoughtLeadership";
 import Experience from "../components/Experience";
-import type { NextPage } from 'next';
+import { getAllPostsMeta, PostMeta } from "../lib/posts";
+import type { GetStaticProps, NextPage } from 'next';
 
-const Home: NextPage = () => {
+interface HomeProps {
+    postsMeta: Pick<PostMeta, 'title' | 'date' | 'slug'>[];
+}
+
+const Home: NextPage<HomeProps> = ({ postsMeta }) => {
     return (
         <ContainerBlock
             customMeta={{
@@ -15,10 +20,16 @@ const Home: NextPage = () => {
         >
             <Hero />
             <UpcomingEngagements />
-            <ThoughtLeadership limit={9} />
+            <ThoughtLeadership limit={9} hostedPosts={postsMeta} />
             <Experience />
         </ContainerBlock>
     );
+};
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+    const posts = getAllPostsMeta();
+    const postsMeta = posts.map(({ title, date, slug }) => ({ title, date, slug }));
+    return { props: { postsMeta } };
 };
 
 export default Home; 

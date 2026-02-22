@@ -41,7 +41,7 @@ const UpcomingEngagements: React.FC = () => {
                         UPCOMING
                     </h2>
                     <p className="text-xl text-gray-700 dark:text-gray-300 font-mono">
-                        Talks & panels
+                        Talks & Panels
                     </p>
                 </div>
 

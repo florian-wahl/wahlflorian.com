@@ -8,6 +8,7 @@ interface ThoughtLeadershipItem {
     title: string;
     type: "article" | "blog" | "paper" | "talk" | "podcast";
     link?: string;
+    slug?: string; // hosted posts — internal link to /articles/[slug]
     venue?: string;
     date: string; // ISO date string for sorting (YYYY-MM-DD or YYYY-MM)
     displayDate?: string; // Human-readable date
@@ -16,6 +17,7 @@ interface ThoughtLeadershipItem {
 
 interface ThoughtLeadershipProps {
     limit?: number; // Limit number of items to show (for homepage)
+    hostedPosts?: { title: string; date: string; slug: string }[];
 }
 
 // Format date for display (e.g., "2024-11" -> "Nov 2024")
@@ -32,7 +34,7 @@ const formatDisplayDate = (dateStr: string): string => {
     return dateStr;
 };
 
-const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
+const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit, hostedPosts = [] }) => {
     // Combine all thought leadership content with dates
     const thoughtLeadership: ThoughtLeadershipItem[] = useMemo(() => {
         const items: ThoughtLeadershipItem[] = [
@@ -44,7 +46,7 @@ const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
                 date: talk.date,
                 displayDate: formatDisplayDate(talk.date),
             })),
-            // Articles
+            // External articles
             ...userData.articles.map((article) => ({
                 title: article.title,
                 type: "article" as const,
@@ -52,11 +54,19 @@ const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
                 date: article.date || "2000-01",
                 displayDate: article.date ? formatDisplayDate(article.date) : undefined,
             })),
+            // Hosted blog posts
+            ...hostedPosts.map((post) => ({
+                title: post.title,
+                type: "blog" as const,
+                slug: post.slug,
+                date: post.date || "2000-01",
+                displayDate: post.date ? formatDisplayDate(post.date) : undefined,
+            })),
         ];
-        
+
         // Sort by date (newest first)
         return items.sort((a, b) => b.date.localeCompare(a.date));
-    }, []);
+    }, [hostedPosts]);
     
     // Apply limit if provided
     const displayedItems = limit ? thoughtLeadership.slice(0, limit) : thoughtLeadership;
@@ -128,7 +138,25 @@ const ThoughtLeadership: React.FC<ThoughtLeadershipProps> = ({ limit }) => {
                                     )}
                                 </div>
                             </div>
-                            {item.link ? (
+                            {item.slug ? (
+                                <Link
+                                    href={`/articles/${item.slug}`}
+                                    className="block group"
+                                    onClick={() =>
+                                        event("thought_leadership_click", {
+                                            title: item.title,
+                                            type: item.type,
+                                        })
+                                    }
+                                >
+                                    <h3 className="text-black dark:text-white font-bold text-lg mb-2 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors font-mono">
+                                        {item.title}
+                                    </h3>
+                                    <div className="mt-4 flex items-center text-yellow-600 dark:text-yellow-400 text-sm font-mono">
+                                        READ MORE →
+                                    </div>
+                                </Link>
+                            ) : item.link ? (
                                 <a
                                     href={item.link}
                                     target="_blank"

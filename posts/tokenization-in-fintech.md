@@ -31,7 +31,7 @@ In my head, a token is a piece of data that stands in for another piece of data,
 Think of a token as a randomly generated set of characters (e.g., letters, numbers) that is then mapped to the underlying thing that is being substituted.
 The mapping between the token and the original thing is stored in what's commonly referenced as a "token vault". 
 
-![Tokenization in Fintech Cover Image](/posts-img/tokenization-in-fintech-cover.png)
+![Tokenization in Fintech Intro](/posts-img/tokenization-in-fintech-intro.png)
 
 That’s the core concept across every domain. 
 

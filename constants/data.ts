@@ -62,6 +62,12 @@ const userData: UserData = {
     address: "New York, NY",
     articles: [
         {
+            title: "Account number tokenization: The next phase of consumer protection",
+            link: "https://akoya.com/blog/account-number-tokenization-the-next-phase-of-consumer-protection",
+            imgUrl: "https://akoya.com/hubfs/Blog%20posts%20-%20SVGs/Account%20number%20tokenization_%20The%20next%20phase%20of%20consumer%20protection%20-%20Blog%20post.svg",
+            date: "2023-11-21",
+        },
+        {
             title: "The Expansion of Account Ownership Validation Methods",
             link: "https://akoya.com/blog/account-ownership-validation-methods",
             imgUrl: "https://akoya.com/hubfs/Blog%20posts%20-%20SVGs/The%20expansion%20of%20account%20ownership%20validation%20methods%20-%20Blog%20post.svg",

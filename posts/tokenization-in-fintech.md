@@ -12,7 +12,6 @@ People get confused — and I get it! The same word carries different meanings.
 Anyway, I thought this would be a good topic to share some insights on.
 
 
-
 Tokenization in the fintech space can mean a lot of different things. In this article, I want to break it down into four domains:
 1. **Tokenization x cards** = the representation of a card number
 2. **Tokenization x bank accounts** = the representation of a bank account number
@@ -59,8 +58,6 @@ Think of a payment processor that provides services to merchants; checkout pages
 
 In this case, the payment processor holds the actual primary account number on behalf of the merchant, and issues them a proprietary token that can be stored instead. Because this token doesn't carry card information directly, it reduces the compliance burden on the merchant's side.
 
-
-
 ## Tokenization in the Context of Bank Accounts
 
 Following tokenization in the context of cards, a quite similar utilization of tokens is in the context of bank account numbers. Although this is a more nascent topic and use of tokens, it is becoming a more common practice across the industry (something I've covered in [previous articles](https://akoya.com/blog/account-number-tokenization-the-next-phase-of-consumer-protection)).
@@ -90,8 +87,6 @@ The last one, and most emerging, is payment network based. Again, parallels can 
 
 In this case, the token vault is at the payment network level, and the payment network handles the de-tokenization when a payment is routed from one bank to another.
 
-
-
 ## Tokenization in the Context of Blockchain
 
 When looking at tokenization in the context of blockchain, I think it is helpful to think of it in two layers:
@@ -113,8 +108,6 @@ When you look at the next layer — the use cases built on top — here are a fe
 - **Tokenization of real-world assets** can be either a fungible or a non-fungible token depending on whether the underlying asset is itself fungible (a share in a fund or a stock) or something more unique (a specific property).
 
 In sum, in this case, tokenization is a representation of a thing onto a blockchain or distributed ledger, through a technical standard that tokenizes that thing.
-
-
 
 ## Tokenization in the Context of Identity (APIs & Credentials)
 
@@ -143,8 +136,6 @@ A few key characteristics:
 - **Tamper-proof**: they are signed tokens, which means any attempt at editing the token will be detected and it would get rejected.
 
 So in the context of identity (specifically for APIs and credentials), these two types of tokens operate very much in the background but are foundational to many use cases. They are technical by nature but worth understanding if you're building or working with fintech products.
-
-
 
 ## Wrapping Up
 

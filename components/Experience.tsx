@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import userData from "../constants/data";
+import { event } from "../utils/analytics";
 
 interface ExperienceCardProps {
     title: string;
@@ -61,10 +62,11 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                             {formatDateRange()}
                         </span>
                     </div>
-                    <a 
-                        href={companyLink} 
+                    <a
+                        href={companyLink}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => event('company_click', { company })}
                         className="text-yellow-600 dark:text-yellow-400 font-mono text-sm hover:text-yellow-500 dark:hover:text-yellow-300 transition-colors"
                     >
                         {company.toUpperCase()} →
@@ -127,6 +129,7 @@ const Experience: React.FC = () => {
                                         href={group.companyLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        onClick={() => event('company_click', { company: group.company })}
                                         className="inline-block pixel-card bg-gray-200 dark:bg-gray-800 border-yellow-500 dark:border-yellow-400 p-4 hover:border-yellow-400 dark:hover:border-yellow-300 transition-colors"
                                     >
                                         <h3 className="text-xl md:text-2xl font-bold text-yellow-600 dark:text-yellow-400 font-mono">

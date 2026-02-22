@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 import userData from "../constants/data";
-import { sendGAEvent } from "@next/third-parties/google";
+import { event } from "../utils/analytics";
 import { useSwipe } from "../hooks/useSwipe";
 import SocialLinks from "./SocialLinks";
 
@@ -111,7 +111,7 @@ const Navbar: React.FC = () => {
                     <div className="space-x-4 hidden md:flex items-center">
                         <Link
                             href="/articles"
-                            onClick={() => sendGAEvent({ event: 'navClicked', value: 'articles' })}
+                            onClick={() => event('nav_click', { destination: 'articles' })}
                             className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 ${
                                 router.asPath.startsWith("/articles")
                                     ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
@@ -122,6 +122,7 @@ const Navbar: React.FC = () => {
                         </Link>
                         <Link
                             href="/experience"
+                            onClick={() => event('nav_click', { destination: 'experience' })}
                             className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 ${
                                 router.asPath === "/experience"
                                     ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
@@ -134,12 +135,14 @@ const Navbar: React.FC = () => {
                             href="https://portfolio.wahlflorian.com/"
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={() => event('nav_click', { destination: 'portfolio' })}
                             className="px-4 py-2 font-mono text-sm font-bold text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white transition-colors duration-200"
                         >
                             PORTFOLIO →
                         </Link>
                         <Link
                             href="/contact"
+                            onClick={() => event('nav_click', { destination: 'contact' })}
                             className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 ${
                                 router.asPath === "/contact"
                                     ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
@@ -220,7 +223,7 @@ const Navbar: React.FC = () => {
                                     href="/"
                                     onClick={() => {
                                         setIsOpen(false);
-                                        sendGAEvent({ event: 'navClicked', value: 'home' });
+                                        event('nav_click', { destination: 'home' });
                                     }}
                                     className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
                                         router.asPath === "/"
@@ -234,7 +237,7 @@ const Navbar: React.FC = () => {
                                     href="/articles"
                                     onClick={() => {
                                         setIsOpen(false);
-                                        sendGAEvent({ event: 'navClicked', value: 'articles' });
+                                        event('nav_click', { destination: 'articles' });
                                     }}
                                     className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
                                         router.asPath.startsWith("/articles")
@@ -246,7 +249,10 @@ const Navbar: React.FC = () => {
                                 </Link>
                                 <Link
                                     href="/experience"
-                                    onClick={() => setIsOpen(false)}
+                                    onClick={() => {
+                                        setIsOpen(false);
+                                        event('nav_click', { destination: 'experience' });
+                                    }}
                                     className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
                                         router.asPath === "/experience"
                                             ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
@@ -259,14 +265,20 @@ const Navbar: React.FC = () => {
                                     href="https://portfolio.wahlflorian.com/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    onClick={() => setIsOpen(false)}
+                                    onClick={() => {
+                                        setIsOpen(false);
+                                        event('nav_click', { destination: 'portfolio' });
+                                    }}
                                     className="px-4 py-3 font-mono text-sm font-bold text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white transition-colors"
                                 >
                                     PORTFOLIO →
                                 </Link>
                                 <Link
                                     href="/contact"
-                                    onClick={() => setIsOpen(false)}
+                                    onClick={() => {
+                                        setIsOpen(false);
+                                        event('nav_click', { destination: 'contact' });
+                                    }}
                                     className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
                                         router.asPath === "/contact"
                                             ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"

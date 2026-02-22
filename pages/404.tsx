@@ -13,6 +13,10 @@ const NotFound: React.FC = () => {
     }, []);
 
     useEffect(() => {
+        event("page_404", { path: typeof window !== "undefined" ? window.location.pathname : "" });
+    }, []);
+
+    useEffect(() => {
         const interval = setInterval(() => setBlink((b) => !b), 530);
         return () => clearInterval(interval);
     }, []);

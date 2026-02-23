@@ -28,11 +28,12 @@ All site content lives in [constants/data.ts](constants/data.ts) — a single so
 
 ### Key Patterns
 
-- **Page wrapper:** [components/ContainerBlock.tsx](components/ContainerBlock.tsx) handles SEO metadata (meta tags, OG tags, canonical URLs) and wraps every page.
-- **Image optimization:** Custom lazy loading via [utils/imageOptimization.ts](utils/imageOptimization.ts) and [components/OptimizedImage.tsx](components/OptimizedImage.tsx) with skeleton placeholders — used instead of Next.js `<Image>` (disabled for static export).
+- **Page wrapper:** [components/ContainerBlock.tsx](components/ContainerBlock.tsx) handles SEO metadata (meta tags, OG tags, canonical URLs) and wraps every page. When `customMeta.type === "article"` it also emits a `BlogPosting` JSON-LD block for Google rich results. Always pass `image`, `date`, and `type: "article"` in `customMeta` on article pages.
+- **Image optimization:** Custom lazy loading via [utils/imageOptimization.ts](utils/imageOptimization.ts) and [components/OptimizedImage.tsx](components/OptimizedImage.tsx) with skeleton placeholders — used instead of Next.js `<Image>` (disabled for static export). Pass `priority={true}` for above-the-fold images; this sets both `loading="eager"` and `fetchPriority="high"`. The hero headshot is `public/headshot.webp` (800×800).
 - **Analytics:** [utils/analytics.ts](utils/analytics.ts) wraps GA4 event tracking. Google Analytics is injected in [pages/_app.tsx](pages/_app.tsx) via `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
 - **Theming:** `next-themes` with `class`-based dark mode (Tailwind `dark:` prefix). Toggle in Navbar.
 - **Mobile nav:** [hooks/useSwipe.ts](hooks/useSwipe.ts) detects touch swipe gestures for the mobile menu.
+- **Browserslist:** `package.json` targets Chrome/Firefox/Edge 92+, Safari 15.4+ to avoid unnecessary ES2019–2022 polyfills in the production bundle.
 
 ### Pixel-Art Aesthetic
 
@@ -58,8 +59,9 @@ Hosted blog posts are written as markdown files in [posts/](posts/) and served a
 **How it works:**
 - [lib/posts.ts](lib/posts.ts) reads markdown files at build time using `gray-matter` (frontmatter) and `marked` (HTML conversion)
 - [pages/articles.tsx](pages/articles.tsx) uses `getStaticProps` to merge hosted posts with external articles from `userData.articles`, sorted newest-first
-- [pages/articles/[slug].tsx](pages/articles/[slug].tsx) renders individual posts
+- [pages/articles/[slug].tsx](pages/articles/[slug].tsx) renders individual posts and passes `image`, `date`, and `type: "article"` to `ContainerBlock` to enable article-specific OG tags and `BlogPosting` JSON-LD
 - Post body styling lives in the `.post-body` CSS block in [styles/globals.css](styles/globals.css)
+- The sitemap includes `<lastmod>` dates sourced from each post's frontmatter `date` field
 
 External linked articles are managed in [constants/data.ts](constants/data.ts) under `userData.articles`.
 

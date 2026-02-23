@@ -29,10 +29,10 @@ This website serves as a digital portfolio and professional presence, featuring 
 
 ### Technical Features
 
-- **SEO Optimized** — Comprehensive metadata, schema markup, and sitemap generation
-- **Image Optimization** — Custom lazy loading with skeleton placeholders
+- **SEO Optimized** — Comprehensive metadata, Open Graph tags, per-article `BlogPosting` JSON-LD schema, and sitemap with `<lastmod>` dates for Google Search indexing
+- **Image Optimization** — Custom lazy loading with skeleton placeholders, WebP format, and `fetchPriority="high"` on the LCP image
 - **Analytics Integration** — Google Analytics event tracking
-- **Performance** — Optimized builds with Next.js static generation
+- **Performance** — Optimized builds with Next.js static generation, modern browserslist to eliminate legacy polyfills, and CLS-free hero typing animation
 
 ## Tech Stack
 

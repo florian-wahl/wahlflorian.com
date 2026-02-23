@@ -50,5 +50,8 @@ next-env.d.ts
 # OS
 Thumbs.db
 
-#Claide
+#Claude
 .claude
+
+#PageSpeed
+pagespeed/

@@ -23,5 +23,5 @@ export const createImagePlaceholder = (width: number, height: number, color: str
 
 export const optimizeImageLoading = {
     // Priority images that should be loaded immediately
-    priority: ['/headshot.jpg'],
+    priority: ['/headshot.webp'],
 };

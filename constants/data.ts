@@ -57,7 +57,7 @@ const userData: UserData = {
     name: "Florian Wahl",
     designation: "Product Leader",
     bio: "Engineer by trade, fintech geek by passion. I lead Product Strategy at Akoya, where I focus on open finance and innovation. With almost a decade in financial services — spanning consulting, digital transformation, and product — I'm an active voice in the industry through conference talks, panels, and writing.",
-    avatarUrl: "/headshot.jpg",
+    avatarUrl: "/headshot.webp",
     email: "florian.wahl.31@gmail.com",
     address: "New York, NY",
     articles: [

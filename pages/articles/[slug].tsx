@@ -31,7 +31,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
                 title: `${post.title} — Florian Wahl`,
                 description: post.description || `${post.title} by Florian Wahl`,
                 type: "article",
-                image: post.coverImage || "/headshot.jpg",
+                image: post.coverImage || "/headshot.webp",
                 date: post.date,
             }}
         >

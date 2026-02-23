@@ -23,7 +23,7 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
     const meta: MetaProps = {
         title: "Florian Wahl - Product Leader & Fintech Strategist",
         description: `Florian Wahl is a Product Leader and Strategist specializing in fintech, payments, and digital transformation. Currently leading Product Strategy at Akoya, with expertise in open finance and API development.`,
-        image: "/headshot.jpg",
+        image: "/headshot.webp",
         type: "website",
         ...customMeta,
     };

@@ -90,6 +90,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
                     onLoad={handleLoad}
                     onError={handleError}
                     loading={priority ? 'eager' : 'lazy'}
+                    fetchPriority={priority ? 'high' : 'auto'}
                     sizes={sizes}
                 />
                 {(!isLoaded || hasError) && (
@@ -117,6 +118,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
                 onLoad={handleLoad}
                 onError={handleError}
                 loading={priority ? 'eager' : 'lazy'}
+                fetchPriority={priority ? 'high' : 'auto'}
                 sizes={sizes}
             />
             {(!isLoaded || hasError) && (

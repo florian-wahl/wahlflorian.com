@@ -1,7 +1,7 @@
 ---
 title: "Tokenization in Fintech: One Word, Four Domains"
 date: "2026-02-22"
-description: ""
+description: "This article discusses the different nuances of what tokenization means in fintech across four domains: cards, bank accounts, blockchain, and identity."
 coverImage: "/posts-img/tokenization-in-fintech-cover.png"
 ---
 

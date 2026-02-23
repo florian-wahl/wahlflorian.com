@@ -1,7 +1,7 @@
 ---
 title: "A Process for Product Management"
 date: "2022-11-19"
-description: ""
+description: "This articles explores key phases of product management, and how to manage the lifecycle of an idea from intake to its retirement."
 coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*yg7tmTyUqldSMY6ITNfsLQ.png"
 ---
 > Original post at [Mediuam - Bootcamp - A Process for Product Management](https://medium.com/design-bootcamp/a-process-for-product-management-9e12af274fa)

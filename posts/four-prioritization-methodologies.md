@@ -1,7 +1,7 @@
 ---
 title: "Four Methodologies That Can Help Your Product Team’s Prioritization Efforts"
 date: "2022-12-05"
-description: ""
+description: "This article explores four common product prioritization methodologies: MoSCoW, Kano, Value vs Effort, and RICE."
 coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*v2zCAUyCDFj8ATBesBHW6g.png"
 ---
 >Original post at [Medium - Product Coalition - Four Methodologies That Can Help Your Product Team’s Prioritization Efforts](https://medium.productcoalition.com/4-helpful-prioritization-methodologies-f3ee0017e6d1)

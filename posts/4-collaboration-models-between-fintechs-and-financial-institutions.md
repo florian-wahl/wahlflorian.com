@@ -1,7 +1,7 @@
 ---
 title: "4 Collaboration Models between Fintechs & Incumbent Financial Institutions"
 date: "2022-12-26"
-description: ""
+description: "This article explores four ways fintechs and financial institutions can establish partnerships and collaborations."
 coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/0*37aDlWhUyABDaZjE"
 ---
 > Original post at [Medium - 4 Collaboration Models between Fintechs & Incumbent Financial Institutions](https://medium.com/fintech-product-thoughts/4-collaboration-models-between-fintechs-incumbent-financial-institutions-178cc386db97)

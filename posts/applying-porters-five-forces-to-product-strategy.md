@@ -1,7 +1,7 @@
 ---
 title: "Applying Porter’s Five Forces to Product Strategy"
 date: "2023-01-14"
-description: ""
+description: "This article explores how someone can use Porter's Five Forces framework and apply it to product strategy."
 coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/0*ZROay747swCHKK3M"
 ---
 

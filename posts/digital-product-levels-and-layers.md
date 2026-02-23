@@ -1,7 +1,7 @@
 ---
 title: "Digital Product Levels and Layers: Two Component Frameworks Product Managers Need To Know"
 date: "2022-11-08"
-description: ""
+description: "This article explores two component frameworks that help think about various products in levels and layers."
 coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*iO0ixU8AcImt58QbPe9fNQ.png"
 ---
 > Original post at [Medium - Product Coalition - Digital Product Levels and Layers: Two Component Frameworks Product Managers Need To Know](https://medium.productcoalition.com/breaking-down-the-digital-product-layers-70d7590a6dcb)

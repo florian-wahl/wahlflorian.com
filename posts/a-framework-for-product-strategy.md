@@ -1,7 +1,7 @@
 ---
 title: "A Framework for Product Strategy"
 date: "2022-10-30"
-description: ""
+description: "This article provides a guiding framework to think about and establish a robust product strategy."
 coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ywYLQMzS1NLVWYHB3B7sZA.jpeg"
 ---
 > Original post at [Medium - A Framework for Product Strategy](https://medium.com/@flwahl/a-framework-for-product-strategy-68ddabe8cb6)

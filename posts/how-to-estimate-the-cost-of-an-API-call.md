@@ -1,7 +1,7 @@
 ---
 title: "How to estimate the cost of processing an API call?"
 date: "2022-07-31"
-description: ""
+description: "This article discusses a methodology to empirically evaluate the cost of processing an API request."
 coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*fgx9pN1KV6jzRtwUaD29OQ.jpeg"
 ---
 > Original post at [Medium - How to estimate the cost of processing an API call?](https://medium.com/@flwahl/how-to-estimate-the-cost-of-processing-an-api-call-75b90197f2ad)

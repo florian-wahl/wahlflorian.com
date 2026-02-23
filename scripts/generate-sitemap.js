@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const matter = require('gray-matter');
 
 const baseUrl = 'https://wahlflorian.com';
 const pagesDir = path.join(process.cwd(), 'pages');
@@ -41,13 +42,18 @@ if (fs.existsSync(postsDir)) {
   const postFiles = fs.readdirSync(postsDir).filter((f) => f.endsWith('.md'));
   for (const file of postFiles) {
     const slug = file.replace(/\.md$/, '');
-    postRoutes.push(`/articles/${slug}`);
+    const { data } = matter(fs.readFileSync(path.join(postsDir, file), 'utf8'));
+    postRoutes.push({ route: `/articles/${slug}`, lastmod: data.date || null });
   }
 }
 
-const allRoutes = [...staticRoutes, ...postRoutes];
-const urls = allRoutes
-  .map((route) => `  <url>\n    <loc>${baseUrl}${route}</loc>\n  </url>`)
+const staticEntries = staticRoutes.map((route) => ({ route, lastmod: null }));
+const allEntries = [...staticEntries, ...postRoutes];
+const urls = allEntries
+  .map(({ route, lastmod }) => {
+    const lastmodTag = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : '';
+    return `  <url>\n    <loc>${baseUrl}${route}</loc>${lastmodTag}\n  </url>`;
+  })
   .join('\n');
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;

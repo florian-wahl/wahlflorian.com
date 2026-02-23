@@ -99,6 +99,34 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
                         })
                     }}
                 />
+                {meta.type === "article" && (
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                            __html: JSON.stringify({
+                                "@context": "https://schema.org",
+                                "@type": "BlogPosting",
+                                headline: meta.title,
+                                description: meta.description,
+                                datePublished: meta.date,
+                                image: meta.image
+                                    ? `https://wahlflorian.com${meta.image}`
+                                    : undefined,
+                                author: {
+                                    "@type": "Person",
+                                    name: "Florian Wahl",
+                                    url: "https://wahlflorian.com",
+                                },
+                                publisher: {
+                                    "@type": "Person",
+                                    name: "Florian Wahl",
+                                    url: "https://wahlflorian.com",
+                                },
+                                url: `https://wahlflorian.com${router.asPath}`,
+                            })
+                        }}
+                    />
+                )}
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{

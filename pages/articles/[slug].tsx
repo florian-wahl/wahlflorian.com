@@ -31,6 +31,8 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
                 title: `${post.title} — Florian Wahl`,
                 description: post.description || `${post.title} by Florian Wahl`,
                 type: "article",
+                image: post.coverImage || "/headshot.jpg",
+                date: post.date,
             }}
         >
             <article className="bg-white dark:bg-[#0a0a0a] py-20 transition-colors duration-300">

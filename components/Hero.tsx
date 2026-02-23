@@ -7,7 +7,7 @@ import { event } from "../utils/analytics";
 const Hero: React.FC = () => {
     const [show, setShow] = useState(false);
     const fullName = userData.name.toUpperCase();
-    const [displayedName, setDisplayedName] = useState(fullName);
+    const [displayedName, setDisplayedName] = useState("");
     const [showDesignation, setShowDesignation] = useState(false);
     const [showTaglines, setShowTaglines] = useState(false);
     const designationTimeoutRef = useRef<number | null>(null);
@@ -76,11 +76,15 @@ const Hero: React.FC = () => {
                                 EXPERT MODE
                             </span>
                         </div>
-                        <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-black dark:text-white mb-6 pixel-text">
-                            {displayedName}
-                            {displayedName.length < fullName.length && (
-                                <span className="animate-pulse">|</span>
-                            )}
+                        <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-black dark:text-white mb-6 pixel-text relative">
+                            {/* Ghost text: invisible but reserves the full space so the typing animation never shifts the layout */}
+                            <span className="invisible">{fullName}</span>
+                            <span className="absolute top-0 left-0">
+                                {displayedName}
+                                {displayedName.length < fullName.length && (
+                                    <span className="animate-pulse">|</span>
+                                )}
+                            </span>
                         </h1>
                         <p 
                             className="text-2xl md:text-3xl text-yellow-500 dark:text-yellow-400 font-mono mb-8"

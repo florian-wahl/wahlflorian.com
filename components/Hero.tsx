@@ -3,6 +3,7 @@ import OptimizedImage from "./OptimizedImage";
 import userData from "../constants/data";
 import Link from "next/link";
 import { event } from "../utils/analytics";
+import { LocationIcon } from "./PixelIcons";
 
 const Hero: React.FC = () => {
     const [show, setShow] = useState(false);
@@ -153,7 +154,7 @@ const Hero: React.FC = () => {
                                 />
                             </div>
                             <div className="mt-4 flex items-center justify-center gap-2">
-                                <span className="text-yellow-500 dark:text-yellow-400 font-mono text-sm">▶</span>
+                                <LocationIcon size={14} className="text-yellow-500 dark:text-yellow-400" />
                                 <p className="font-mono text-sm text-black dark:text-white">NEW YORK, NY</p>
                             </div>
                         </div>

@@ -59,6 +59,13 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         return () => observer.disconnect();
     }, [priority]);
 
+    // Set fetchpriority via DOM to avoid React's unrecognized prop warning
+    useEffect(() => {
+        if (imgRef.current) {
+            imgRef.current.setAttribute('fetchpriority', priority ? 'high' : 'auto');
+        }
+    }, [priority]);
+
     // Handle images that may already be loaded (e.g., from cache or preload)
     useEffect(() => {
         if (imgRef.current?.complete) {
@@ -90,7 +97,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
                     onLoad={handleLoad}
                     onError={handleError}
                     loading={priority ? 'eager' : 'lazy'}
-                    {...({"fetchpriority": priority ? "high" : "auto"})}
+
                     sizes={sizes}
                 />
                 {(!isLoaded || hasError) && (
@@ -118,7 +125,6 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
                 onLoad={handleLoad}
                 onError={handleError}
                 loading={priority ? 'eager' : 'lazy'}
-                fetchPriority={priority ? 'high' : 'auto'}
                 sizes={sizes}
             />
             {(!isLoaded || hasError) && (

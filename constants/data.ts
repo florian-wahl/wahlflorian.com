@@ -56,7 +56,7 @@ interface UserData {
 const userData: UserData = {
     name: "Florian Wahl",
     designation: "Product Leader",
-    bio: "Engineer by trade, fintech geek by passion. I lead Product Strategy at Akoya, where I focus on open finance and innovation. With almost a decade in financial services — spanning consulting, digital transformation, and product — I'm an active voice in the industry through conference talks, panels, and writing.",
+    bio: "Engineer by trade, I build product organizations grounded in trust, customer obsession, and continuous learning. With a decade in fintech spanning open banking consulting, API product management, and product strategy, I bring a rare mix of technical depth and strategic execution. I've taken products from 0 to 1, grown junior PMs into senior roles, and translated complex financial infrastructure into measurable business outcomes. Outside the day-to-day, I'm an active voice in the industry through 10+ conference talks and publications.",
     avatarUrl: "/headshot.webp",
     email: "florian.wahl.31@gmail.com",
     address: "New York, NY",
@@ -165,7 +165,7 @@ const userData: UserData = {
             startDate: "2022-11",
             endDate: null, // Current role
             companyLink: "https://akoya.com",
-            desc: "Leading the Product Strategy team in charge of our multi-year strategy, roadmap, product ops, pricing, commercialization, competitive intelligence, and product management excellence processes.",
+            desc: "Lead a team of product managers, hiring junior PMs and growing them into senior roles, while owning Akoya's multi-year strategy, pricing, and go-to-market. Drove a 0-to-1 product from concept to the company's first multi-million dollar client in under 18 months, directly supporting pipeline efforts that generated tens of millions in ARR.",
         },
         {
             title: "Product Manager",
@@ -173,7 +173,7 @@ const userData: UserData = {
             startDate: "2022-02",
             endDate: "2022-11",
             companyLink: "https://akoya.com",
-            desc: "Managed Akoya's core API products. SME for various use cases: payments enablement, money movement, account number tokenization, and account ownership validation.",
+            desc: "Led 30+ client interviews and market analysis to deliver an acceleration plan adopted by Akoya's leadership and board. Owned the strategy and execution of Akoya's tokenization product, and launched v2 of the core data access platform, expanding financial institution coverage and driving adoption.",
         },
         {
             title: "Business Strategy & Execution Manager",
@@ -181,7 +181,7 @@ const userData: UserData = {
             startDate: "2021-10",
             endDate: "2022-02",
             companyLink: "https://akoya.com",
-            desc: "Conducted market research, competitive analysis, and client interviews. Standardized pricing models. Gathered functional and technical requirements for the development of Akoya's core data access products.",
+            desc: "Established the foundation for Akoya's product discipline: standardizing pricing models, conducting market and competitive research, and gathering requirements that shaped the development of the company's core data access products.",
         },
         {
             title: "Global AWS Alliance Lead, Financial Services",
@@ -189,7 +189,7 @@ const userData: UserData = {
             startDate: "2020-06",
             endDate: "2021-10",
             companyLink: "https://capgemini.com",
-            desc: "Managed global partnership between AWS and Capgemini Financial Services across 80+ accounts through all geographies.",
+            desc: "Managed the global AWS–Capgemini Financial Services partnership across 80+ accounts and all major geographies, encompassing $400M+ in partner-influenced revenue.",
         },
         {
             title: "Manager",
@@ -197,7 +197,7 @@ const userData: UserData = {
             startDate: "2020-03",
             endDate: "2020-06",
             companyLink: "https://capgemini.com",
-            desc: "Program managed the delivery of a 6-week technology and operations readiness assessment for a leading transaction bank.",
+            desc: "Led a 6-week technology and operations readiness assessment for a leading U.S. transaction bank, directing 23 senior experts, surfacing 50+ risks, and delivering an actionable remediation roadmap.",
         },
         {
             title: "Senior Consultant (and Previous Roles)",
@@ -205,7 +205,7 @@ const userData: UserData = {
             startDate: "2017-08",
             endDate: "2020-03",
             companyLink: "https://capgemini.com",
-            desc: "Various consulting positions in open banking, digital transformation, fintech, and blockchain.",
+            desc: "Led strategy and architecture for a shared open banking utility across 10 leading U.S. banks, aligning institutions on registration, consent management, token issuance, and API standards. Earlier roles covered digital transformation and fintech across banking and capital markets.",
         },
         {
             title: "Co-Founder",
@@ -216,8 +216,7 @@ const userData: UserData = {
             desc: "Defined business plan, business model, and marketing strategy for the product introduction and the startup.",
         },
     ],
-    resumeUrl:
-        "https://docs.google.com/document/d/1vzJ5S7rM71Baq3uHHT6jgi3MhZf83h_gKi5vUh76aKY/edit?usp=sharing",
+    resumeUrl: "/_florian-wahl-resume.pdf",
     socialLinks: {
         instagram: "https://www.instagram.com/florian.wahl",
         twitter: "https://twitter.com/flwahl",

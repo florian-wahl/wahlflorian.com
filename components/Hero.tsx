@@ -6,7 +6,8 @@ import { event } from "../utils/analytics";
 
 const Hero: React.FC = () => {
     const [show, setShow] = useState(false);
-    const fullName = userData.name.toUpperCase();
+    const [firstName, lastName] = userData.name.toUpperCase().split(" ");
+    const fullName = `${firstName} ${lastName}`;
     const [displayedName, setDisplayedName] = useState("");
     const [showDesignation, setShowDesignation] = useState(false);
     const [showTaglines, setShowTaglines] = useState(false);
@@ -33,16 +34,14 @@ const Hero: React.FC = () => {
                 currentIndex++;
             } else {
                 clearInterval(typingInterval);
-                // Show designation first, then taglines
                 designationTimeoutRef.current = window.setTimeout(() => {
                     setShowDesignation(true);
-                    // Show taglines after designation appears
                     taglinesTimeoutRef.current = window.setTimeout(() => {
                         setShowTaglines(true);
                     }, 400);
                 }, 300);
             }
-        }, 80); // Typing speed
+        }, 80);
 
         return () => {
             clearInterval(typingInterval);
@@ -57,6 +56,14 @@ const Hero: React.FC = () => {
         };
     }, [show, fullName]);
 
+    // Split displayed name across the two lines
+    const displayedFirst = displayedName.slice(0, firstName.length);
+    const displayedLast = displayedName.length > firstName.length
+        ? displayedName.slice(firstName.length + 1) // +1 to skip the space
+        : "";
+    const cursorOnFirst = displayedName.length <= firstName.length && displayedName.length < fullName.length;
+    const cursorOnLast = displayedName.length > firstName.length && displayedName.length < fullName.length;
+
     return (
         <div className="bg-white dark:bg-[#0a0a0a] min-h-screen flex flex-col justify-center items-center px-4 py-20 relative overflow-hidden transition-colors duration-300">
             {/* Pixel background pattern */}
@@ -67,26 +74,34 @@ const Hero: React.FC = () => {
                 backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)',
             }}></div>
 
-            <div className="max-w-6xl mx-auto w-full relative z-10">
+            <div className="max-w-6xl mx-auto w-full relative z-10 flex flex-col gap-12">
+                {/* Section 1: Two columns — name/tags/CTAs | headshot */}
                 <div className="flex flex-col md:flex-row justify-between items-center gap-12">
-                    {/* Text container */}
+                    {/* Left: name, designation, tags, buttons */}
                     <div className="w-full md:w-1/2 text-center md:text-left">
                         <div className="mb-6">
                             <span className="inline-block px-4 py-2 bg-yellow-400 text-black font-bold font-mono text-sm pixel-border">
                                 EXPERT MODE
                             </span>
                         </div>
-                        <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-black dark:text-white mb-6 pixel-text relative">
-                            {/* Ghost text: invisible but reserves the full space so the typing animation never shifts the layout */}
-                            <span className="invisible">{fullName}</span>
-                            <span className="absolute top-0 left-0">
-                                {displayedName}
-                                {displayedName.length < fullName.length && (
-                                    <span className="animate-pulse">|</span>
-                                )}
-                            </span>
-                        </h1>
-                        <p 
+
+                        {/* Name — fixed sizes per breakpoint.
+                            Mobile (full-width col): text-7xl → sm: text-8xl
+                            Desktop (half-width col): md: text-6xl → lg: text-7xl → xl: text-8xl → 2xl: text-9xl */}
+                        <div className="mb-6 py-4 md:pr-5">
+                            <h1 className="font-bold text-black dark:text-white pixel-text leading-none text-7xl sm:text-8xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl">
+                                <span className="block">
+                                    {displayedFirst}
+                                    {cursorOnFirst && <span className="animate-pulse">|</span>}
+                                </span>
+                                <span className="block">
+                                    {displayedLast || <span className="invisible">{lastName}</span>}
+                                    {cursorOnLast && <span className="animate-pulse">|</span>}
+                                </span>
+                            </h1>
+                        </div>
+
+                        <p
                             className="text-2xl md:text-3xl text-yellow-500 dark:text-yellow-400 font-mono mb-8"
                             style={{
                                 animation: showDesignation ? `fadeInUp 0.5s ease both` : 'none',
@@ -114,25 +129,24 @@ const Hero: React.FC = () => {
                         <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                             <Link
                                 href="/experience"
-                                className="px-6 py-3 bg-yellow-400 text-black font-bold font-mono hover:bg-yellow-300 transition-colors pixel-button"
+                                className="px-6 py-3 bg-yellow-400 text-black font-bold font-mono hover:bg-yellow-300 transition-colors pixel-button whitespace-nowrap"
                                 onClick={() => event("cta_click", { label: "view_experience" })}
                             >
                                 VIEW EXPERIENCE →
                             </Link>
-                            <Link
-                                href="/contact"
-                                className="px-6 py-3 bg-white text-black font-bold font-mono hover:bg-gray-200 transition-colors pixel-button"
-                                onClick={() => event("cta_click", { label: "contact_me" })}
+                            <a
+                                href={userData.resumeUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-6 py-3 bg-white text-black font-bold font-mono hover:bg-gray-200 transition-colors pixel-button whitespace-nowrap"
+                                onClick={() => event("cta_click", { label: "view_resume" })}
                             >
-                                CONTACT ME →
-                            </Link>
+                                VIEW RESUME →
+                            </a>
                         </div>
-                        <p className="mt-8 text-base md:text-lg font-mono text-gray-600 dark:text-gray-400 max-w-2xl">
-                            {userData.bio}
-                        </p>
                     </div>
 
-                    {/* Image container */}
+                    {/* Right: headshot + location */}
                     <div className="w-full md:w-1/2 flex justify-center">
                         <div className="relative">
                             <div className="pixel-border bg-gray-100 dark:bg-gray-900 p-4">
@@ -152,10 +166,17 @@ const Hero: React.FC = () => {
                             </div>
                             <div className="mt-4 flex items-center justify-center gap-2">
                                 <span className="text-yellow-500 dark:text-yellow-400 font-mono text-sm">▶</span>
-                                <p className="font-mono text-sm text-black dark:text-white">PLAYER 1</p>
+                                <p className="font-mono text-sm text-black dark:text-white">NEW YORK, NY</p>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                {/* Section 2: Full-width bio */}
+                <div className="w-full">
+                    <p className="text-base md:text-lg font-mono text-gray-600 dark:text-gray-400">
+                        {userData.bio}
+                    </p>
                 </div>
             </div>
 
@@ -170,7 +191,7 @@ const Hero: React.FC = () => {
                         transform: translateY(0);
                     }
                 }
-                
+
                 @keyframes pulse {
                     0%, 100% {
                         transform: scale(1);
@@ -179,7 +200,7 @@ const Hero: React.FC = () => {
                         transform: scale(1.02);
                     }
                 }
-                
+
                 .tagline-badge:hover {
                     animation: fadeInUp 0.5s ease both, pulse 1s ease-in-out infinite !important;
                 }
@@ -188,4 +209,4 @@ const Hero: React.FC = () => {
     );
 };
 
-export default Hero; 
+export default Hero;

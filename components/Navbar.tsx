@@ -112,7 +112,7 @@ const Navbar: React.FC = () => {
                         <Link
                             href="/articles"
                             onClick={() => event('nav_click', { destination: 'articles' })}
-                            className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 ${
+                            className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 whitespace-nowrap ${
                                 router.asPath.startsWith("/articles")
                                     ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
                                     : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
@@ -123,7 +123,7 @@ const Navbar: React.FC = () => {
                         <Link
                             href="/experience"
                             onClick={() => event('nav_click', { destination: 'experience' })}
-                            className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 ${
+                            className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 whitespace-nowrap ${
                                 router.asPath === "/experience"
                                     ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
                                     : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
@@ -135,15 +135,15 @@ const Navbar: React.FC = () => {
                             href="https://portfolio.wahlflorian.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            onClick={() => event('nav_click', { destination: 'portfolio' })}
-                            className="px-4 py-2 font-mono text-sm font-bold text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white transition-colors duration-200"
+                            onClick={() => event('nav_click', { destination: 'photography' })}
+                            className="px-4 py-2 font-mono text-sm font-bold text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white transition-colors duration-200 whitespace-nowrap"
                         >
-                            PORTFOLIO →
+                            PHOTOGRAPHY →
                         </Link>
                         <Link
                             href="/contact"
                             onClick={() => event('nav_click', { destination: 'contact' })}
-                            className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 ${
+                            className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 whitespace-nowrap ${
                                 router.asPath === "/contact"
                                     ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
                                     : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
@@ -267,11 +267,11 @@ const Navbar: React.FC = () => {
                                     rel="noopener noreferrer"
                                     onClick={() => {
                                         setIsOpen(false);
-                                        event('nav_click', { destination: 'portfolio' });
+                                        event('nav_click', { destination: 'photography' });
                                     }}
-                                    className="px-4 py-3 font-mono text-sm font-bold text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white transition-colors"
+                                    className="px-4 py-3 font-mono text-sm font-bold text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white transition-colors whitespace-nowrap"
                                 >
-                                    PORTFOLIO →
+                                    PHOTOGRAPHY →
                                 </Link>
                                 <Link
                                     href="/contact"

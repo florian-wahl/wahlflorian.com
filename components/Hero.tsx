@@ -90,13 +90,19 @@ const Hero: React.FC = () => {
                             Desktop (half-width col): md: text-7xl → lg: text-8xl → xl: text-9xl → 2xl: text-9xl */}
                         <div className="mb-6 py-4 md:pr-5">
                             <h1 className="font-bold text-black dark:text-white pixel-text leading-none text-6xl sm:text-8xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-9xl">
-                                <span className="block">
-                                    {displayedFirst}
-                                    {cursorOnFirst && <span className="animate-pulse">|</span>}
+                                <span className="block relative">
+                                    <span className="invisible" aria-hidden="true">{firstName}</span>
+                                    <span className="absolute inset-0">
+                                        {displayedFirst}
+                                        {cursorOnFirst && <span className="animate-pulse">|</span>}
+                                    </span>
                                 </span>
-                                <span className="block">
-                                    {displayedLast || <span className="invisible">{lastName}</span>}
-                                    {cursorOnLast && <span className="animate-pulse">|</span>}
+                                <span className="block relative">
+                                    <span className="invisible" aria-hidden="true">{lastName}</span>
+                                    <span className="absolute inset-0">
+                                        {displayedLast}
+                                        {cursorOnLast && <span className="animate-pulse">|</span>}
+                                    </span>
                                 </span>
                             </h1>
                         </div>

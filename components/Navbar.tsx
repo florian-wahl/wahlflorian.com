@@ -8,7 +8,7 @@ import { useSwipe } from "../hooks/useSwipe";
 import SocialLinks from "./SocialLinks";
 
 const ThemeButton: React.FC = () => {
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState<boolean>(false);
 
     useEffect(() => {
@@ -21,10 +21,10 @@ const ThemeButton: React.FC = () => {
 
     return (
         <button
-            aria-label={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            aria-label={resolvedTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
             type="button"
             className="w-10 h-10 p-3 rounded focus:outline-none"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@ const ThemeButton: React.FC = () => {
                 stroke="currentColor"
                 className="w-4 h-4 text-yellow-500 dark:text-yellow-500"
             >
-                {theme === "dark" ? (
+                {resolvedTheme === "dark" ? (
                     <path
                         strokeLinecap="round"
                         strokeLinejoin="round"

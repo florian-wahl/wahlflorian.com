@@ -86,10 +86,10 @@ const Hero: React.FC = () => {
                         </div>
 
                         {/* Name — fixed sizes per breakpoint.
-                            Mobile (full-width col): text-7xl → sm: text-8xl
-                            Desktop (half-width col): md: text-6xl → lg: text-7xl → xl: text-8xl → 2xl: text-9xl */}
+                            Mobile (full-width col): text-6xl → sm: text-8xl
+                            Desktop (half-width col): md: text-7xl → lg: text-8xl → xl: text-9xl → 2xl: text-9xl */}
                         <div className="mb-6 py-4 md:pr-5">
-                            <h1 className="font-bold text-black dark:text-white pixel-text leading-none text-7xl sm:text-8xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl">
+                            <h1 className="font-bold text-black dark:text-white pixel-text leading-none text-6xl sm:text-8xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-9xl">
                                 <span className="block">
                                     {displayedFirst}
                                     {cursorOnFirst && <span className="animate-pulse">|</span>}

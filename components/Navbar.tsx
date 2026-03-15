@@ -101,9 +101,6 @@ const Navbar: React.FC = () => {
                             <h1 className="font-bold text-xl md:text-3xl text-black dark:text-white font-mono pixel-text">
                                 {userData.name.toUpperCase()}
                             </h1>
-                            <p className="text-sm font-mono text-yellow-600 dark:text-yellow-400">
-                                {userData.designation.toUpperCase()}
-                            </p>
                         </Link>
                     </div>
 

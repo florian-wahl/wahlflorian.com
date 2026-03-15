@@ -9,9 +9,7 @@ const Hero: React.FC = () => {
     const [firstName, lastName] = userData.name.toUpperCase().split(" ");
     const fullName = `${firstName} ${lastName}`;
     const [displayedName, setDisplayedName] = useState("");
-    const [showDesignation, setShowDesignation] = useState(false);
     const [showTaglines, setShowTaglines] = useState(false);
-    const designationTimeoutRef = useRef<number | null>(null);
     const taglinesTimeoutRef = useRef<number | null>(null);
 
     useEffect(() => {
@@ -34,21 +32,14 @@ const Hero: React.FC = () => {
                 currentIndex++;
             } else {
                 clearInterval(typingInterval);
-                designationTimeoutRef.current = window.setTimeout(() => {
-                    setShowDesignation(true);
-                    taglinesTimeoutRef.current = window.setTimeout(() => {
-                        setShowTaglines(true);
-                    }, 400);
-                }, 300);
+                taglinesTimeoutRef.current = window.setTimeout(() => {
+                    setShowTaglines(true);
+                }, 400);
             }
         }, 80);
 
         return () => {
             clearInterval(typingInterval);
-            if (designationTimeoutRef.current !== null) {
-                clearTimeout(designationTimeoutRef.current);
-                designationTimeoutRef.current = null;
-            }
             if (taglinesTimeoutRef.current !== null) {
                 clearTimeout(taglinesTimeoutRef.current);
                 taglinesTimeoutRef.current = null;
@@ -81,7 +72,7 @@ const Hero: React.FC = () => {
                     <div className="w-full md:w-1/2 text-center md:text-left">
                         <div className="mb-6">
                             <span className="inline-block px-4 py-2 bg-yellow-400 text-black font-bold font-mono text-sm pixel-border">
-                                EXPERT MODE
+                                {userData.designation.toUpperCase()}
                             </span>
                         </div>
 
@@ -107,15 +98,6 @@ const Hero: React.FC = () => {
                             </h1>
                         </div>
 
-                        <p
-                            className="text-2xl md:text-3xl text-yellow-500 dark:text-yellow-400 font-mono mb-8"
-                            style={{
-                                animation: showDesignation ? `fadeInUp 0.5s ease both` : 'none',
-                                opacity: showDesignation ? 1 : 0
-                            }}
-                        >
-                            {userData.designation.toUpperCase()}
-                        </p>
                         <div className="flex flex-wrap gap-2 mb-8 justify-center md:justify-start">
                             {userData.rainbowContent.map((content, index) => (
                                 <div

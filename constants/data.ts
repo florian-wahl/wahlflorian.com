@@ -56,7 +56,7 @@ interface UserData {
 const userData: UserData = {
     name: "Florian Wahl",
     designation: "Product Leader",
-    bio: "Engineer by trade, I build product organizations grounded in trust, customer obsession, and continuous learning. With a decade in fintech spanning open banking consulting, API product management, and product strategy, I bring a rare mix of technical depth and strategic execution. I've taken products from 0 to 1, grown junior PMs into senior roles, and translated complex financial infrastructure into measurable business outcomes. Outside the day-to-day, I'm an active voice in the industry through 10+ conference talks and publications.",
+    bio: "Engineer by trade and fintech geek by passion, I build product organizations grounded in trust, customer obsession, and continuous learning. With a decade in fintech spanning consulting, product management, and product strategy, I bring a rare mix of technical depth and strategic execution. I've taken products from 0 to 1, grown junior PMs into senior roles, and translated complex financial infrastructure into measurable business outcomes. Outside the day-to-day, I'm an active voice in the industry through over a dozen conference talks and publications.",
     avatarUrl: "/headshot.webp",
     email: "florian.wahl.31@gmail.com",
     address: "New York, NY",
@@ -189,7 +189,7 @@ const userData: UserData = {
             startDate: "2020-06",
             endDate: "2021-10",
             companyLink: "https://capgemini.com",
-            desc: "Managed the global AWS–Capgemini Financial Services partnership across 80+ accounts and all major geographies, encompassing $400M+ in partner-influenced revenue.",
+            desc: "Managed the global AWS-Capgemini Financial Services partnership across 90+ accounts and all major geographies, encompassing $400M+ in partner-influenced revenue.",
         },
         {
             title: "Manager",
@@ -227,8 +227,9 @@ const userData: UserData = {
     rainbowContent: [
         "Product Manager.",
         "Photographer.",
-        "Engineer by Trade.",
-        "Strategist."
+        "Engineer.",
+        "Strategist.",
+        "Thought Leader."
     ]
 };
 

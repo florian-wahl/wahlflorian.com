@@ -71,7 +71,7 @@ const Hero: React.FC = () => {
                     {/* Left: name, designation, tags, buttons */}
                     <div className="w-full md:w-1/2 text-center md:text-left">
                         <div className="mb-6">
-                            <span className="inline-block px-4 py-2 bg-yellow-400 text-black font-bold font-mono text-sm pixel-border">
+                            <span className="inline-block px-4 py-2 bg-yellow-400 text-black font-bold font-mono text-md pixel-border">
                                 {userData.designation.toUpperCase()}
                             </span>
                         </div>

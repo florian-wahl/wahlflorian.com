@@ -24,7 +24,7 @@ interface SocialLinks {
     instagram: string;
     twitter: string;
     linkedin: string;
-    mastodon: string;
+    bluesky: string;
     github: string;
 }
 
@@ -221,7 +221,7 @@ const userData: UserData = {
         instagram: "https://www.instagram.com/florian.wahl",
         twitter: "https://twitter.com/flwahl",
         linkedin: "https://www.linkedin.com/in/wahlflorian/",
-        mastodon: "https://theforkiverse.com/@florian31",
+        bluesky: "https://bsky.app/profile/wahlflorian.com",
         github: "https://github.com/florian-wahl",
     },
     rainbowContent: [

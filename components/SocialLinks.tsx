@@ -76,24 +76,24 @@ const SocialLinks: React.FC<SocialLinksProps> = ({
                 </svg>
             </a>
 
-            {/* Mastodon */}
+            {/* Bluesky */}
             <a
-                href={userData.socialLinks.mastodon}
+                href={userData.socialLinks.bluesky}
                 target="_blank"
-                rel="me noopener noreferrer"
+                rel="noopener noreferrer"
                 className={`pixel-button bg-white text-black ${padding} hover:bg-gray-200 transition-colors`}
-                aria-label="Mastodon"
-                onClick={() => handleSocialClick("Mastodon", userData.socialLinks.mastodon)}
+                aria-label="Bluesky"
+                onClick={() => handleSocialClick("Bluesky", userData.socialLinks.bluesky)}
             >
                 <svg
-                    id="Mastodon"
+                    id="Bluesky"
                     width={iconSize}
                     height={iconSize}
                     viewBox="0 0 24 24"
                     fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg"
                 >
-                    <path d="m22,7v-3h-1v-1h-1v-1h-1v-1H5v1h-1v1h-1v1h-1v3h-1v9h1v3h1v1h1v1h1v1h2v1h7v-1h2v-2h-7v-1h-1v-2h1v1h9v-1h2v-1h1v-1h1v-2h1v-6h-1Zm-3,7h-3v-7h-2v1h-1v4h-2v-4h-1v-1h-2v7h-3V6h1v-1h1v-1h3v1h1v1h2v-1h1v-1h3v1h1v1h1v8Z" fill="currentColor"/>
+                    <path d="M4,3h2v1h1v1h1v1h1v1h1v1h1v1h2v-1h1v-1h1v-1h1v-1h1v-1h2v-1h2v10h-1v1h-1v1h-2v1h-2v-1h-1v-1h-1v1h-1v2h1v1h1v1h1v1h1v1h-1v1h-3v-1h-1v-1h-1v-2h-2v2h-1v1h-1v1h-3v-1h-1v-1h1v-1h1v-1h1v-1h1v-2h-1v-1h-1v1h-1v1h-2v-1h-2v-1h-1v-1h-1V3h2Z" fill="currentColor"/>
                 </svg>
             </a>
 

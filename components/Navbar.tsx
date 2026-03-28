@@ -107,15 +107,15 @@ const Navbar: React.FC = () => {
                     {/* Desktop Navigation */}
                     <div className="space-x-4 hidden md:flex items-center">
                         <Link
-                            href="/articles"
-                            onClick={() => event('nav_click', { destination: 'articles' })}
+                            href="/library"
+                            onClick={() => event('nav_click', { destination: 'library' })}
                             className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 whitespace-nowrap ${
-                                router.asPath.startsWith("/articles")
+                                router.asPath.startsWith("/library")
                                     ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
                                     : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
                             }`}
                         >
-                            ARTICLES
+                            LIBRARY
                         </Link>
                         <Link
                             href="/experience"
@@ -136,6 +136,17 @@ const Navbar: React.FC = () => {
                             className="px-4 py-2 font-mono text-sm font-bold text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white transition-colors duration-200 whitespace-nowrap"
                         >
                             PHOTOGRAPHY →
+                        </Link>
+                        <Link
+                            href="/games/new"
+                            onClick={() => event('nav_click', { destination: 'new_game' })}
+                            className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 whitespace-nowrap ${
+                                router.asPath === "/games/new"
+                                    ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
+                                    : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
+                            }`}
+                        >
+                            +
                         </Link>
                         <Link
                             href="/contact"
@@ -231,18 +242,18 @@ const Navbar: React.FC = () => {
                                     HOME
                                 </Link>
                                 <Link
-                                    href="/articles"
+                                    href="/library"
                                     onClick={() => {
                                         setIsOpen(false);
-                                        event('nav_click', { destination: 'articles' });
+                                        event('nav_click', { destination: 'library' });
                                     }}
                                     className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
-                                        router.asPath.startsWith("/articles")
+                                        router.asPath.startsWith("/library")
                                             ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
                                             : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
                                     }`}
                                 >
-                                    ARTICLES
+                                    LIBRARY
                                 </Link>
                                 <Link
                                     href="/experience"
@@ -269,6 +280,20 @@ const Navbar: React.FC = () => {
                                     className="px-4 py-3 font-mono text-sm font-bold text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white transition-colors whitespace-nowrap"
                                 >
                                     PHOTOGRAPHY →
+                                </Link>
+                                <Link
+                                    href="/games/new"
+                                    onClick={() => {
+                                        setIsOpen(false);
+                                        event('nav_click', { destination: 'new_game' });
+                                    }}
+                                    className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
+                                        router.asPath === "/games/new"
+                                            ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
+                                            : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
+                                    }`}
+                                >
+                                    +
                                 </Link>
                                 <Link
                                     href="/contact"

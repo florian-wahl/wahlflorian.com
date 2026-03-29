@@ -107,15 +107,15 @@ const Navbar: React.FC = () => {
                     {/* Desktop Navigation */}
                     <div className="space-x-4 hidden md:flex items-center">
                         <Link
-                            href="/library"
-                            onClick={() => event('nav_click', { destination: 'library' })}
+                            href="/articles"
+                            onClick={() => event('nav_click', { destination: 'articles' })}
                             className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 whitespace-nowrap ${
-                                router.asPath.startsWith("/library")
+                                router.asPath.startsWith("/articles")
                                     ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
                                     : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
                             }`}
                         >
-                            LIBRARY
+                            ARTICLES
                         </Link>
                         <Link
                             href="/experience"
@@ -231,18 +231,18 @@ const Navbar: React.FC = () => {
                                     HOME
                                 </Link>
                                 <Link
-                                    href="/library"
+                                    href="/articles"
                                     onClick={() => {
                                         setIsOpen(false);
-                                        event('nav_click', { destination: 'library' });
+                                        event('nav_click', { destination: 'articles' });
                                     }}
                                     className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
-                                        router.asPath.startsWith("/library")
+                                        router.asPath.startsWith("/articles")
                                             ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
                                             : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
                                     }`}
                                 >
-                                    LIBRARY
+                                    ARTICLES
                                 </Link>
                                 <Link
                                     href="/experience"

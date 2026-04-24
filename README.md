@@ -46,7 +46,7 @@ This website serves as a digital portfolio and professional presence, featuring 
 
 ### Prerequisites
 
-- Node.js 18+ and npm
+- Node.js 20+ and npm
 
 ### Getting Started
 
@@ -95,7 +95,7 @@ Hosted blog posts are written as markdown files in `posts/` and served at `/arti
 ## Project Structure
 
 ```
-wahlflorian-v3/
+wahlflorian.com/
 ├── components/          # React components
 │   ├── Hero.tsx        # Hero section with typing animation
 │   ├── Experience.tsx  # Work experience timeline
@@ -105,7 +105,12 @@ wahlflorian-v3/
 │   └── ...
 ├── constants/
 │   └── data.ts         # Centralized data store
+├── fonts/               # Self-hosted Inter variable font files
+├── hooks/               # Custom React hooks (swipe gesture detection)
+├── lib/                 # Build-time utilities (markdown post processing)
 ├── pages/              # Next.js pages
+├── posts/               # Markdown blog posts
+├── scripts/             # Build scripts (sitemap generation)
 ├── styles/             # Global CSS and fonts
 ├── utils/              # Utilities (analytics, image optimization)
 └── public/             # Static assets

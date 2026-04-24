@@ -100,6 +100,11 @@ const userData: UserData = {
     ],
     conferenceTalks: [
         {
+            title: "Can data aggregators power the next wave of smarter credit?",
+            venue: "Fintech Meetup",
+            date: "2026-04",
+        },
+        {
             title: "Open Banking in the US: Navigating Compliance Under the CFPB's 1033 Rule",
             venue: "OpenFinity EXPO",
             date: "2024-11",
@@ -136,13 +141,6 @@ const userData: UserData = {
         },
     ],
     upcomingEngagements: [
-        {
-            title: "Can data aggregators power the next wave of smarter credit?",
-            date: "2026-04-01",
-            conference: "Fintech Meetup",
-            location: "Las Vegas",
-            link: "https://fintechmeetup.com/agendas/2026-agenda/can-data-aggregators-power-the-next-wave-of-s",
-        },
         {
             title: "Beyond APIs: The Strategic Value of Data Out in Open Finance",
             date: "2026-04-27",

@@ -33,7 +33,8 @@ All site content lives in [constants/data.ts](constants/data.ts) — a single so
 - **Analytics:** [utils/analytics.ts](utils/analytics.ts) wraps GA4 event tracking. Google Analytics is injected in [pages/_app.tsx](pages/_app.tsx) via `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
 - **Theming:** `next-themes` with `class`-based dark mode (Tailwind `dark:` prefix). Toggle in Navbar.
 - **Mobile nav:** [hooks/useSwipe.ts](hooks/useSwipe.ts) detects touch swipe gestures for the mobile menu.
-- **Browserslist:** `package.json` targets Chrome/Firefox/Edge 92+, Safari 15.4+ to avoid unnecessary ES2019–2022 polyfills in the production bundle.
+- **Browserslist:** `package.json` targets Chrome/Edge 92+, Firefox 90+, Safari 15.4+ to avoid unnecessary ES2019–2022 polyfills in the production bundle.
+- **Fonts:** Self-hosted Inter variable font (roman + italic) lives in `fonts/` and is loaded via [styles/fonts.css](styles/fonts.css), which is imported in `_app.tsx`.
 
 ### Pixel-Art Aesthetic
 
@@ -65,6 +66,15 @@ Hosted blog posts are written as markdown files in [posts/](posts/) and served a
 
 External linked articles are managed in [constants/data.ts](constants/data.ts) under `userData.articles`.
 
+## CI/CD
+
+Two GitHub Actions workflows in `.github/workflows/`:
+
+- **`ci.yml`** — Runs on pull requests and all non-`main` branch pushes. Runs `npm test` and `npm run build` to validate that the branch compiles and builds cleanly.
+- **`deploy.yml`** — Triggers on push to `main` (and manual dispatch). Runs tests, builds the static export, then deploys to GitHub Pages via `actions/deploy-pages`. Node 20 is used in both workflows.
+
+The deploy workflow passes `BASE_PATH: /${{ github.event.repository.name }}` as an env var and reads `NEXT_PUBLIC_GA_MEASUREMENT_ID` from repository variables or secrets.
+
 ## Environment Variables
 
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — Google Analytics 4 measurement ID (set in GitHub secrets for CI/CD)
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — Google Analytics 4 measurement ID (set as a GitHub repository variable or secret for CI/CD)

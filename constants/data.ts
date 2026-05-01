@@ -100,6 +100,16 @@ const userData: UserData = {
     ],
     conferenceTalks: [
         {
+            title: "Beyond APIs: The Strategic Value of Data Out in Open Finance",
+            venue: "Nacha Payments 2026",
+            date: "2026-04",
+        },
+        {
+            title: "How DDA Tokenization Protects FIs and Empowers Consumers in the Era of Open Banking",
+            venue: "Nacha Payments 2026",
+            date: "2026-04",
+        },
+        {
             title: "Can data aggregators power the next wave of smarter credit?",
             venue: "Fintech Meetup",
             date: "2026-04",
@@ -140,22 +150,7 @@ const userData: UserData = {
             date: "2023-04",
         },
     ],
-    upcomingEngagements: [
-        {
-            title: "Beyond APIs: The Strategic Value of Data Out in Open Finance",
-            date: "2026-04-27",
-            conference: "Nacha Payments 2026",
-            location: "San Diego",
-            link: "https://payments.nacha.org/session/beyond-apis-strategic-value-data-out-open-finance",
-        },
-        {
-            title: "How DDA Tokenization Protects FIs and Empowers Consumers in the Era of Open Banking",
-            date: "2026-04-28",
-            conference: "Nacha Payments 2026",
-            location: "San Diego",
-            link: "https://payments.nacha.org/session/how-dda-tokenization-protects-fis-and-empowers-consumers-era-open-banking",
-        },
-    ],
+    upcomingEngagements: [],
     experience: [
         {
             title: "Head of Product Strategy",

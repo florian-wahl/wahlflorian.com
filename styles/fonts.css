@@ -1,3 +1,4 @@
+/* Chrome / data — Inter. See DESIGN.md §3.1 */
 @font-face {
   font-family: 'Inter var';
   font-weight: 100 900;
@@ -14,4 +15,32 @@
   font-style: italic;
   font-named-instance: 'Italic';
   src: url('../fonts/Inter-italic-latin.var.woff2') format('woff2');
+}
+
+/* Display — Instrument Sans. Headlines, wordmark, article titles, drop cap. */
+@font-face {
+  font-family: 'Instrument Sans var';
+  font-weight: 400 700;
+  font-display: swap;
+  font-style: normal;
+  src: url('../fonts/InstrumentSans-roman-latin.var.woff2') format('woff2');
+}
+
+/* Prose — Source Serif 4. Article body and hero lede.
+   Shipped without the `opsz` axis: prose renders at a single size here, so
+   optical sizing buys nothing and cost 150KB across both files. */
+@font-face {
+  font-family: 'Source Serif 4 var';
+  font-weight: 400 700;
+  font-display: swap;
+  font-style: normal;
+  src: url('../fonts/SourceSerif4-roman-latin.var.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Serif 4 var';
+  font-weight: 400 700;
+  font-display: swap;
+  font-style: italic;
+  src: url('../fonts/SourceSerif4-italic-latin.var.woff2') format('woff2');
 }

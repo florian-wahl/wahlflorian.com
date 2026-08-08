@@ -31,14 +31,24 @@ All site content lives in [constants/data.ts](constants/data.ts) — a single so
 - **Page wrapper:** [components/ContainerBlock.tsx](components/ContainerBlock.tsx) handles SEO metadata (meta tags, OG tags, canonical URLs) and wraps every page. When `customMeta.type === "article"` it also emits a `BlogPosting` JSON-LD block for Google rich results. Always pass `image`, `date`, and `type: "article"` in `customMeta` on article pages.
 - **Image optimization:** Custom lazy loading via [utils/imageOptimization.ts](utils/imageOptimization.ts) and [components/OptimizedImage.tsx](components/OptimizedImage.tsx) with skeleton placeholders — used instead of Next.js `<Image>` (disabled for static export). Pass `priority={true}` for above-the-fold images; this sets both `loading="eager"` and `fetchPriority="high"`. The hero headshot is `public/headshot.webp` (800×800).
 - **Analytics:** [utils/analytics.ts](utils/analytics.ts) wraps GA4 event tracking. Google Analytics is injected in [pages/_app.tsx](pages/_app.tsx) via `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
-- **Theming:** `next-themes` with `class`-based dark mode (Tailwind `dark:` prefix). Toggle in Navbar.
+- **Theming:** `next-themes` with `class`-based dark mode. Light and dark are a *token swap*, not a class fork — see Design System below.
 - **Mobile nav:** [hooks/useSwipe.ts](hooks/useSwipe.ts) detects touch swipe gestures for the mobile menu.
 - **Browserslist:** `package.json` targets Chrome/Edge 92+, Firefox 90+, Safari 15.4+ to avoid unnecessary ES2019–2022 polyfills in the production bundle.
-- **Fonts:** Self-hosted Inter variable font (roman + italic) lives in `fonts/` and is loaded via [styles/fonts.css](styles/fonts.css), which is imported in `_app.tsx`.
+- **Fonts:** Three self-hosted variable fonts in `fonts/`, latin subset, registered in [styles/fonts.css](styles/fonts.css): Inter (chrome/data), Instrument Sans (display), Source Serif 4 (prose, roman + italic, no `opsz` axis). 241KB total.
 
-### Pixel-Art Aesthetic
+## Design System
 
-Custom `.pixel-*` CSS classes in [styles/globals.css](styles/globals.css) produce box-shadow borders and retro styling. The [components/PixelIcons.tsx](components/PixelIcons.tsx) component uses `@hackernoon/pixel-icon-library`.
+**[DESIGN.md](DESIGN.md) is the contract. Read it before changing anything visual.** It is a
+constraints file, not a style guide — the rules in §1 are non-negotiable and reviews enforce them.
+
+- **Tokens:** semantic CSS custom properties in [styles/globals.css](styles/globals.css) (`--canvas`, `--ink`, `--accent`, …), mapped to Tailwind names in [tailwind.config.js](tailwind.config.js). Components reference semantic tokens only — never a raw hex, never a primitive.
+- **`--rule` vs `--border-interactive`:** decorative dividers have no contrast requirement; interactive component boundaries need 3:1 (WCAG SC 1.4.11). Using `--rule` on a button border is a bug.
+- **Verify colors:** `node tools/contrast.js` checks every token pair in both themes and exits non-zero on failure. Re-run it and update DESIGN.md §2.3 after any token change.
+- **Primitives:** [components/primitives.tsx](components/primitives.tsx) holds `Container`, `Section`, `Kicker`, `SectionHeader`, `Action`, and `IndexRow`. The accent-usage rule and separation language live there so they're decided once.
+- **Icons:** [components/Icons.tsx](components/Icons.tsx) — one set, 1.5px stroke on a 24px grid, functional only. No decorative icons, no emoji.
+- **Tailwind constraints are structural:** `borderRadius` and `fontFamily` are *overridden*, not extended, so `rounded-xl` and `font-mono` do not exist.
+
+`/advisory` is deferred to iteration 2 along with the copy pass — see DESIGN.md §12.
 
 ## Blogging
 

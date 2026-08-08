@@ -7,24 +7,28 @@ interface ImageSkeletonProps {
     rounded?: boolean;
 }
 
+/**
+ * Placeholder held while an image loads.
+ *
+ * A flat --surface block: no shimmer gradient and no `animate-pulse`. DESIGN.md
+ * §5 permits state-change motion only, and a looping skeleton is decoration —
+ * the block already communicates "not loaded yet".
+ */
 const ImageSkeleton: React.FC<ImageSkeletonProps> = ({
     width = '100%',
     height = '100%',
     className = '',
     rounded = false
-}) => {
-    return (
-        <div
-            className={`bg-gray-200 dark:bg-gray-700 animate-pulse ${rounded ? 'rounded-lg' : ''} ${className}`}
-            style={{
-                width,
-                height,
-                minHeight: typeof height === 'number' ? `${height}px` : height
-            }}
-        >
-            <div className="w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 animate-pulse" />
-        </div>
-    );
-};
+}) => (
+    <div
+        aria-hidden="true"
+        className={`bg-surface ${rounded ? 'rounded-lg' : ''} ${className}`}
+        style={{
+            width,
+            height,
+            minHeight: typeof height === 'number' ? `${height}px` : height
+        }}
+    />
+);
 
 export default ImageSkeleton;

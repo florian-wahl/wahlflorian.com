@@ -6,305 +6,179 @@ import userData from "../constants/data";
 import { event } from "../utils/analytics";
 import { useSwipe } from "../hooks/useSwipe";
 import SocialLinks from "./SocialLinks";
+import { Container } from "./primitives";
+import { SunIcon, MoonIcon, MenuIcon, CloseIcon, ExternalIcon } from "./Icons";
 
 const ThemeButton: React.FC = () => {
     const { resolvedTheme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState<boolean>(false);
+    const [mounted, setMounted] = useState(false);
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    useEffect(() => setMounted(true), []);
 
-    if (!mounted) {
-        return <div className="w-10 h-10" />;
-    }
+    // Reserve the slot pre-hydration so the chrome doesn't shift.
+    if (!mounted) return <div className="h-8 w-8" aria-hidden="true" />;
 
+    const isDark = resolvedTheme === "dark";
     return (
         <button
-            aria-label={resolvedTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
             type="button"
-            className="w-10 h-10 p-3 rounded focus:outline-none"
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            onClick={() => setTheme(isDark ? "light" : "dark")}
+            className="flex h-8 w-8 items-center justify-center rounded text-ink-muted transition-colors duration-120 ease-system hover:text-ink"
         >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                stroke="currentColor"
-                className="w-4 h-4 text-yellow-500 dark:text-yellow-500"
-            >
-                {resolvedTheme === "dark" ? (
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                    />
-                ) : (
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                    />
-                )}
-            </svg>
+            {isDark ? <SunIcon size={18} /> : <MoonIcon size={18} />}
         </button>
     );
 };
+
+const NAV = [
+    { href: "/articles", label: "Writing", key: "articles" },
+    { href: "/experience", label: "Experience", key: "experience" },
+    { href: "/contact", label: "Contact", key: "contact" },
+];
+
+const PHOTOGRAPHY = "https://portfolio.wahlflorian.com/";
 
 const Navbar: React.FC = () => {
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
 
-    // Close menu when route changes
-    useEffect(() => {
-        setIsOpen(false);
-    }, [router.asPath]);
+    useEffect(() => setIsOpen(false), [router.asPath]);
 
-    // Prevent scroll when menu is open
     useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
+        document.body.style.overflow = isOpen ? "hidden" : "unset";
         return () => {
-            document.body.style.overflow = 'unset';
+            document.body.style.overflow = "unset";
         };
     }, [isOpen]);
 
-    // Add swipe gesture for closing menu (on menu element)
-    useSwipe({
-        onSwipeRight: () => {
-            if (isOpen) setIsOpen(false);
-        },
-        element: menuRef.current
-    });
+    useSwipe({ onSwipeRight: () => isOpen && setIsOpen(false), element: menuRef.current });
+    useSwipe({ onSwipeLeft: () => !isOpen && setIsOpen(true), element: null });
 
-    // Add swipe gesture for opening menu (on document)
-    useSwipe({
-        onSwipeLeft: () => {
-            if (!isOpen) setIsOpen(true);
-        },
-        element: null // This will use document as the target
-    });
+    const isActive = (href: string) =>
+        href === "/articles" ? router.asPath.startsWith("/articles") : router.asPath === href;
+
+    const linkClass = (active: boolean) =>
+        `border-b py-1 text-label uppercase transition-colors duration-120 ease-system ${
+            active
+                ? "border-accent text-ink"
+                : "border-transparent text-ink-muted hover:border-accent hover:text-ink"
+        }`;
 
     return (
-        <div className="relative bg-white dark:bg-[#0a0a0a] border-b-4 border-black dark:border-white transition-colors duration-300" ref={menuRef}>
-            <div className="max-w-6xl mx-auto px-4 py-6 md:py-8">
-                <div className="flex md:flex-row justify-between items-center">
-                    {/* Logo and Name */}
-                    <div className="flex flex-col">
-                        <Link href="/">
-                            <h1 className="font-bold text-xl md:text-3xl text-black dark:text-white font-mono pixel-text">
-                                {userData.name.toUpperCase()}
-                            </h1>
-                        </Link>
-                    </div>
+        <div className="border-b border-rule bg-canvas" ref={menuRef}>
+            <Container>
+                <div className="flex items-center justify-between gap-8 py-5">
+                    <Link
+                        href="/"
+                        className="font-display text-display-s font-bold text-ink transition-colors duration-120 ease-system hover:text-accent"
+                    >
+                        {userData.name}
+                    </Link>
 
-                    {/* Desktop Navigation */}
-                    <div className="space-x-4 hidden md:flex items-center">
-                        <Link
-                            href="/articles"
-                            onClick={() => event('nav_click', { destination: 'articles' })}
-                            className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 whitespace-nowrap ${
-                                router.asPath.startsWith("/articles")
-                                    ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
-                                    : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
-                            }`}
-                        >
-                            ARTICLES
-                        </Link>
-                        <Link
-                            href="/experience"
-                            onClick={() => event('nav_click', { destination: 'experience' })}
-                            className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 whitespace-nowrap ${
-                                router.asPath === "/experience"
-                                    ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
-                                    : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
-                            }`}
-                        >
-                            EXPERIENCE
-                        </Link>
-                        <Link
-                            href="https://portfolio.wahlflorian.com/"
+                    <nav className="hidden items-baseline gap-7 md:flex">
+                        {NAV.map(({ href, label, key }) => (
+                            <Link
+                                key={key}
+                                href={href}
+                                onClick={() => event("nav_click", { destination: key })}
+                                className={linkClass(isActive(href))}
+                            >
+                                {label}
+                            </Link>
+                        ))}
+                        <a
+                            href={PHOTOGRAPHY}
                             target="_blank"
                             rel="noopener noreferrer"
-                            onClick={() => event('nav_click', { destination: 'photography' })}
-                            className="px-4 py-2 font-mono text-sm font-bold text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white transition-colors duration-200 whitespace-nowrap"
+                            onClick={() => event("nav_click", { destination: "photography" })}
+                            className={`${linkClass(false)} inline-flex items-center gap-1.5`}
                         >
-                            PHOTOGRAPHY →
-                        </Link>
-                        <Link
-                            href="/contact"
-                            onClick={() => event('nav_click', { destination: 'contact' })}
-                            className={`px-4 py-2 font-mono text-sm font-bold transition-colors duration-200 whitespace-nowrap ${
-                                router.asPath === "/contact"
-                                    ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
-                                    : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
-                            }`}
-                        >
-                            CONTACT
-                        </Link>
-                    </div>
+                            Photography
+                            <ExternalIcon size={11} />
+                        </a>
+                    </nav>
 
-                    {/* Desktop Social Links and Theme Toggle */}
-                    <div className="hidden md:flex space-x-4 items-center">
+                    <div className="hidden items-center gap-5 md:flex">
                         <ThemeButton />
-                        <SocialLinks iconSize={16} buttonSize="sm" />
+                        <SocialLinks iconSize={17} />
                     </div>
 
-                    {/* Mobile Menu Button */}
-                    <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className={`md:hidden pixel-button bg-white text-black p-3 focus:outline-none ${isOpen ? 'invisible' : 'visible'}`}
-                        aria-label={isOpen ? "Close Menu" : "Open Menu"}
-                    >
-                        <svg
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            className="w-6 h-6"
+                    <div className="flex items-center gap-2 md:hidden">
+                        <ThemeButton />
+                        <button
+                            type="button"
+                            onClick={() => setIsOpen(true)}
+                            aria-label="Open menu"
+                            aria-expanded={isOpen}
+                            className="flex h-8 w-8 items-center justify-center rounded text-ink transition-colors duration-120 ease-system hover:text-accent"
                         >
-                            <path
-                                fillRule="evenodd"
-                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
-                    </button>
+                            <MenuIcon size={20} />
+                        </button>
+                    </div>
                 </div>
+            </Container>
 
-                {/* Mobile Menu */}
+            {/* Mobile menu */}
+            <div
+                className={`fixed inset-0 z-40 bg-overlay transition-opacity duration-200 ease-system md:hidden ${
+                    isOpen ? "opacity-100" : "pointer-events-none opacity-0"
+                }`}
+                onClick={() => setIsOpen(false)}
+                aria-hidden={!isOpen}
+            >
                 <div
-                    className={`${isOpen ? 'fixed' : 'hidden'
-                        } md:hidden inset-0 bg-black bg-opacity-75 z-40 transition-opacity duration-200 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}
-                    onClick={() => setIsOpen(false)}
+                    className="fixed inset-y-0 right-0 flex w-72 flex-col border-l border-rule bg-canvas transition-transform duration-200 ease-system"
+                    style={{ transform: isOpen ? "translateX(0)" : "translateX(100%)" }}
+                    onClick={(e) => e.stopPropagation()}
                 >
-                    <div
-                        className="fixed top-0 right-0 h-full w-72 bg-white dark:bg-gray-900 border-l-4 border-black dark:border-white shadow-lg transform transition-transform duration-300 ease-in-out"
-                        style={{
-                            transform: isOpen ? 'translateX(0)' : 'translateX(100%)'
-                        }}
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        {/* Mobile Menu Header */}
-                        <div className="flex justify-between items-center p-4 border-b-4 border-black dark:border-white">
-                            <h2 className="text-lg font-bold font-mono text-black dark:text-white">MENU</h2>
-                            <button
-                                onClick={() => setIsOpen(false)}
-                                className="pixel-button bg-white text-black p-2 hover:bg-gray-200 transition-colors"
-                                aria-label="Close Menu"
+                    <div className="flex items-center justify-between border-b border-rule px-6 py-5">
+                        <span className="text-label-s uppercase text-ink-muted">Menu</span>
+                        <button
+                            type="button"
+                            onClick={() => setIsOpen(false)}
+                            aria-label="Close menu"
+                            className="flex h-8 w-8 items-center justify-center rounded text-ink transition-colors duration-120 ease-system hover:text-accent"
+                        >
+                            <CloseIcon size={20} />
+                        </button>
+                    </div>
+
+                    <nav className="flex flex-col px-6">
+                        {[{ href: "/", label: "Home", key: "home" }, ...NAV].map(({ href, label, key }) => (
+                            <Link
+                                key={key}
+                                href={href}
+                                onClick={() => {
+                                    setIsOpen(false);
+                                    event("nav_click", { destination: key });
+                                }}
+                                className={`border-b border-rule py-4 text-label uppercase transition-colors duration-120 ease-system ${
+                                    isActive(href) ? "text-accent" : "text-ink hover:text-accent"
+                                }`}
                             >
-                                <svg
-                                    className="w-6 h-6"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            </button>
-                        </div>
+                                {label}
+                            </Link>
+                        ))}
+                        <a
+                            href={PHOTOGRAPHY}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => {
+                                setIsOpen(false);
+                                event("nav_click", { destination: "photography" });
+                            }}
+                            className="flex items-center gap-1.5 border-b border-rule py-4 text-label uppercase text-ink transition-colors duration-120 ease-system hover:text-accent"
+                        >
+                            Photography
+                            <ExternalIcon size={11} />
+                        </a>
+                    </nav>
 
-                        {/* Mobile Menu Content */}
-                        <div className="p-4">
-                            <nav className="flex flex-col space-y-4">
-                                <Link
-                                    href="/"
-                                    onClick={() => {
-                                        setIsOpen(false);
-                                        event('nav_click', { destination: 'home' });
-                                    }}
-                                    className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
-                                        router.asPath === "/"
-                                            ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
-                                            : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
-                                    }`}
-                                >
-                                    HOME
-                                </Link>
-                                <Link
-                                    href="/articles"
-                                    onClick={() => {
-                                        setIsOpen(false);
-                                        event('nav_click', { destination: 'articles' });
-                                    }}
-                                    className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
-                                        router.asPath.startsWith("/articles")
-                                            ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
-                                            : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
-                                    }`}
-                                >
-                                    ARTICLES
-                                </Link>
-                                <Link
-                                    href="/experience"
-                                    onClick={() => {
-                                        setIsOpen(false);
-                                        event('nav_click', { destination: 'experience' });
-                                    }}
-                                    className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
-                                        router.asPath === "/experience"
-                                            ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
-                                            : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
-                                    }`}
-                                >
-                                    EXPERIENCE
-                                </Link>
-                                <Link
-                                    href="https://portfolio.wahlflorian.com/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={() => {
-                                        setIsOpen(false);
-                                        event('nav_click', { destination: 'photography' });
-                                    }}
-                                    className="px-4 py-3 font-mono text-sm font-bold text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white transition-colors whitespace-nowrap"
-                                >
-                                    PHOTOGRAPHY →
-                                </Link>
-                                <Link
-                                    href="/contact"
-                                    onClick={() => {
-                                        setIsOpen(false);
-                                        event('nav_click', { destination: 'contact' });
-                                    }}
-                                    className={`px-4 py-3 font-mono text-sm font-bold transition-colors ${
-                                        router.asPath === "/contact"
-                                            ? "bg-yellow-500 dark:bg-yellow-400 text-black pixel-border"
-                                            : "text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800 pixel-border border-black dark:border-white"
-                                    }`}
-                                >
-                                    CONTACT
-                                </Link>
-                            </nav>
-
-                            {/* Divider */}
-                            <div className="my-6 border-t-4 border-black dark:border-white" />
-
-                            {/* Theme Toggle and Social Links */}
-                            <div className="space-y-6">
-                                <div className="flex items-center justify-between px-4">
-                                    <span className="text-sm font-bold font-mono text-black dark:text-white">
-                                        THEME
-                                    </span>
-                                    <ThemeButton />
-                                </div>
-                                <div className="px-4">
-                                    <h3 className="text-sm font-bold font-mono text-black dark:text-white mb-3">
-                                        CONNECT
-                                    </h3>
-                                    <SocialLinks className="justify-start" iconSize={16} buttonSize="sm" />
-                                </div>
-                            </div>
-                        </div>
+                    <div className="mt-auto px-6 py-6">
+                        <p className="mb-4 text-label-s uppercase text-ink-muted">Connect</p>
+                        <SocialLinks iconSize={18} />
                     </div>
                 </div>
             </div>

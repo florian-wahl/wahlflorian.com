@@ -1,124 +1,37 @@
 import React from "react";
 import userData from "../constants/data";
 import { event } from "../utils/analytics";
+import { LinkedInIcon, GitHubIcon, InstagramIcon, BlueskyIcon } from "./Icons";
 
 interface SocialLinksProps {
     className?: string;
     iconSize?: number;
-    buttonSize?: "sm" | "md" | "lg";
 }
 
-const SocialLinks: React.FC<SocialLinksProps> = ({ 
-    className = "", 
-    iconSize = 16,
-    buttonSize = "md" 
-}) => {
-    // Map button size to padding classes
-    const paddingClasses = {
-        sm: "p-2",
-        md: "p-3",
-        lg: "p-4"
-    };
+const links = [
+    { key: "LinkedIn", href: (d: typeof userData) => d.socialLinks.linkedin, Icon: LinkedInIcon },
+    { key: "Bluesky", href: (d: typeof userData) => d.socialLinks.bluesky, Icon: BlueskyIcon },
+    { key: "GitHub", href: (d: typeof userData) => d.socialLinks.github, Icon: GitHubIcon },
+    { key: "Instagram", href: (d: typeof userData) => d.socialLinks.instagram, Icon: InstagramIcon },
+];
 
-    const padding = paddingClasses[buttonSize];
-
-    const handleSocialClick = (platform: string, url: string) => {
-        event("social_click", {
-            platform,
-            category: "social",
-            label: platform,
-        });
-    };
-
-    return (
-        <div className={`flex space-x-4 ${className}`}>
-            {/* LinkedIn */}
+const SocialLinks: React.FC<SocialLinksProps> = ({ className = "", iconSize = 18 }) => (
+    <div className={`flex items-center gap-5 ${className}`}>
+        {links.map(({ key, href, Icon }) => (
             <a
-                href={userData.socialLinks.linkedin}
+                key={key}
+                href={href(userData)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`pixel-button bg-white text-black ${padding} hover:bg-gray-200 transition-colors`}
-                aria-label="LinkedIn"
-                onClick={() => handleSocialClick("LinkedIn", userData.socialLinks.linkedin)}
+                aria-label={key}
+                // 24x24 minimum target (SC 2.5.8) via padding, without a visible box.
+                className="-m-1 p-1 text-ink-muted transition-colors duration-120 ease-system hover:text-ink"
+                onClick={() => event("social_click", { platform: key, category: "social", label: key })}
             >
-                <svg
-                    id="Linkedin"
-                    width={iconSize}
-                    height={iconSize}
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="m22,2v-1H2v1h-1v20h1v1h20v-1h1V2h-1Zm-9,10v8h-3v-11h3v1h1v-1h4v1h1v10h-3v-8h-3Zm-9-4v-3h3v3h-3Zm3,1v11h-3v-11h3Z" fill="currentColor"/>
-                </svg>
+                <Icon size={iconSize} />
             </a>
-
-            {/* Instagram */}
-            <a
-                href={userData.socialLinks.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`pixel-button bg-white text-black ${padding} hover:bg-gray-200 transition-colors`}
-                aria-label="Instagram"
-                onClick={() => handleSocialClick("Instagram", userData.socialLinks.instagram)}
-            >
-                <svg
-                    id="Instagram"
-                    width={iconSize}
-                    height={iconSize}
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="m17,9v-1h-1v-1h-1v-1h-6v1h-1v1h-1v1h-1v6h1v1h1v1h1v1h6v-1h1v-1h1v-1h1v-6h-1Zm-1,5h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1v-1h4v1h1v1h1v4Z" fill="currentColor"/>
-                    <path d="m22,5v-2h-1v-1h-2v-1H5v1h-2v1h-1v2h-1v14h1v2h1v1h2v1h14v-1h2v-1h1v-2h1V5h-1Zm-1,14h-1v1h-1v1H5v-1h-1v-1h-1V5h1v-1h1v-1h14v1h1v1h1v14Z" fill="currentColor"/>
-                    <rect x="17" y="5" width="2" height="2" fill="currentColor"/>
-                </svg>
-            </a>
-
-            {/* Bluesky */}
-            <a
-                href={userData.socialLinks.bluesky}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`pixel-button bg-white text-black ${padding} hover:bg-gray-200 transition-colors`}
-                aria-label="Bluesky"
-                onClick={() => handleSocialClick("Bluesky", userData.socialLinks.bluesky)}
-            >
-                <svg
-                    id="Bluesky"
-                    width={iconSize}
-                    height={iconSize}
-                    viewBox="0 0 360 320"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path d="M180 142c-16.3-31.7-60.7-90.8-102-120C38.5-5.9 23.4-1 13.5 3.4 2.1 8.6 0 26.2 0 36.5c0 10.4 5.7 84.8 9.4 97.2 12.2 41 55.7 55 95.7 50.5-58.7 8.6-110.8 30-42.4 106.1 75.1 77.9 103-16.7 117.3-64.6 14.3 48 30.8 139 116 64.6 64-64.6 17.6-97.5-41.1-106.1 40 4.4 83.5-9.5 95.7-50.5 3.7-12.4 9.4-86.8 9.4-97.2 0-10.3-2-27.9-13.5-33C336.5-1 321.5-6 282 22c-41.3 29.2-85.7 88.3-102 120Z" fill="currentColor"/>
-                </svg>
-            </a>
-
-            {/* GitHub */}
-            <a
-                href={userData.socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`pixel-button bg-white text-black ${padding} hover:bg-gray-200 transition-colors`}
-                aria-label="GitHub"
-                onClick={() => handleSocialClick("GitHub", userData.socialLinks.github)}
-            >
-                <svg
-                    id="Github"
-                    width={iconSize}
-                    height={iconSize}
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <polygon points="23 9 23 15 22 15 22 17 21 17 21 19 20 19 20 20 19 20 19 21 18 21 18 22 16 22 16 23 15 23 15 18 14 18 14 17 15 17 15 16 17 16 17 15 18 15 18 14 19 14 19 9 18 9 18 6 16 6 16 7 15 7 15 8 14 8 14 7 10 7 10 8 9 8 9 7 8 7 8 6 6 6 6 9 5 9 5 14 6 14 6 15 7 15 7 16 9 16 9 18 7 18 7 17 6 17 6 16 4 16 4 17 5 17 5 19 6 19 6 20 9 20 9 23 8 23 8 22 6 22 6 21 5 21 5 20 4 20 4 19 3 19 3 17 2 17 2 15 1 15 1 9 2 9 2 7 3 7 3 5 4 5 4 4 5 4 5 3 7 3 7 2 9 2 9 1 15 1 15 2 17 2 17 3 19 3 19 4 20 4 20 5 21 5 21 7 22 7 22 9 23 9" fill="currentColor"/>
-                </svg>
-            </a>
-        </div>
-    );
-};
+        ))}
+    </div>
+);
 
 export default SocialLinks;

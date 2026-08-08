@@ -1,201 +1,73 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import OptimizedImage from "./OptimizedImage";
 import userData from "../constants/data";
-import Link from "next/link";
 import { event } from "../utils/analytics";
-import { LocationIcon } from "./PixelIcons";
+import { Container, Kicker, Action } from "./primitives";
+import { LocationIcon } from "./Icons";
 
-const Hero: React.FC = () => {
-    const [show, setShow] = useState(false);
-    const [firstName, lastName] = userData.name.toUpperCase().split(" ");
-    const fullName = `${firstName} ${lastName}`;
-    const [displayedName, setDisplayedName] = useState("");
-    const [showTaglines, setShowTaglines] = useState(false);
-    const taglinesTimeoutRef = useRef<number | null>(null);
+/**
+ * DESIGN.md §11.3 — hero, then bio.
+ *
+ * The typewriter effect, staggered fade-in, and infinite tagline pulse are
+ * removed rather than tuned: §5 permits state-change motion only.
+ */
+const Hero: React.FC = () => (
+    // No border-b: the following Section carries border-t, and stacking the two
+    // renders a 2px rule. Separation is one hairline, never two. §4
+    <header>
+        <Container className="py-14 sm:py-20">
+            <div className="grid gap-12 md:grid-cols-[minmax(0,1.55fr)_minmax(0,0.85fr)] md:items-start md:gap-14">
+                <div>
+                    <Kicker className="mb-6">{userData.designation}</Kicker>
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShow(true);
-        }, 200);
-        return () => clearTimeout(timer);
-    }, []);
+                    <h1 className="mb-6 max-w-[14ch] font-display text-display-xl font-bold text-ink">
+                        {userData.name}
+                    </h1>
 
-    // Typing effect for name
-    useEffect(() => {
-        if (!show) return;
+                    {/* Was a row of animated pixel badges. Now one quiet line. */}
+                    <p className="mb-8 text-body text-ink-muted">
+                        {userData.rainbowContent.map((s) => s.replace(/\.$/, "")).join(" · ")}
+                    </p>
 
-        setDisplayedName("");
-
-        let currentIndex = 0;
-        const typingInterval = setInterval(() => {
-            if (currentIndex < fullName.length) {
-                setDisplayedName(fullName.slice(0, currentIndex + 1));
-                currentIndex++;
-            } else {
-                clearInterval(typingInterval);
-                taglinesTimeoutRef.current = window.setTimeout(() => {
-                    setShowTaglines(true);
-                }, 400);
-            }
-        }, 80);
-
-        return () => {
-            clearInterval(typingInterval);
-            if (taglinesTimeoutRef.current !== null) {
-                clearTimeout(taglinesTimeoutRef.current);
-                taglinesTimeoutRef.current = null;
-            }
-        };
-    }, [show, fullName]);
-
-    // Split displayed name across the two lines
-    const displayedFirst = displayedName.slice(0, firstName.length);
-    const displayedLast = displayedName.length > firstName.length
-        ? displayedName.slice(firstName.length + 1) // +1 to skip the space
-        : "";
-    const cursorOnFirst = displayedName.length <= firstName.length && displayedName.length < fullName.length;
-    const cursorOnLast = displayedName.length > firstName.length && displayedName.length < fullName.length;
-
-    return (
-        <div className="bg-white dark:bg-[#0a0a0a] min-h-screen flex flex-col justify-center items-center px-4 py-20 relative overflow-hidden transition-colors duration-300">
-            {/* Pixel background pattern */}
-            <div className="absolute inset-0 opacity-10 dark:opacity-10" style={{
-                backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px)',
-            }}></div>
-            <div className="absolute inset-0 opacity-10 hidden dark:block" style={{
-                backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)',
-            }}></div>
-
-            <div className="max-w-6xl mx-auto w-full relative z-10 flex flex-col gap-12">
-                {/* Section 1: Two columns — name/tags/CTAs | headshot */}
-                <div className="flex flex-col md:flex-row justify-between items-center gap-12">
-                    {/* Left: name, designation, tags, buttons */}
-                    <div className="w-full md:w-1/2 text-center md:text-left">
-                        <div className="mb-6">
-                            <span className="inline-block px-4 py-2 bg-yellow-400 text-black font-bold font-mono text-md pixel-border">
-                                {userData.designation.toUpperCase()}
-                            </span>
-                        </div>
-
-                        {/* Name — fixed sizes per breakpoint.
-                            Mobile (full-width col): text-6xl → sm: text-8xl
-                            Desktop (half-width col): md: text-7xl → lg: text-8xl → xl: text-9xl → 2xl: text-9xl */}
-                        <div className="mb-6 py-4 md:pr-5">
-                            <h1 className="font-bold text-black dark:text-white pixel-text leading-none text-6xl sm:text-8xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-9xl">
-                                <span className="block relative">
-                                    <span className="invisible" aria-hidden="true">{firstName}</span>
-                                    <span className="absolute inset-0">
-                                        {displayedFirst}
-                                        {cursorOnFirst && <span className="animate-pulse">|</span>}
-                                    </span>
-                                </span>
-                                <span className="block relative">
-                                    <span className="invisible" aria-hidden="true">{lastName}</span>
-                                    <span className="absolute inset-0">
-                                        {displayedLast}
-                                        {cursorOnLast && <span className="animate-pulse">|</span>}
-                                    </span>
-                                </span>
-                            </h1>
-                        </div>
-
-                        <div className="flex flex-wrap gap-2 mb-8 justify-center md:justify-start">
-                            {userData.rainbowContent.map((content, index) => (
-                                <div
-                                    key={index}
-                                    className="flex-shrink-0 tagline-badge"
-                                    style={{
-                                        animation: showTaglines ? `fadeInUp 0.5s ease ${index * 0.15}s both, pulse 2s ease-in-out ${1 + index * 0.3}s infinite` : 'none',
-                                        opacity: showTaglines ? 1 : 0
-                                    }}
-                                >
-                                    <span className="inline-block px-3 py-2 sm:px-4 bg-gray-100 dark:bg-gray-900 border-2 border-black dark:border-white text-black dark:text-white font-mono text-xs sm:text-sm md:text-lg pixel-border whitespace-nowrap hover:scale-105 transition-transform duration-200">
-                                        {content.toUpperCase()}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                        <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                            <Link
-                                href="/experience"
-                                className="px-6 py-3 bg-yellow-400 text-black font-bold font-mono hover:bg-yellow-300 transition-colors pixel-button whitespace-nowrap"
-                                onClick={() => event("cta_click", { label: "view_experience" })}
-                            >
-                                VIEW EXPERIENCE →
-                            </Link>
-                            <a
-                                href={userData.resumeUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-6 py-3 bg-white text-black font-bold font-mono hover:bg-gray-200 transition-colors pixel-button whitespace-nowrap"
-                                onClick={() => event("cta_click", { label: "view_resume" })}
-                            >
-                                VIEW RESUME →
-                            </a>
-                        </div>
+                    <div className="flex flex-wrap gap-3">
+                        <Action
+                            href="/contact"
+                            onClick={() => event("cta_click", { label: "start_a_conversation" })}
+                        >
+                            Start a conversation
+                        </Action>
+                        <Action
+                            href="/experience"
+                            variant="ghost"
+                            onClick={() => event("cta_click", { label: "view_experience" })}
+                        >
+                            View experience
+                        </Action>
                     </div>
 
-                    {/* Right: headshot + location */}
-                    <div className="w-full md:w-1/2 flex justify-center">
-                        <div className="relative">
-                            <div className="pixel-border bg-gray-100 dark:bg-gray-900 p-4">
-                                <OptimizedImage
-                                    src={userData.avatarUrl}
-                                    alt="Florian Wahl - Product Leader and Engineer"
-                                    width={400}
-                                    height={400}
-                                    className="w-full h-auto pixel-image"
-                                    priority
-                                    style={{
-                                        maxWidth: '100%',
-                                        height: 'auto',
-                                        objectFit: 'cover',
-                                    }}
-                                />
-                            </div>
-                            <div className="mt-4 flex items-center justify-center gap-2">
-                                <LocationIcon size={14} className="text-yellow-500 dark:text-yellow-400" />
-                                <p className="font-mono text-sm text-black dark:text-white">NEW YORK, NY</p>
-                            </div>
-                        </div>
-                    </div>
+                    {/* Bio sits in the left column, not below the grid. Below, it
+                        orphaned ~140px of whitespace under the taller image column. */}
+                    <p className="mt-10 font-prose text-prose text-ink-muted">{userData.bio}</p>
                 </div>
 
-                {/* Section 2: Full-width bio */}
-                <div className="w-full">
-                    <p className="text-base md:text-lg font-mono text-gray-600 dark:text-gray-400">
-                        {userData.bio}
+                <div className="order-first md:order-none">
+                    <OptimizedImage
+                        src={userData.avatarUrl}
+                        alt={`${userData.name}, ${userData.designation}`}
+                        width={400}
+                        height={400}
+                        className="w-full max-w-[280px] rounded-lg border border-rule md:max-w-none"
+                        priority
+                        style={{ height: "auto", objectFit: "cover" }}
+                    />
+                    <p className="mt-4 flex items-center gap-2 text-meta text-ink-muted">
+                        <LocationIcon size={14} />
+                        {userData.address}
                     </p>
                 </div>
             </div>
-
-            <style jsx>{`
-                @keyframes fadeInUp {
-                    from {
-                        opacity: 0;
-                        transform: translateY(20px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-
-                @keyframes pulse {
-                    0%, 100% {
-                        transform: scale(1);
-                    }
-                    50% {
-                        transform: scale(1.02);
-                    }
-                }
-
-                .tagline-badge:hover {
-                    animation: fadeInUp 0.5s ease both, pulse 1s ease-in-out infinite !important;
-                }
-            `}</style>
-        </div>
-    );
-};
+        </Container>
+    </header>
+);
 
 export default Hero;

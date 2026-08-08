@@ -10,7 +10,6 @@
     "test": "tsc utils/imageOptimization.ts utils/imageOptimization.test.ts --module commonjs --target es2019 --outDir build --noEmit false && node --test build/imageOptimization.test.js && rm -rf build"
   },
   "dependencies": {
-    "@hackernoon/pixel-icon-library": "^1.0.6",
     "@next/third-parties": "^15.1.5",
     "gray-matter": "^4.0.3",
     "marked": "^17.0.3",

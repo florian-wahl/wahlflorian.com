@@ -58,7 +58,9 @@ interface UserData {
 const userData: UserData = {
     name: "Florian Wahl",
     designation: "Product Leader",
-    bio: "Engineer by trade and fintech geek by passion, I build product organizations grounded in trust, customer obsession, and continuous learning. With a decade in fintech spanning consulting, product management, and product strategy, I bring a rare mix of technical depth and strategic execution. I've taken products from 0 to 1, grown junior PMs into senior roles, and translated complex financial infrastructure into measurable business outcomes. Outside the day-to-day, I'm an active voice in the industry through over a dozen conference talks and publications.",
+    // Written to the florian-writing-style guide: no em dashes, short sentences,
+    // concise. Opening sentence kept from the original bio at Florian's request.
+    bio: "Engineer by trade and fintech geek by passion, I build product organizations grounded in trust, customer obsession, and continuous learning. I've spent a decade in fintech: five years in consulting with banks on digital transformation and open banking, then over four years at Akoya. There I owned product strategy and commercialization, and helped grow the data access network from nothing to billions of requests per month and seven figures in revenue. I'm now back to my entrepreneurial roots at an early-stage AI startup, exploring what product leadership means across AI and fintech today. I speak and write about the fintech and product space.",
     avatarUrl: "/headshot.webp",
     email: "florian.wahl.31@gmail.com",
     address: "New York, NY",
@@ -159,7 +161,8 @@ const userData: UserData = {
             company: "Early-stage AI startup",
             startDate: "2026-06",
             endDate: null, // Current role
-            // No companyLink or desc: company is in stealth and the role is new.
+            // No companyLink: the company is in stealth.
+            desc: "Building a new kind of agentic intelligence platform, powering fundamental research for institutional investors.",
         },
         {
             title: "Head of Product Strategy",
@@ -167,7 +170,7 @@ const userData: UserData = {
             startDate: "2022-11",
             endDate: "2026-06",
             companyLink: "https://akoya.com",
-            desc: "Lead a team of product managers, hiring junior PMs and growing them into senior roles, while owning Akoya's multi-year strategy, pricing, and go-to-market. Drove a 0-to-1 product from concept to the company's first multi-million dollar client in under 18 months, directly supporting pipeline efforts that generated tens of millions in ARR.",
+            desc: "Led a team of product managers, hiring junior PMs and growing them into senior roles, while owning Akoya's multi-year strategy, pricing, and go-to-market. Drove a 0-to-1 product from concept to the company's first multi-million dollar client in under 18 months, directly supporting pipeline efforts that generated tens of millions in ARR.",
         },
         {
             title: "Product Manager",

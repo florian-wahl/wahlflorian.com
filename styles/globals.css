@@ -97,10 +97,10 @@ a {
 
 /* ============================================================
    Prose surface — article body. DESIGN.md §7
-   Source Serif 4, 68ch measure, on --surface.
+   Source Serif 4, 74ch measure, on --surface.
    ============================================================ */
 /* No max-width here. The measure is owned by the page's reading column so that
-   the title, body, and footer CTA all share one edge. Two `68ch` declarations
+   the title, body, and footer CTA all share one edge. Two identical `ch` declarations
    in different font contexts resolve to different pixel widths, which left the
    body narrower than its wrapper and visibly off-centre. */
 .post-body {

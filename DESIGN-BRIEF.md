@@ -25,7 +25,7 @@ of the following. If a comp requires breaking one of these, the comp is wrong.
 | Elevation | 1px rules or whitespace. **No `box-shadow`.** |
 | Motion | 120ms, `cubic-bezier(.16,1,.3,1)`, state-change only |
 | Type floor | 11px |
-| Prose measure | 68ch |
+| Prose measure | 74ch |
 
 Full token tables, contrast measurements, and the review checklist are in `DESIGN.md` §§2–10.
 Contrast is verified by `tools/contrast.js` — any new color must pass it before it ships.
@@ -74,7 +74,7 @@ Solve it once as a reusable pattern. Dates are tabular figures; the row is a 1px
 
 ### 2.4 Article page
 
-Long-form reading. Source Serif 4 at 68ch on `--surface`. Needs: title, date/reading time, body,
+Long-form reading. Source Serif 4 at 74ch on `--surface`. Needs: title, date/reading time, body,
 footnote or reference treatment, and a single advisory CTA in the footer — after the essay, never
 interrupting it.
 

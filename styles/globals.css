@@ -4,21 +4,65 @@
 
 @import 'fonts.css';
 
+/* ============================================================
+   Semantic tokens — DESIGN.md §2.2
+   Components reference these only, never a primitive or a raw hex.
+   Dark is a token swap, not a fork.
+   Verified by tools/contrast.js — re-run on any change.
+   ============================================================ */
+:root {
+  --canvas: #F5F6F8;
+  --surface: #ECEEF1;
+  --ink: #101418;
+  --ink-muted: #4C545C;
+  --rule: #C8CED5;
+  --border-interactive: #7C8894;
+  --accent: #9C4F21;
+  --accent-hover: #85421B;
+  --on-accent: #F5F6F8;
+  /* Scrim behind the mobile menu. Not a surface — it never carries text. */
+  --overlay: rgb(16 20 24 / 0.45);
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 120ms;
+
+  color-scheme: light;
+}
+
+html.dark {
+  --canvas: #101418;
+  --surface: #161B20;
+  --ink: #E3E7EB;
+  --ink-muted: #8F979F;
+  --rule: #2E353D;
+  --border-interactive: #697583;
+  --accent: #D68B57;
+  --accent-hover: #E5A578;
+  --on-accent: #101418;
+  --overlay: rgb(0 0 0 / 0.6);
+
+  color-scheme: dark;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Inter var', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
-    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-color: #ffffff;
-  color: #000000;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-html.dark,
-html.dark body {
-  background-color: #0a0a0a;
-  color: #ffffff;
+  font-family: 'Inter var', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, sans-serif;
+  font-variant-numeric: tabular-nums lining-nums;
+  background-color: var(--canvas);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
 a {
@@ -26,284 +70,172 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+/* Focus is never suppressed. 2px + 2px offset, accent, visible in both
+   themes and never obscured by sticky chrome. DESIGN.md §9 / AX-02. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
-.heroimg {
-  width: 100%;
-  max-width: 500px;
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
-/* Pixel/Retro Gaming Aesthetic */
-.pixel-text {
-  font-family: 'Inter var', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-
-.pixel-border {
-  border: 4px solid #000000;
-  box-shadow:
-    4px 4px 0px #000000,
-    inset 2px 2px 0px rgba(0, 0, 0, 0.1);
-}
-
-html.dark .pixel-border {
-  border: 4px solid #ffffff;
-  box-shadow:
-    4px 4px 0px #000000,
-    inset 2px 2px 0px rgba(255, 255, 255, 0.3);
-}
-
-.pixel-card {
-  position: relative;
-  background: #f5f5f5;
-  border: 4px solid #000000;
-  box-shadow:
-    8px 8px 0px #000000,
-    inset 2px 2px 0px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-html.dark .pixel-card {
-  background: #1a1a1a;
-  border: 4px solid #ffffff;
-  box-shadow:
-    8px 8px 0px #000000,
-    inset 2px 2px 0px rgba(255, 255, 255, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.pixel-card:hover {
-  transform: translate(-2px, -2px);
-  box-shadow:
-    10px 10px 0px #000000,
-    inset 2px 2px 0px rgba(0, 0, 0, 0.05);
-}
-
-html.dark .pixel-card:hover {
-  box-shadow:
-    10px 10px 0px #000000,
-    inset 2px 2px 0px rgba(255, 255, 255, 0.1);
-}
-
-.pixel-button {
-  position: relative;
-  border: 4px solid #000000;
-  box-shadow:
-    4px 4px 0px #000000,
-    inset -2px -2px 0px rgba(0, 0, 0, 0.2);
-  transition: all 0.1s ease;
-}
-
-.pixel-button:hover {
-  transform: translate(-2px, -2px);
-  box-shadow:
-    6px 6px 0px #000000,
-    inset -2px -2px 0px rgba(0, 0, 0, 0.2);
-}
-
-.pixel-button:active {
-  transform: translate(0px, 0px);
-  box-shadow:
-    2px 2px 0px #000000,
-    inset -2px -2px 0px rgba(0, 0, 0, 0.2);
-}
-
-/* Pixelated effect for images */
-.pixel-image {
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
-}
-
-/* Retro scanline effect */
-.scanlines::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(0deg,
-      rgba(0, 0, 0, 0.1) 0px,
-      rgba(0, 0, 0, 0.1) 1px,
-      transparent 1px,
-      transparent 2px);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Glitch effect for hover states */
-@keyframes glitch {
-  0% {
-    transform: translate(0);
-  }
-
-  20% {
-    transform: translate(-2px, 2px);
-  }
-
-  40% {
-    transform: translate(-2px, -2px);
-  }
-
-  60% {
-    transform: translate(2px, 2px);
-  }
-
-  80% {
-    transform: translate(2px, -2px);
-  }
-
-  100% {
-    transform: translate(0);
+/* Motion is state-change only, 120ms. DESIGN.md §5. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-.glitch:hover {
-  animation: glitch 0.3s infinite;
-}
-
-/* Blog post body typography */
+/* ============================================================
+   Prose surface — article body. DESIGN.md §7
+   Source Serif 4, 68ch measure, on --surface.
+   ============================================================ */
+/* No max-width here. The measure is owned by the page's reading column so that
+   the title, body, and footer CTA all share one edge. Two `68ch` declarations
+   in different font contexts resolve to different pixel widths, which left the
+   body narrower than its wrapper and visibly off-centre. */
 .post-body {
-  font-family: 'Inter var', monospace;
-  color: #000000;
-  line-height: 1.8;
-}
-
-html.dark .post-body {
-  color: #e5e5e5;
+  font-family: 'Source Serif 4 var', Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  color: var(--ink);
 }
 
 .post-body h1,
 .post-body h2,
 .post-body h3,
 .post-body h4 {
+  font-family: 'Instrument Sans var', system-ui, sans-serif;
   font-weight: 700;
-  font-family: 'Inter var', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: -0.028em;
+  line-height: 1.2;
+  color: var(--ink);
   margin-top: 2.5rem;
-  margin-bottom: 1rem;
-  color: #000000;
-}
-
-html.dark .post-body h1,
-html.dark .post-body h2,
-html.dark .post-body h3,
-html.dark .post-body h4 {
-  color: #ffffff;
+  margin-bottom: 0.75rem;
 }
 
 .post-body h1 { font-size: 2rem; }
-.post-body h2 { font-size: 1.5rem; }
-.post-body h3 { font-size: 1.2rem; }
-.post-body h4 { font-size: 1rem; }
+.post-body h2 { font-size: 1.6rem; }
+.post-body h3 { font-size: 1.25rem; }
+.post-body h4 { font-size: 1.0625rem; }
 
 .post-body p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.1rem;
 }
 
+/* No drop cap. It was specified from a prototype whose sample text began with
+   "A"; real posts open with letters like "I", where a 3.1em narrow letterform
+   reads as a stray mark and misaligns the first line. A decoration that depends
+   on which letter the author happened to type is not a system. */
+
+/* Links carry an underline, never colour alone — two-channel rule. */
 .post-body a {
-  color: #ca8a04;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-html.dark .post-body a {
-  color: #facc15;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 1px;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
 
 .post-body a:hover {
-  color: #92400e;
-}
-
-html.dark .post-body a:hover {
-  color: #fde68a;
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 
 .post-body ul,
 .post-body ol {
   padding-left: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.1rem;
 }
 
 .post-body ul { list-style-type: disc; }
 .post-body ol { list-style-type: decimal; }
 
 .post-body li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .post-body blockquote {
-  border-left: 4px solid #ca8a04;
+  border-left: 2px solid var(--accent);
   padding-left: 1rem;
-  margin-left: 0;
-  margin-bottom: 1.5rem;
-  color: #4b5563;
+  margin: 0 0 1.1rem;
+  color: var(--ink-muted);
+}
+
+.post-body strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.post-body em {
   font-style: italic;
 }
 
-html.dark .post-body blockquote {
-  border-color: #facc15;
-  color: #9ca3af;
-}
-
+/* Code is the one place a monospace face is legitimate here. */
 .post-body code {
-  font-family: monospace;
-  background-color: #f3f4f6;
-  color: #1f2937;
-  padding: 0.15rem 0.4rem;
-  border: 2px solid #000000;
-  font-size: 0.875rem;
-}
-
-html.dark .post-body code {
-  background-color: #1f2937;
-  color: #e5e7eb;
-  border-color: #ffffff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85em;
+  background-color: var(--canvas);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0.1em 0.35em;
 }
 
 .post-body pre {
-  background-color: #f3f4f6;
-  border: 4px solid #000000;
-  box-shadow: 4px 4px 0px #000000;
-  padding: 1.25rem;
+  background-color: var(--canvas);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 1rem 1.25rem;
   overflow-x: auto;
-  margin-bottom: 1.5rem;
-}
-
-html.dark .post-body pre {
-  background-color: #111827;
-  border-color: #ffffff;
-  box-shadow: 4px 4px 0px #000000;
+  margin-bottom: 1.1rem;
 }
 
 .post-body pre code {
   background: none;
   border: none;
   padding: 0;
-  color: inherit;
+  font-size: 0.85rem;
 }
 
 .post-body hr {
   border: none;
-  border-top: 4px solid #000000;
+  border-top: 1px solid var(--rule);
   margin: 2rem 0;
 }
 
-html.dark .post-body hr {
-  border-color: #ffffff;
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
 }
 
-.post-body strong {
-  font-weight: 700;
-  color: #000000;
+.post-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Inter var', sans-serif;
+  font-size: 0.875rem;
+  margin-bottom: 1.1rem;
 }
 
-html.dark .post-body strong {
-  color: #ffffff;
+.post-body th,
+.post-body td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  text-align: left;
+}
+
+.post-body th {
+  font-weight: 500;
+  color: var(--ink-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
 }

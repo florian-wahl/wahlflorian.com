@@ -3,12 +3,17 @@ import Link from "next/link";
 import ContainerBlock from "../../components/ContainerBlock";
 import { getAllPostSlugs, getPostBySlug, Post } from "../../lib/posts";
 import { event } from "../../utils/analytics";
+import { Container, Action } from "../../components/primitives";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 interface BlogPostPageProps {
     post: Post;
 }
 
+/**
+ * The `prose` surface class. DESIGN.md §7 — Source Serif 4 at 68ch on
+ * --surface, with the page chrome staying on --canvas.
+ */
 const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
     const [imageError, setImageError] = useState(false);
 
@@ -35,66 +40,63 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
                 date: post.date,
             }}
         >
-            <article className="bg-white dark:bg-[#0a0a0a] py-20 transition-colors duration-300">
-                <div className="max-w-3xl mx-auto px-4">
-                    {/* Back link */}
+            <article className="bg-surface">
+                {/* The reading column is centred in the page rather than pinned to
+                    the left gutter. Prose stays at 68ch for readability (§3.3);
+                    only its position changes. */}
+                <Container className="py-14 sm:py-20">
+                    {/* font-prose so `ch` in max-w-prose resolves against the serif
+                        the body is actually set in. */}
+                    <div className="mx-auto max-w-prose font-prose">
                     <Link
                         href="/articles"
-                        className="inline-flex items-center font-mono text-sm text-yellow-600 dark:text-yellow-400 hover:underline mb-12 block"
+                        // min-h-[24px] meets the 24px target minimum (SC 2.5.8);
+                        // the 11px label alone measured only 16px tall.
+                        className="mb-12 inline-flex min-h-[24px] items-center text-label uppercase text-accent transition-colors duration-120 ease-system hover:text-accent-hover"
                     >
-                        ← ARTICLES
+                        ← Articles
                     </Link>
 
-                    {/* Header */}
-                    <header className="mb-12">
+                    <header className="mb-10">
                         {(formattedDate || post.readingTime) && (
-                            <p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-4 flex items-center gap-2">
+                            <p className="mb-4 text-meta tabular-nums text-ink-muted">
                                 {formattedDate}
-                                {formattedDate && post.readingTime && <span>·</span>}
-                                {post.readingTime && <span>{post.readingTime} MIN READ</span>}
+                                {formattedDate && post.readingTime ? " · " : ""}
+                                {post.readingTime ? `${post.readingTime} min read` : ""}
                             </p>
                         )}
-                        <h1 className="text-3xl md:text-5xl font-bold text-black dark:text-white font-mono pixel-text mb-6 leading-tight">
-                            {post.title.toUpperCase()}
+                        <h1 className="font-display text-display-l font-bold text-ink">
+                            {post.title}
                         </h1>
                         {post.description && (
-                            <p className="text-lg text-gray-600 dark:text-gray-400 font-mono border-l-4 border-yellow-500 pl-4">
+                            <p className="mt-4 font-prose text-prose text-ink-muted">
                                 {post.description}
                             </p>
                         )}
                     </header>
 
-                    {/* Cover image */}
                     {post.coverImage && !imageError && (
-                        <div className="mb-12 pixel-card overflow-hidden">
-                            <img
-                                src={post.coverImage}
-                                alt={post.title}
-                                className="w-full object-cover"
-                                onError={() => setImageError(true)}
-                            />
-                        </div>
+                        <img
+                            src={post.coverImage}
+                            alt=""
+                            className="mb-10 w-full rounded-lg border border-rule object-cover"
+                            onError={() => setImageError(true)}
+                        />
                     )}
 
-                    {/* Divider */}
-                    <div className="border-t-4 border-black dark:border-white mb-12" />
+                    <div className="post-body" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
 
-                    {/* Post body */}
-                    <div
-                        className="post-body"
-                        dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-                    />
-
-                    {/* Footer */}
-                    <div className="mt-16 pt-8 border-t-4 border-black dark:border-white">
-                        <Link
-                            href="/articles"
-                            className="inline-flex items-center font-mono text-sm text-yellow-600 dark:text-yellow-400 hover:underline"
+                    {/* CTA sits after the essay, never interrupting it. §2.4 / §11.1 */}
+                    <div className="mt-16 border-t border-rule pt-8">
+                        <Action
+                            href="/contact"
+                            onClick={() => event("cta_click", { label: "article_footer_contact" })}
                         >
-                            ← BACK TO ARTICLES
-                        </Link>
+                            Start a conversation
+                        </Action>
                     </div>
-                </div>
+                    </div>
+                </Container>
             </article>
         </ContainerBlock>
     );
@@ -102,10 +104,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const slugs = getAllPostSlugs();
-    return {
-        paths: slugs.map((slug) => ({ params: { slug } })),
-        fallback: false,
-    };
+    return { paths: slugs.map((slug) => ({ params: { slug } })), fallback: false };
 };
 
 export const getStaticProps: GetStaticProps<BlogPostPageProps> = async ({ params }) => {

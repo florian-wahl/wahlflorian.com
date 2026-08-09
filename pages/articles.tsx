@@ -4,15 +4,15 @@ import ContainerBlock from "../components/ContainerBlock";
 import userData from "../constants/data";
 import { getAllPostsMeta, PostMeta } from "../lib/posts";
 import { event } from "../utils/analytics";
+import { Section, SectionHeader } from "../components/primitives";
+import { ExternalIcon } from "../components/Icons";
 import type { GetStaticProps, NextPage } from "next";
 
 interface FeedItem {
     title: string;
     date: string;
     description: string;
-    imgUrl: string;
     readingTime?: number;
-    // external articles have a link; hosted posts have a slug
     link?: string;
     slug?: string;
 }
@@ -21,107 +21,79 @@ interface ArticlesPageProps {
     feedItems: FeedItem[];
 }
 
-const ArticleCard: React.FC<{ item: FeedItem }> = ({ item }) => {
-    const isHosted = !!item.slug;
+/** "2024-11-21" -> "2024.11" — tabular, aligns down the column. */
+const formatDate = (date: string): string => {
+    if (!date) return "";
+    const [year, month] = date.split("-");
+    return month ? `${year}.${month.padStart(2, "0")}` : year;
+};
+
+const ArticleRow: React.FC<{ item: FeedItem }> = ({ item }) => {
+    const isHosted = Boolean(item.slug);
     const href = isHosted ? `/articles/${item.slug}` : item.link!;
 
-    const inner = (
-        <div className="w-full h-full pixel-card bg-gray-900 overflow-hidden group flex flex-col">
-            {item.imgUrl && (
-                <div className="h-52 relative overflow-hidden flex-shrink-0">
-                    <img
-                        src={item.imgUrl}
-                        alt={`${item.title} thumbnail`}
-                        loading="lazy"
-                        decoding="async"
-                        className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+    // Descriptions are omitted: only hosted posts carry one, so showing them
+    // made the list alternate between two row heights for no reason the reader
+    // can see. Type + reading time are available for every item.
+    const body = (
+        <div className="flex flex-col gap-1 border-b border-rule py-4 sm:flex-row sm:items-baseline sm:gap-8">
+            <p className="shrink-0 text-meta tabular-nums text-ink-muted sm:w-[5.5rem]">
+                {formatDate(item.date)}
+            </p>
+            <h2 className="min-w-0 flex-1 text-body font-medium text-ink">
+                {item.title}
+                {!isHosted && (
+                    <ExternalIcon
+                        size={12}
+                        className="ml-1.5 inline-block align-baseline text-ink-muted"
                     />
-                </div>
-            )}
-            <div className="p-6 flex flex-col flex-1">
-                {(item.date || item.readingTime) && (
-                    <p className="text-xs text-gray-500 dark:text-gray-400 font-mono mb-2 flex items-center gap-2">
-                        {item.date && new Date(item.date).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                            timeZone: "UTC",
-                        })}
-                        {item.date && item.readingTime && <span>·</span>}
-                        {item.readingTime && <span>{item.readingTime} MIN READ</span>}
-                    </p>
                 )}
-                <h2 className="text-black dark:text-white font-bold text-lg font-mono group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors">
-                    {item.title.toUpperCase()}
-                </h2>
-                {item.description && (
-                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 font-mono line-clamp-2">
-                        {item.description}
-                    </p>
-                )}
-                <div className="mt-auto pt-4 flex items-center text-yellow-600 dark:text-yellow-400 text-sm font-mono">
-                    READ {isHosted ? "POST" : "ARTICLE"} →
-                </div>
-            </div>
+            </h2>
+            <p className="shrink-0 text-meta text-ink-muted sm:text-right">
+                {isHosted ? "Essay" : "Article"}
+                {item.readingTime ? ` · ${item.readingTime} min` : ""}
+            </p>
         </div>
     );
 
-    if (isHosted) {
-        return (
-            <Link
-                href={href}
-                className="w-full block"
-                onClick={() => event("article_click", { title: item.title, category: "blog", label: item.title })}
-            >
-                {inner}
-            </Link>
-        );
-    }
+    const cls = "block transition-colors duration-120 ease-system hover:text-accent";
+    const track = () =>
+        event("article_click", {
+            title: item.title,
+            category: isHosted ? "blog" : "articles",
+            label: item.title,
+        });
 
-    return (
-        <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full block"
-            onClick={() => event("article_click", { title: item.title, category: "articles", label: item.title })}
-        >
-            {inner}
+    return isHosted ? (
+        <Link href={href} className={cls} onClick={track}>
+            {body}
+        </Link>
+    ) : (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={cls} onClick={track}>
+            {body}
         </a>
     );
 };
 
-const ArticlesPage: NextPage<ArticlesPageProps> = ({ feedItems }) => {
-    return (
-        <ContainerBlock
-            customMeta={{
-                title: "Florian Wahl - Articles on Product & Fintech",
-                description:
-                    "Read Florian Wahl's articles and blog posts on product strategy, fintech innovation, digital transformation, and open finance.",
-                type: "blog",
-            }}
-        >
-            <section className="bg-white dark:bg-[#0a0a0a] py-20 transition-colors duration-300">
-                <div className="max-w-6xl mx-auto px-4">
-                    <div className="mb-16">
-                        <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-black dark:text-white mb-4 pixel-text">
-                            ARTICLES
-                        </h1>
-                        <p className="text-xl text-gray-700 dark:text-gray-300 font-mono">
-                            Writing &amp; Thought Leadership
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-20">
-                        {feedItems.map((item, idx) => (
-                            <ArticleCard key={item.slug ?? item.link ?? idx} item={item} />
-                        ))}
-                    </div>
-                </div>
-            </section>
-        </ContainerBlock>
-    );
-};
+const ArticlesPage: NextPage<ArticlesPageProps> = ({ feedItems }) => (
+    <ContainerBlock
+        customMeta={{
+            title: "Florian Wahl - Articles on Product & Fintech",
+            description:
+                "Read Florian Wahl's articles and blog posts on product strategy, fintech innovation, digital transformation, and open finance.",
+            type: "blog",
+        }}
+    >
+        <Section labelledBy="articles-heading" ruled={false}>
+            <SectionHeader kicker="Writing" title="Articles" id="articles-heading" as="h1" />
+            <div>
+                {feedItems.map((item, idx) => (
+                    <ArticleRow key={item.slug ?? item.link ?? idx} item={item} />
+                ))}
+            </div>
+        </Section>
+    </ContainerBlock>
+);
 
 export const getStaticProps: GetStaticProps<ArticlesPageProps> = async () => {
     const posts = getAllPostsMeta();
@@ -130,7 +102,6 @@ export const getStaticProps: GetStaticProps<ArticlesPageProps> = async () => {
         title: p.title,
         date: p.date,
         description: p.description,
-        imgUrl: p.coverImage,
         readingTime: p.readingTime,
         slug: p.slug,
     }));
@@ -139,7 +110,6 @@ export const getStaticProps: GetStaticProps<ArticlesPageProps> = async () => {
         title: a.title,
         date: a.date ?? "",
         description: "",
-        imgUrl: a.imgUrl,
         link: a.link,
     }));
 

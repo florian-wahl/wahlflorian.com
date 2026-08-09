@@ -4,27 +4,33 @@ import UpcomingEngagements from "../components/UpcomingEngagements";
 import ThoughtLeadership from "../components/ThoughtLeadership";
 import Experience from "../components/Experience";
 import { getAllPostsMeta, PostMeta } from "../lib/posts";
-import type { GetStaticProps, NextPage } from 'next';
+import type { GetStaticProps, NextPage } from "next";
 
 interface HomeProps {
-    postsMeta: Pick<PostMeta, 'title' | 'date' | 'slug'>[];
+    postsMeta: Pick<PostMeta, "title" | "date" | "slug">[];
 }
 
-const Home: NextPage<HomeProps> = ({ postsMeta }) => {
-    return (
-        <ContainerBlock
-            customMeta={{
-                title: "Florian Wahl - Product Leader & Fintech Expert",
-                description: "Product leader, engineer, and fintech expert. Explore my work experience, thought leadership, and capabilities."
-            }}
-        >
-            <Hero />
-            <UpcomingEngagements />
-            <ThoughtLeadership limit={9} hostedPosts={postsMeta} />
-            <Experience />
-        </ContainerBlock>
-    );
-};
+/**
+ * DESIGN.md §11.3 order, minus the advisory band.
+ *
+ * The band is deferred with /advisory (§12): it needs copy that doesn't exist
+ * yet, and the hero already carries this page's single CTA — §11.2 allows one
+ * per page, never two.
+ */
+const Home: NextPage<HomeProps> = ({ postsMeta }) => (
+    <ContainerBlock
+        customMeta={{
+            title: "Florian Wahl - Product Leader & Fintech Expert",
+            description:
+                "Product leader, engineer, and fintech expert. Explore my work experience, thought leadership, and capabilities.",
+        }}
+    >
+        <Hero />
+        <UpcomingEngagements />
+        <ThoughtLeadership limit={8} hostedPosts={postsMeta} />
+        <Experience />
+    </ContainerBlock>
+);
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     const posts = getAllPostsMeta();
@@ -32,4 +38,4 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     return { props: { postsMeta } };
 };
 
-export default Home; 
+export default Home;

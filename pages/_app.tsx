@@ -4,7 +4,6 @@ import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { preloadCriticalImages, optimizeImageLoading } from '../utils/imageOptimization';
 
 declare global {
     interface Window {
@@ -21,9 +20,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     }, []);
 
     useEffect(() => {
-        // Preload critical images for better performance
-        const prioritized = optimizeImageLoading.priority.map(url => `${router.basePath}${url}`);
-        preloadCriticalImages(prioritized);
+        // Not preloading here any more. This effect runs after hydration, so the
+        // hint arrived long after the browser had already started fetching the
+        // image via loading="eager" + fetchpriority="high" — which is what the
+        // "preloaded but not used within a few seconds" console warning was
+        // reporting. OptimizedImage handles priority loading on its own.
 
         // Add performance monitoring
         if (typeof window !== 'undefined' && 'performance' in window) {

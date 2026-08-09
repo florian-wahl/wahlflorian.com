@@ -144,9 +144,11 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
                     }}
                 />
             </Head>
-            <main className="bg-white dark:bg-[#0a0a0a] w-full min-h-screen transition-colors duration-300">
+            {/* Flex column so the footer sits at the bottom on short pages
+                (404, contact) instead of floating mid-viewport. */}
+            <main className="flex min-h-screen w-full flex-col bg-canvas">
                 <Navbar />
-                <div>{children}</div>
+                <div className="flex-1">{children}</div>
                 <Footer />
             </main>
         </div>

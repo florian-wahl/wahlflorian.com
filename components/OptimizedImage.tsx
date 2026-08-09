@@ -91,7 +91,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
                     ref={imgRef}
                     src={src.startsWith('http') ? src : `${basePath}${src}`}
                     alt={alt}
-                    className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'
+                    className={`transition-opacity duration-120 ease-system ${isLoaded ? 'opacity-100' : 'opacity-0'
                         } ${className}`}
                     style={style}
                     onLoad={handleLoad}
@@ -119,7 +119,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
                 alt={alt}
                 width={width}
                 height={height}
-                className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'
+                className={`transition-opacity duration-120 ease-system ${isLoaded ? 'opacity-100' : 'opacity-0'
                     } ${className}`}
                 style={style}
                 onLoad={handleLoad}

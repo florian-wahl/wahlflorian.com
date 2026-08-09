@@ -4,6 +4,10 @@ export const preloadCriticalImages = (imageUrls: string[]) => {
     if (typeof window === 'undefined') return;
 
     imageUrls.forEach(url => {
+        // Guard against duplicates: this ran once per effect invocation, so
+        // React's double-invoked effects emitted two identical <link> tags.
+        if (document.querySelector(`link[rel="preload"][href="${CSS.escape(url)}"]`)) return;
+
         const link = document.createElement('link');
         link.rel = 'preload';
         link.as = 'image';

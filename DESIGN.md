@@ -259,6 +259,25 @@ contradict the direction entirely.
 - Icons inherit `currentColor` and never `--accent`.
 - Social icons: one set at one weight, `--ink-muted`, → `--ink` on hover.
 
+### 6.1 The site mark
+
+An `F` monogram in `--accent` on an `--ink` tile. The two arms are the kicker motif at two
+lengths — the long rule and the short tick — so the mark is built from the same geometry as
+every section header rather than being a separate piece of branding.
+
+The tile always uses the **dark-theme** pair (`#D68B57` on `#101418`, 6.77:1) in both themes. A
+favicon has no page context to swap tokens against, and a dark tile stays legible on light and
+dark browser chrome alike; a light one does not.
+
+The whole set is generated from one geometry definition by `node tools/favicon.js` — `.ico`
+(16/32/48), `.svg`, apple-touch, PWA icons, and the manifest. **Re-run it after any change to
+`--ink` or the dark `--accent`**, the same way `tools/contrast.js` is re-run after a token change.
+Never hand-edit the files in `public/`.
+
+Everything is axis-aligned on a 16-unit grid at 2-unit stroke, so at 16px each feature is exactly
+2 physical pixels and the mark needs no anti-aliasing to stay crisp. That constraint is why the
+mark is blockier than the display face — it is drawn for the tab strip, not for a slide.
+
 ---
 
 ## 7. Surface classes
@@ -410,8 +429,10 @@ The `rainbowContent` taglines carry the same problem: "Thought Leader" is a self
 and is the weakest of the five. Iteration 1 renders them as one quiet line rather than animated
 badges, but does not edit the list.
 
-**Wordmark / monogram.** An **FW** monogram or set wordmark would anchor the system for slides,
-LinkedIn, and PDFs. Cheaper to define now than to bolt on later, but not blocking.
+**Wordmark.** The **F** monogram now ships as the site mark (§6.1), which covers the tab strip,
+the PWA icon, and the share sheet. A set *wordmark* — the full name in Instrument Sans, with the
+lockup and clear-space rules that slides, LinkedIn, and PDFs need — is still open. The monogram
+fixes the color and geometry it should be built from, so it is cheaper now than it was.
 
 ---
 

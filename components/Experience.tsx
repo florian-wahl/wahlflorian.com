@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import userData from "../constants/data";
 import { event } from "../utils/analytics";
-import { Section, SectionHeader } from "./primitives";
+import { Section, SectionHeader, Action } from "./primitives";
 import { ExternalIcon } from "./Icons";
 
 /** "2021-10" -> "2021.10" — tabular, aligns down the column. */
@@ -16,9 +16,15 @@ const formatRange = (startDate: string, endDate?: string | null): string =>
 interface ExperienceProps {
     /** `h1` on /experience, `h2` when embedded on the home page. */
     as?: "h1" | "h2";
+    /**
+     * `compact` drops role descriptions and company grouping and links out to
+     * /experience. Used on the home page, where the full view duplicated the
+     * /experience page outright and left it with no reason to exist.
+     */
+    variant?: "full" | "compact";
 }
 
-const Experience: React.FC<ExperienceProps> = ({ as = "h2" }) => {
+const Experience: React.FC<ExperienceProps> = ({ as = "h2", variant = "full" }) => {
     const groups = useMemo(() => {
         const out: {
             company: string;
@@ -37,6 +43,41 @@ const Experience: React.FC<ExperienceProps> = ({ as = "h2" }) => {
 
         return out;
     }, []);
+
+    if (variant === "compact") {
+        return (
+            <Section labelledBy="experience-heading">
+                <SectionHeader kicker="Experience" id="experience-heading" as={as} />
+
+                <div>
+                    {userData.experience.map((exp) => (
+                        <div
+                            key={`${exp.company}-${exp.title}-${exp.startDate}`}
+                            className="flex flex-col gap-1 border-b border-rule py-3.5 sm:flex-row sm:items-baseline sm:gap-6"
+                        >
+                            <span className="min-w-0 flex-1 text-body-s font-medium text-ink">
+                                {exp.title}
+                            </span>
+                            <span className="shrink-0 text-meta text-ink-muted">{exp.company}</span>
+                            <span className="shrink-0 text-meta tabular-nums text-ink-muted sm:w-[9.5rem] sm:text-right">
+                                {formatRange(exp.startDate, exp.endDate)}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mt-8">
+                    <Action
+                        href="/experience"
+                        variant="ghost"
+                        onClick={() => event("cta_click", { label: "full_experience" })}
+                    >
+                        Full experience
+                    </Action>
+                </div>
+            </Section>
+        );
+    }
 
     return (
         <Section labelledBy="experience-heading">

@@ -194,8 +194,13 @@ Base 16px. **Floor is 11px (`0.6875rem`) and nothing goes below it.**
 
 ### 3.3 Rules
 
-- **Measure:** prose capped at **68ch**. Non-negotiable — the current site runs body copy the full
-  container width, which is the single worst readability defect on it today.
+- **Measure:** prose capped at **74ch**, via `max-w-prose`. This sits at the top of the 45–75ch
+  readability range rather than at the classic 66ch ideal, which is a deliberate call — the
+  narrower measure made the pages feel like they were wrapping early. What is non-negotiable is
+  that prose is capped *somewhere*: the pre-refresh site ran body copy the full container width,
+  which was its single worst readability defect.
+- **Container** is `max-w-6xl` (1152px). At `5xl` the hero's left grid column capped the bio at
+  65ch, under the site measure, because the column is narrower than `max-w-prose`.
 - **Numerals:** `tabular-nums lining-nums` on all dates, durations, figures, and any column.
 - **Uppercase:** only `label` and `label-s`, always with the tracking above. Never a headline.
 - **Weight carries hierarchy** alongside size. Two sizes at different weights beat four sizes.
@@ -292,29 +297,37 @@ One token layer, three dialects. Density and separation follow the surface, not 
 | **Row / leading** | — | 0.72rem vertical padding | 1.62 |
 | **Separation** | 1px rule | 1px rule per row | Whitespace |
 | **Ground** | `--canvas` | `--canvas` | `--surface` |
-| **Measure** | — | full | 68ch |
+| **Measure** | — | full | 74ch |
 
 ---
 
 ## 8. Copy standard
 
-Declarative and quantified. Headings state the takeaway rather than naming the topic.
+**Florian's own voice guide is the authority for prose written in his name.** It is installed as
+the `florian-writing-style` skill; load it before drafting any site copy. Its hard rules apply
+here, most consequentially:
 
-**Ban list — enforced in review:**
+| Rule | Applies to |
+|---|---|
+| **Minimize em dashes** — use parentheses, periods, or hyphens | All prose. This is his rule #1 |
+| Short sentences, short paragraphs, cut words that don't earn their place | All prose |
+| No corporate jargon ("leverage", "utilize", "going forward") | All prose |
+| No AI-flavored phrasing ("navigate", "landscape", "it's worth noting") | All prose |
+| Parenthetical asides for caveats and context | A signature move — use it |
+
+**Where the two documents disagreed, the voice guide wins.** This section previously banned
+tricolons; his guide lists **triple patterns as a signature move** ("better, faster, and fairer").
+That ban is withdrawn. The bio's opening line — "trust, customer obsession, and continuous
+learning" — is his own sentence and stays.
+
+**Still banned, because these are interface-copy problems rather than voice:**
 
 | Pattern | Example to avoid |
 |---|---|
 | Negation reframe | "not just a PM, but a strategist" |
-| Tricolon padding | "trust, customer obsession, and continuous learning" |
 | Empty superlative | "a rare mix of technical depth and strategic execution" |
 | Noun-stacked heading | "Product Strategy Innovation Leadership" |
 | Uniform section length | Every block padded to the same three sentences |
-
-A factual list ("banks, credit unions, and fintechs") is not a tricolon violation. The rule targets
-rhetorical padding, not enumeration.
-
-> **The existing bio in `constants/data.ts` violates rows 2 and 3 and must be rewritten as part of
-> this work** — not deferred to a follow-up.
 
 ---
 
@@ -349,7 +362,7 @@ Score the **render**, not the code. Squint at a screenshot first.
 - [ ] Nothing below 11px
 - [ ] Radius ≤4px everywhere
 - [ ] Zero `box-shadow` used as elevation
-- [ ] Prose ≤68ch
+- [ ] Prose ≤74ch
 - [ ] No scroll-fade, no looping animation, no no-op hover
 - [ ] No decorative heading icons, no emoji
 - [ ] Density differs across chrome / index / prose

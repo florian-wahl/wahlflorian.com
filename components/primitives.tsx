@@ -200,11 +200,17 @@ export const IndexRow: React.FC<IndexRowProps> = ({
 
 /* ---------- Page shell ---------- */
 
-/** Consistent page gutter and max width for every route. */
+/**
+ * Consistent page gutter and max width for every route.
+ *
+ * 6xl (1152px) rather than 5xl: at 5xl the hero's left grid column capped the
+ * bio at 65ch, below the measure the rest of the site uses. Widening the
+ * container fixes that without shrinking the headshot column.
+ */
 export const Container: React.FC<{ children: React.ReactNode; className?: string }> = ({
     children,
     className = "",
-}) => <div className={`mx-auto w-full max-w-5xl px-6 sm:px-8 ${className}`}>{children}</div>;
+}) => <div className={`mx-auto w-full max-w-6xl px-6 sm:px-8 ${className}`}>{children}</div>;
 
 /** Standard vertical rhythm for a page section, with a top hairline. */
 export const Section: React.FC<{

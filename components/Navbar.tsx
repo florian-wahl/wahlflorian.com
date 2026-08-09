@@ -32,6 +32,7 @@ const ThemeButton: React.FC = () => {
 };
 
 const NAV = [
+    { href: "/advisory", label: "Advisory", key: "advisory" },
     { href: "/articles", label: "Writing", key: "articles" },
     { href: "/experience", label: "Experience", key: "experience" },
     { href: "/contact", label: "Contact", key: "contact" },

@@ -67,7 +67,9 @@ module.exports = {
         "label-s": ["0.6875rem", { lineHeight: "1.35", letterSpacing: "0.14em" }],
       },
       maxWidth: {
-        prose: "68ch",
+        // 74ch. Sits at the top of the 45–75ch readability range rather than the
+        // classic 66ch ideal — a deliberate call, see DESIGN.md §3.3.
+        prose: "74ch",
       },
       transitionDuration: {
         DEFAULT: "120ms",

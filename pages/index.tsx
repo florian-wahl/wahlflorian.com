@@ -28,7 +28,7 @@ const Home: NextPage<HomeProps> = ({ postsMeta }) => (
         <Hero />
         <UpcomingEngagements />
         <ThoughtLeadership limit={8} hostedPosts={postsMeta} />
-        <Experience />
+        <Experience variant="compact" />
     </ContainerBlock>
 );
 

@@ -33,7 +33,7 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
     return (
         <ContainerBlock
             customMeta={{
-                title: `${post.title} — Florian Wahl`,
+                title: `${post.title} - Florian Wahl`,
                 description: post.description || `${post.title} by Florian Wahl`,
                 type: "article",
                 image: post.coverImage || "/headshot.webp",
@@ -89,8 +89,8 @@ const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
                     {/* CTA sits after the essay, never interrupting it. §2.4 / §11.1 */}
                     <div className="mt-16 border-t border-rule pt-8">
                         <Action
-                            href="/contact"
-                            onClick={() => event("cta_click", { label: "article_footer_contact" })}
+                            href="/advisory"
+                            onClick={() => event("cta_click", { label: "article_footer_advisory" })}
                         >
                             Start a conversation
                         </Action>

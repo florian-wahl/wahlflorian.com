@@ -22,7 +22,7 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
 
     const meta: MetaProps = {
         title: "Florian Wahl - Product Leader & Fintech Strategist",
-        description: `Florian Wahl is a Product Leader and Strategist specializing in fintech, payments, and digital transformation. Currently leading Product Strategy at Akoya, with expertise in open finance and API development.`,
+        description: `Florian Wahl is a product leader specializing in fintech infrastructure: open banking, payments, and data access. A decade across consulting, product management, and product strategy.`,
         image: "/headshot.webp",
         type: "website",
         ...customMeta,
@@ -89,15 +89,12 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
                                 "https://twitter.com/flwahl",
                                 "https://medium.com/@flwahl"
                             ],
-                            worksFor: {
-                                "@type": "Organization",
-                                name: "Akoya",
-                                url: "https://akoya.com"
-                            },
-                            alumniOf: {
-                                "@type": "Organization",
-                                name: "Capgemini"
-                            },
+                            // No worksFor: the current employer is in stealth and
+                            // can't be named. Better absent than stale.
+                            alumniOf: [
+                                { "@type": "Organization", name: "Akoya", url: "https://akoya.com" },
+                                { "@type": "Organization", name: "Capgemini" }
+                            ],
                             knowsAbout: [
                                 "Product Strategy",
                                 "Fintech",

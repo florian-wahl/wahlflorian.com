@@ -16,8 +16,10 @@ interface Experience {
     company: string;
     startDate: string; // Format: "YYYY-MM" or "YYYY-MM-DD"
     endDate?: string | null; // Format: "YYYY-MM" or "YYYY-MM-DD", null for current role
-    companyLink: string;
-    desc: string;
+    /** Omit for employers that can't be linked — e.g. a company still in stealth. */
+    companyLink?: string;
+    /** Omit while a role is too new to describe. The entry renders without a body. */
+    desc?: string;
 }
 
 interface SocialLinks {
@@ -153,10 +155,17 @@ const userData: UserData = {
     upcomingEngagements: [],
     experience: [
         {
+            title: "Head of Product",
+            company: "Early-stage AI startup",
+            startDate: "2026-06",
+            endDate: null, // Current role
+            // No companyLink or desc: company is in stealth and the role is new.
+        },
+        {
             title: "Head of Product Strategy",
             company: "Akoya",
             startDate: "2022-11",
-            endDate: null, // Current role
+            endDate: "2026-06",
             companyLink: "https://akoya.com",
             desc: "Lead a team of product managers, hiring junior PMs and growing them into senior roles, while owning Akoya's multi-year strategy, pricing, and go-to-market. Drove a 0-to-1 product from concept to the company's first multi-million dollar client in under 18 months, directly supporting pipeline efforts that generated tens of millions in ARR.",
         },

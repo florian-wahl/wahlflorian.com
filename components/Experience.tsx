@@ -22,7 +22,7 @@ const Experience: React.FC<ExperienceProps> = ({ as = "h2" }) => {
     const groups = useMemo(() => {
         const out: {
             company: string;
-            companyLink: string;
+            companyLink?: string;
             experiences: typeof userData.experience;
         }[] = [];
 
@@ -45,16 +45,24 @@ const Experience: React.FC<ExperienceProps> = ({ as = "h2" }) => {
             <div className="flex flex-col gap-12">
                 {groups.map((group) => (
                     <div key={group.company}>
-                        <a
-                            href={group.companyLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => event("company_click", { company: group.company })}
-                            className="mb-1 inline-flex items-center gap-1.5 font-display text-display-s font-bold text-ink transition-colors duration-120 ease-system hover:text-accent"
-                        >
-                            {group.company}
-                            <ExternalIcon size={13} />
-                        </a>
+                        {/* Companies in stealth have no link — render the name as
+                            plain text rather than a dead anchor. */}
+                        {group.companyLink ? (
+                            <a
+                                href={group.companyLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => event("company_click", { company: group.company })}
+                                className="mb-1 inline-flex items-center gap-1.5 font-display text-display-s font-bold text-ink transition-colors duration-120 ease-system hover:text-accent"
+                            >
+                                {group.company}
+                                <ExternalIcon size={13} />
+                            </a>
+                        ) : (
+                            <p className="mb-1 font-display text-display-s font-bold text-ink">
+                                {group.company}
+                            </p>
+                        )}
 
                         <div className="mt-3">
                             {group.experiences.map((exp) => (
@@ -68,9 +76,11 @@ const Experience: React.FC<ExperienceProps> = ({ as = "h2" }) => {
                                             {formatRange(exp.startDate, exp.endDate)}
                                         </span>
                                     </div>
-                                    <p className="max-w-prose font-prose text-prose text-ink-muted">
-                                        {exp.desc}
-                                    </p>
+                                    {exp.desc && (
+                                        <p className="max-w-prose font-prose text-prose text-ink-muted">
+                                            {exp.desc}
+                                        </p>
+                                    )}
                                 </article>
                             ))}
                         </div>

@@ -30,9 +30,11 @@ const Hero: React.FC = () => (
                     </p>
 
                     <div className="flex flex-wrap gap-3">
+                        {/* §11.2: on /, the CTA points at /advisory — a reader is
+                            told what's on offer before being asked to make contact. */}
                         <Action
-                            href="/contact"
-                            onClick={() => event("cta_click", { label: "start_a_conversation" })}
+                            href="/advisory"
+                            onClick={() => event("cta_click", { label: "home_advisory" })}
                         >
                             Start a conversation
                         </Action>

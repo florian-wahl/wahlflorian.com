@@ -10,11 +10,11 @@
     "test": "tsc utils/imageOptimization.ts utils/imageOptimization.test.ts --module commonjs --target es2019 --outDir build --noEmit false && node --test build/imageOptimization.test.js && rm -rf build"
   },
   "dependencies": {
-    "@next/third-parties": "^15.1.5",
+    "@next/third-parties": "^15.5.28",
     "gray-matter": "^4.0.3",
-    "marked": "^17.0.3",
-    "next": "^15.1.5",
-    "next-themes": "latest",
+    "marked": "^17.0.6",
+    "next": "^15.5.28",
+    "next-themes": "^0.4.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -26,12 +26,17 @@
     "not dead"
   ],
   "devDependencies": {
-    "@types/node": "^22.13.10",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "autoprefixer": "^10.4.12",
-    "postcss": "^8.4.18",
-    "tailwindcss": "^3.2.1",
-    "typescript": "^5.8.2"
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.31",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "next": {
+      "postcss": "$postcss"
+    }
   }
 }

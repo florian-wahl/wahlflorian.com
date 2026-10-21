@@ -2,7 +2,7 @@
 title: "A Framework for Product Strategy"
 date: "2022-10-30"
 description: "This article provides a guiding framework to think about and establish a robust product strategy."
-coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ywYLQMzS1NLVWYHB3B7sZA.jpeg"
+coverImage: "/posts-img/a-framework-for-product-strategy/cover.webp"
 ---
 > Original post at [Medium - A Framework for Product Strategy](https://medium.com/@flwahl/a-framework-for-product-strategy-68ddabe8cb6)
 
@@ -16,7 +16,7 @@ Before jumping into the specifics of a product strategy, it is essential to unde
 
 In my view, a product strategy is one critical element of the bigger picture. It’s a piece of the puzzle that makes a product and a business successful. It’s the centerpiece that ties everything together.
 
-![The Big Picture: Vision, Product Strategy, Goals, Roadmap](https://miro.medium.com/v2/resize:fit:1400/1*ywYLQMzS1NLVWYHB3B7sZA.jpeg)
+![The Big Picture: Vision, Product Strategy, Goals, Roadmap](/posts-img/a-framework-for-product-strategy/1.jpg)
 
 To keep it simple, we will talk about four main components:
 
@@ -61,7 +61,7 @@ If your team struggles with prioritization or defining a clear roadmap, it’s v
 
 Now that we’ve briefly talked about where in the big picture your product strategy seats, let’s look at a framework that can help you think through a strategy.
 
-![Product Strategy Framework: Challenges, Decided Approach, Actions](https://miro.medium.com/v2/resize:fit:1400/1*7y_b31N_iYOXqKMwXP5CoQ.jpeg)
+![Product Strategy Framework: Challenges, Decided Approach, Actions](/posts-img/a-framework-for-product-strategy/2.jpg)
 
 In my view, a product strategy should articulate three key parts: a set of **challenges**, a **decided approach**, and some resulting **actions**.
 

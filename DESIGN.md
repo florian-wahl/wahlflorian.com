@@ -283,6 +283,23 @@ Everything is axis-aligned on a 16-unit grid at 2-unit stroke, so at 16px each f
 2 physical pixels and the mark needs no anti-aliasing to stay crisp. That constraint is why the
 mark is blockier than the display face — it is drawn for the tab strip, not for a slide.
 
+### 6.2 Share cards
+
+Link previews (LinkedIn, Slack, X) use generated 1200×630 PNG cards, not cover photos. Like the
+favicon, they always use the **dark-theme** tokens, for the same reason: a preview has no page
+context to swap against, and slate holds its own in a white feed.
+
+- **Article card:** mark + name, kicker (`ESSAY · date`), title in Instrument Sans 700, rule,
+  domain. The title is set as written in the post's frontmatter and steps down 68 → 58 → 50px by length.
+- **Default card** (every other page): mark alone, kicker, the name as headline, one positioning
+  line, the headshot. The name appears once.
+
+`node tools/og-cards.js` builds them from the geometry in §6.1 and the tokens in §2.2. It runs as
+`predev`/`prebuild`, so a new post cannot ship without a card. The output in `public/og/` is
+gitignored build output, so never hand-edit it, and update the token constants at the top of the
+script after any dark-token change. The §1 non-negotiables apply here as on the page: no
+gradients, no shadows, weights 400/500/700, radius ≤4px.
+
 ---
 
 ## 7. Surface classes

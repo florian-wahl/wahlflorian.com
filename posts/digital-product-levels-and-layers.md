@@ -2,7 +2,7 @@
 title: "Digital Product Levels and Layers: Two Component Frameworks Product Managers Need To Know"
 date: "2022-11-08"
 description: "This article explores two component frameworks that help think about various products in levels and layers."
-coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*iO0ixU8AcImt58QbPe9fNQ.png"
+coverImage: "/posts-img/digital-product-levels-and-layers/cover.webp"
 ---
 > Original post at [Medium - Product Coalition - Digital Product Levels and Layers: Two Component Frameworks Product Managers Need To Know](https://medium.productcoalition.com/breaking-down-the-digital-product-layers-70d7590a6dcb)
 
@@ -20,7 +20,7 @@ These frameworks are intended to be generic and should apply to most industries.
 
 This first model is quite common when you are looking for product layers. It is a simplified view of [Kotler’s Five Product Levels](https://www.cgma.org/resources/tools/cost-transformation-model/kotlers-five-product-level-model.html) and looks at three main levels of product: the **core** product, the **actual** product, and the **augmented** product.
 
-![Levels of product value](https://miro.medium.com/v2/resize:fit:1400/1*iO0ixU8AcImt58QbPe9fNQ.png)
+![Levels of product value](/posts-img/digital-product-levels-and-layers/1.png)
 
 ### Core product
 
@@ -60,7 +60,7 @@ With this second framework, I want to take an approach that is similar to Kotler
 
 When evaluating a digital product, we can break it down into three basic layers: the **infrastructure** layer, the **application** layer, and the **service** layer. Furthermore, I believe that a digital product needs to serve one or multiple **use cases**. These use cases are built on top of the infrastructure layer and interact with the application and service layers.
 
-![Digital product layers](https://miro.medium.com/v2/resize:fit:1400/1*e5QwFJv2SJDITKdr6TqrBA.png)
+![Digital product layers](/posts-img/digital-product-levels-and-layers/2.png)
 
 ### Infrastructure layer
 
@@ -100,7 +100,7 @@ A use case is a **scenario for your digital product**. It explains a situation w
 
 I find it helpful to think of these layers as segments of an industry. I will use an example to walk you through this part.
 
-![Use case layers](https://miro.medium.com/v2/resize:fit:1400/1*2ZWs4u5SwKDR-SBynC07HA.png)
+![Use case layers](/posts-img/digital-product-levels-and-layers/3.png)
 
 *   At the top is the **industry** layer. What broad set of clients does your company serve? Think financial services, healthcare, automotive, travel… These are also called verticals or domains.
 *   An industry can then be broken down into **segments**. In a given industry, what set of clients should your company target? This time think banking, insurance, wealth management…

@@ -2,7 +2,7 @@
 title: "Four Methodologies That Can Help Your Product Team’s Prioritization Efforts"
 date: "2022-12-05"
 description: "This article explores four common product prioritization methodologies: MoSCoW, Kano, Value vs Effort, and RICE."
-coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*v2zCAUyCDFj8ATBesBHW6g.png"
+coverImage: "/posts-img/four-prioritization-methodologies/cover.webp"
 ---
 >Original post at [Medium - Product Coalition - Four Methodologies That Can Help Your Product Team’s Prioritization Efforts](https://medium.productcoalition.com/4-helpful-prioritization-methodologies-f3ee0017e6d1)
 
@@ -34,7 +34,7 @@ We will take a look at:
 
 ## MoSCoW Method
 
-![The MoSCoW method](https://miro.medium.com/v2/resize:fit:1400/1*cb435cXB-4oGzslvBkmNTA.png)
+![The MoSCoW method](/posts-img/four-prioritization-methodologies/1.png)
 
 > This prioritization method was developed by Dai Clegg in 1994 for use in rapid application development. It was first used extensively with the dynamic systems development method from 2002. ([Wikipedia — MoSCoW method](https://en.wikipedia.org/wiki/MoSCoW_method))
 
@@ -51,7 +51,7 @@ Your team should organize the backlog items into these four categories and then 
 
 ## Kano Model
 
-![The Kano model](https://miro.medium.com/v2/resize:fit:1400/1*oXYqwydFK9xi_A5Wjsmviw.png)
+![The Kano model](/posts-img/four-prioritization-methodologies/2.png)
 
 > The **Kano model** is a theory for product development and customer satisfaction developed in the 1980s by Professor Noriaki Kano, which classifies customer preferences into categories. ([Wikipedia — Kano model](https://en.wikipedia.org/wiki/Kano_model))
 
@@ -71,7 +71,7 @@ The Kano model also provides a temporality to features that are worth keeping in
 
 ## Value vs. Effort Matrix
 
-![The value vs. effort matrix](https://miro.medium.com/v2/resize:fit:1400/1*deaDsjrH3m-egS5HQ4u4WQ.png)
+![The value vs. effort matrix](/posts-img/four-prioritization-methodologies/3.png)
 
 This model originates from the lean methodology and positions features in a value vs. effort matrix. The approach encourages your team to evaluate each feature against two dimensions.
 
@@ -90,7 +90,7 @@ You will likely come up with a mix of features falling into these four quadrants
 
 ## RICE Scoring
 
-![The RICE scoring](https://miro.medium.com/v2/resize:fit:1400/1*nA3gGfXEvr5Pbc6ZOtOlQg.png)
+![The RICE scoring](/posts-img/four-prioritization-methodologies/4.png)
 
 > Messaging-software maker [Intercom](https://www.intercom.com/) developed the RICE roadmap prioritization model to improve its own internal decision-making processes. ([ProductPlan](https://www.productplan.com/glossary/rice-scoring-model/))
 

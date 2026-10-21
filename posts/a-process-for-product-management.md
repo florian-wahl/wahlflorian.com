@@ -2,7 +2,7 @@
 title: "A Process for Product Management"
 date: "2022-11-19"
 description: "This articles explores key phases of product management, and how to manage the lifecycle of an idea from intake to its retirement."
-coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*yg7tmTyUqldSMY6ITNfsLQ.png"
+coverImage: "/posts-img/a-process-for-product-management/cover.webp"
 ---
 > Original post at [Mediuam - Bootcamp - A Process for Product Management](https://medium.com/design-bootcamp/a-process-for-product-management-9e12af274fa)
 
@@ -14,7 +14,7 @@ In this article, I want to discuss how to **establish a product management proce
 
 ## The Key Phases
 
-![A process for product management: intake, prioritize, build, test, launch, iterate, and retire.](https://miro.medium.com/v2/resize:fit:1400/1*yg7tmTyUqldSMY6ITNfsLQ.png)
+![A process for product management: intake, prioritize, build, test, launch, iterate, and retire.](/posts-img/a-process-for-product-management/1.png)
 
 I will walk you through a model that I found helpful to structure product management processes. This model breaks down the process into a few key phases which take us through the lifecycle of a product.
 
@@ -146,7 +146,7 @@ This is the de-commercialization of a part of a product and a **clear** **commun
 
 ## Conclusion
 
-![A process for product management: intake, prioritize, build, test, launch, iterate, and retire.](https://miro.medium.com/v2/resize:fit:1400/1*yg7tmTyUqldSMY6ITNfsLQ.png)
+![A process for product management: intake, prioritize, build, test, launch, iterate, and retire.](/posts-img/a-process-for-product-management/1.png)
 
 In this article, I talked about a more fundamental aspect of product management as companies look to scale: establishing a clear process for product management.
 

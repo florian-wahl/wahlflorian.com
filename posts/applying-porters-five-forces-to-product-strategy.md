@@ -2,7 +2,7 @@
 title: "Applying Porter’s Five Forces to Product Strategy"
 date: "2023-01-14"
 description: "This article explores how someone can use Porter's Five Forces framework and apply it to product strategy."
-coverImage: "https://miro.medium.com/v2/resize:fit:1400/format:webp/0*ZROay747swCHKK3M"
+coverImage: "/posts-img/applying-porters-five-forces-to-product-strategy/cover.webp"
 ---
 
 > Original post at [Medium - Product Coalition - Porter’s Five Forces to Product Strategy: A Walkthrough and Free Template](https://medium.productcoalition.com/applying-porters-five-forces-to-product-strategy-free-template-4412429b7338)
@@ -37,7 +37,7 @@ Documenting your perspectives and assumptions on the five forces will help you m
 
 Now let’s take a look at each of the five forces. For each force, I will provide some guiding questions. Your goal is to inform each force and think through potential recommendations in reaction to the force.
 
-![Porter’s Five Forces Framework](https://cdn-images-1.medium.com/max/1600/0*ZROay747swCHKK3M)
+![Porter’s Five Forces Framework](/posts-img/applying-porters-five-forces-to-product-strategy/cover.webp)
 
 ### 1\. Intensity of Existing Competition
 

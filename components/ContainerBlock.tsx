@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
+const SITE_URL = "https://wahlflorian.com";
+
 interface MetaProps {
     title?: string;
     description?: string;
@@ -23,10 +25,15 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
     const meta: MetaProps = {
         title: "Florian Wahl - Product Leader & Fintech Strategist",
         description: `Florian Wahl is a product leader specializing in fintech infrastructure: open banking, payments, and data access. A decade across consulting, product management, and product strategy.`,
-        image: "/headshot.webp",
+        image: "/og/default.png",
         type: "website",
         ...customMeta,
     };
+
+    // OG/Twitter need absolute URLs. Share cards live under /og/ and are
+    // generated at 1200x630 PNG by tools/og-cards.js.
+    const imageUrl = meta.image?.startsWith("/") ? `${SITE_URL}${meta.image}` : meta.image;
+    const isShareCard = !!meta.image?.startsWith("/og/");
 
     return (
         <div>
@@ -54,22 +61,31 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
                 <meta name="copyright" content="Florian Wahl" />
                 <meta
                     property="og:url"
-                    content={`https://wahlflorian.com${router.asPath}`}
+                    content={`${SITE_URL}${router.asPath}`}
                 />
                 <link
                     rel="canonical"
-                    href={`https://wahlflorian.com${router.asPath}`}
+                    href={`${SITE_URL}${router.asPath}`}
                 />
                 <meta property="og:type" content={meta.type} />
                 <meta property="og:site_name" content="Florian Wahl" />
                 <meta property="og:description" content={meta.description} />
                 <meta property="og:title" content={meta.title} />
-                <meta property="og:image" content={meta.image} />
+                <meta property="og:image" content={imageUrl} />
+                {isShareCard && (
+                    <>
+                        <meta property="og:image:width" content="1200" />
+                        <meta property="og:image:height" content="630" />
+                        <meta property="og:image:type" content="image/png" />
+                    </>
+                )}
+                <meta property="og:image:alt" content={meta.title} />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:site" content="@flwahl" />
                 <meta name="twitter:title" content={meta.title} />
                 <meta name="twitter:description" content={meta.description} />
-                <meta name="twitter:image" content={meta.image} />
+                <meta name="twitter:image" content={imageUrl} />
+                <meta name="twitter:image:alt" content={meta.title} />
                 {meta.date && (
                     <meta property="article:published_time" content={meta.date} />
                 )}
@@ -82,8 +98,10 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
                             name: "Florian Wahl",
                             jobTitle: "Product Leader",
                             description: meta.description,
-                            image: meta.image,
-                            url: `https://wahlflorian.com${router.asPath}`,
+                            // A Person's image is a photo of the person, not the
+                            // page's share card.
+                            image: `${SITE_URL}/headshot.webp`,
+                            url: `${SITE_URL}${router.asPath}`,
                             sameAs: [
                                 "https://www.linkedin.com/in/wahlflorian/",
                                 "https://twitter.com/flwahl",
@@ -116,20 +134,18 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
                                 headline: meta.title,
                                 description: meta.description,
                                 datePublished: meta.date,
-                                image: meta.image
-                                    ? `https://wahlflorian.com${meta.image}`
-                                    : undefined,
+                                image: imageUrl,
                                 author: {
                                     "@type": "Person",
                                     name: "Florian Wahl",
-                                    url: "https://wahlflorian.com",
+                                    url: SITE_URL,
                                 },
                                 publisher: {
                                     "@type": "Person",
                                     name: "Florian Wahl",
-                                    url: "https://wahlflorian.com",
+                                    url: SITE_URL,
                                 },
-                                url: `https://wahlflorian.com${router.asPath}`,
+                                url: `${SITE_URL}${router.asPath}`,
                             })
                         }}
                     />
@@ -140,7 +156,7 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({ children, customMeta = 
                         __html: JSON.stringify({
                             "@context": "https://schema.org",
                             "@type": "Blog",
-                            url: "https://wahlflorian.com/articles",
+                            url: `${SITE_URL}/articles`,
                             name: "Florian Wahl's Articles",
                             description: "Articles and insights about Product Strategy, Fintech, and Digital Transformation by Florian Wahl",
                             author: {

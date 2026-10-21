@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node tools/og-cards.js",
     "dev": "next dev",
+    "prebuild": "node tools/og-cards.js",
     "build": "next build",
     "postbuild": "node scripts/generate-sitemap.js",
     "start": "next start",
@@ -26,11 +28,16 @@
     "not dead"
   ],
   "devDependencies": {
+    "@fontsource/instrument-sans": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^22.20.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "autoprefixer": "^10.6.1",
     "postcss": "^8.5.31",
+    "satori": "^0.63.2",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3"
   },

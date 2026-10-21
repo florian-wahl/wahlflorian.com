@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+# generated share cards (tools/og-cards.js)
+/public/og/
+
 # production
 /build
 
